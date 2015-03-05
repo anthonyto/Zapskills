@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reviewer: 1
+  reviewee: 1
+  skill: MyString
+  stars: 1
+  description: MyText
+
+two:
+  reviewer: 1
+  reviewee: 1
+  skill: MyString
+  stars: 1
+  description: MyText

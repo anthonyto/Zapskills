@@ -9,17 +9,25 @@ Users
 	password
 	profile_picture_url
 	
-	rails g scaffold User first_name:string last_name:string email:string city:string state:string zip_code:string date_of_birth:date password:string profile_picture_url:string
-	
 Skills
 	name
 	
-	
 Messages
-
+	sender
+	recipient
+	body
 
 Experiences
 	description
 	start_month
 	start_year
 	level
+	
+Appointments
+	tutor
+	tutee
+	date_and_time
+	status
+	skill
+	
+	

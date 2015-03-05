@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305151138) do
+ActiveRecord::Schema.define(version: 20150305171043) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "tutor_id",      limit: 4
+    t.integer  "tutee_id",      limit: 4
+    t.datetime "date_and_time"
+    t.string   "status",        limit: 255
+    t.string   "skill",         limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "experiences", force: :cascade do |t|
     t.integer "user_id",     limit: 4
@@ -23,6 +33,23 @@ ActiveRecord::Schema.define(version: 20150305151138) do
 
   add_index "experiences", ["skill_id"], name: "index_experiences_on_skill_id", using: :btree
   add_index "experiences", ["user_id"], name: "index_experiences_on_user_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "sender_id",    limit: 4
+    t.integer  "recipient_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "reviewer_id", limit: 4
+    t.integer  "reviewee_id", limit: 4
+    t.string   "skill",       limit: 255
+    t.integer  "stars",       limit: 4
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "skills", force: :cascade do |t|
     t.string   "name",       limit: 255
