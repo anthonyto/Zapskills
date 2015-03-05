@@ -30,4 +30,10 @@ Appointments
 	status
 	skill
 	
+Reviews
+	reviewer
+	reviewee
+	skill
+	stars
+	description
 	

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305171043) do
+ActiveRecord::Schema.define(version: 20150305171414) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "tutor_id",      limit: 4
@@ -37,8 +37,9 @@ ActiveRecord::Schema.define(version: 20150305171043) do
   create_table "messages", force: :cascade do |t|
     t.integer  "sender_id",    limit: 4
     t.integer  "recipient_id", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.text     "body",         limit: 65535
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -46,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150305171043) do
     t.integer  "reviewee_id", limit: 4
     t.string   "skill",       limit: 255
     t.integer  "stars",       limit: 4
-    t.text     "description", limit: 65535
+    t.text     "body",        limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
