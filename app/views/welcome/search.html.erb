@@ -1,0 +1,25 @@
+Zapskills Home
+
+Search for skills: 
+
+<%= form_tag({controller: 'welcome', action: 'results'}, method: 'get') do %>
+  <div class="field">
+		<%= select_tag :skill_id, options_from_collection_for_select(@skills, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= label_tag :city %><br>
+    <%= text_field_tag :city %>
+  </div>
+  <div class="field">
+    <%= label_tag :state %><br>
+    <%= text_field_tag :state %>
+  </div>
+  <div class="field">
+    <%= label_tag :radius %><br>
+    <%= text_field_tag :radius %>
+  </div>
+	
+  <div class="actions">
+    <%= submit_tag("Search") %>
+  </div>
+<% end %>

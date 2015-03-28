@@ -1,0 +1,3 @@
+rails generate migration AddLatitudeAndLongitudeToUser latitude:float longitude:float
+
+ Experience.find_by(skill: 3).skill.users.near("Madison, WI", 20)

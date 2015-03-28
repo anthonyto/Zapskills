@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305171414) do
+ActiveRecord::Schema.define(version: 20150327222440) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "tutor_id",      limit: 4
@@ -24,11 +24,13 @@ ActiveRecord::Schema.define(version: 20150305171414) do
   end
 
   create_table "experiences", force: :cascade do |t|
-    t.integer "user_id",     limit: 4
-    t.integer "skill_id",    limit: 4
-    t.date    "start_date"
-    t.text    "description", limit: 65535
-    t.integer "level",       limit: 4
+    t.string   "description", limit: 255
+    t.date     "start_date"
+    t.integer  "level",       limit: 4
+    t.integer  "user_id",     limit: 4
+    t.integer  "skill_id",    limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "experiences", ["skill_id"], name: "index_experiences_on_skill_id", using: :btree
@@ -43,13 +45,12 @@ ActiveRecord::Schema.define(version: 20150305171414) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "reviewer_id", limit: 4
-    t.integer  "reviewee_id", limit: 4
-    t.string   "skill",       limit: 255
-    t.integer  "stars",       limit: 4
-    t.text     "body",        limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "appointment_id", limit: 4
+    t.string   "skill",          limit: 255
+    t.integer  "stars",          limit: 4
+    t.text     "body",           limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "skills", force: :cascade do |t|
@@ -59,17 +60,37 @@ ActiveRecord::Schema.define(version: 20150305171414) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",          limit: 255
-    t.string   "last_name",           limit: 255
-    t.string   "email",               limit: 255
-    t.string   "city",                limit: 255
-    t.string   "state",               limit: 255
-    t.string   "zip_code",            limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "email",                  limit: 255
+    t.string   "city",                   limit: 255
+    t.string   "state",                  limit: 255
+    t.string   "zip_code",               limit: 255
     t.date     "date_of_birth"
-    t.string   "password",            limit: 255
-    t.string   "profile_picture_url", limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "password",               limit: 255
+    t.string   "profile_picture_url",    limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email",      limit: 255
+    t.float    "latitude",               limit: 24
+    t.float    "longitude",              limit: 24
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "experiences", "skills"
+  add_foreign_key "experiences", "users"
 end

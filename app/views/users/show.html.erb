@@ -45,5 +45,18 @@
   <%= @user.profile_picture_url %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+<strong>Skills</strong>
+</br >
+
+<% @user.experiences.each do |experience| %>
+	<strong><%= experience.skill.name %></strong></br >
+	Description: <%= experience.description %></br >
+	Level: <%= experience.level %></br >
+</br>
+<% end %>
+
+</br >
+<%= link_to 'Add skills', new_user_experience_path(current_user) %> |
+
+<%= link_to 'Edit', edit_user_path(@user) %>
