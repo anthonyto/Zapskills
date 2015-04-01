@@ -8,7 +8,6 @@ FactoryGirl.define do
     description "abcdfef"
     start_date "11/23/1989"
     level "4"
-    user
   end
   factory :user do
     first_name     "Michael"

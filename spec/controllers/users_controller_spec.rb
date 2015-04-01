@@ -30,7 +30,7 @@ RSpec.describe UsersController, :type => :controller do
     it "responds unsuccessfully" do
       sign_in nil
       @user = FactoryGirl.create :user
-      delete :destroy, id:@user.id
+      patch :update, id:@user.id, user: {:email => "john.doe@example1.com"}
       response.should_not be_success
     end
   end
