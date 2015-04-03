@@ -1,6 +1,12 @@
 #root/spec/factories.rb
 
 FactoryGirl.define do
+  factory :review do
+    appointment_id "4"
+    skill "255"
+    stars "4"
+    body "limit: 65535"
+  end
   factory :skill do
     name "Cooking"
   end
