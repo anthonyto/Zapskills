@@ -39,4 +39,15 @@ RSpec.feature "the signin process", :type => :feature do
     click_button "Log in"
     expect(page).to have_content "Signed in successfully"
   end
+  
+  scenario "double sign in" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    visit "/users/sign_in"
+    expect(page).to have_content "You are already signed in"
+  end
 end
