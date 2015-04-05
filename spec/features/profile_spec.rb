@@ -40,8 +40,8 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     expect(page).to have_content "New Skill"
   end
 
-#TODO
   scenario "actually add skills" do
+    load Rails.root + "db/seeds.rb"
     click_link("Profile")
     click_button "Update User"
     click_link("Add skills")
@@ -50,9 +50,12 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     select "2010", :from => "experience_start_date_1i"
     select "November", :from => "experience_start_date_2i"
     select "20", :from => "experience_start_date_3i"
-    #find('#experience_skill_id').find("option[value ='22']").click
-    #select "Cooking", :from => "experience_skill_id"
-    #click_button "Create Experience"
+    select "Cooking", :from => "experience_skill_id"
+    click_button "Create Experience"
+    expect(page).to have_content "Skills"
+    expect(page).to have_content "Cooking"
+    expect(page).to have_content "Description: Learned it"
+    expect(page).to have_content "Level: 4"
   end
 
   scenario "edit user" do
