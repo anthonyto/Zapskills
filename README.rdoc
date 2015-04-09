@@ -13,3 +13,5 @@ Run `$ bundle install` to download all gems.
 Run `$ rails s` to turn on your local server and see the webapp at localhost:3000. 
 
 Alternatively, visit zapskills.herokuapp.com to see the app in production (with bugs). 
+
+To run all tests: `$ bundle exec rspec`
