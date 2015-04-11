@@ -50,4 +50,31 @@ RSpec.feature "the signin process", :type => :feature do
     visit "/users/sign_in"
     expect(page).to have_content "You are already signed in"
   end
+  
+  scenario "remember me not checked" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    expire_cookies
+    visit "/users/sign_in"
+    expect(page).to have_content 'Log in'
+    expect(page).to have_content 'Forgot your password?'
+  end
+
+  scenario "remember me checked" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    check('user_remember_me')
+    click_button "Log in"
+    expire_cookies
+    visit "/users/sign_in"
+    expect(page).to have_content 'You are already signed in'
+  end
+
 end
