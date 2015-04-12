@@ -2,13 +2,36 @@ require "rails_helper"
 
 RSpec.feature "the signin process", :type => :feature do
   before :each do
-    User.create(:email => "user@example.com", :password => "password")
+    User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
+  end
+
+  scenario "click on search does nothing" do
+    visit "/users/sign_in"
+    click_link 'Search'
+    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+  end
+
+  scenario "confirmation instruction" do
+    visit "/users/sign_in"
+    click_link 'Didn\'t receive confirmation instructions?'
+    expect(page).to have_content 'Resend confirmation instructions'
+  end
+
+  scenario "send confirmation instruction" do
+    visit "/users/sign_in"
+    click_link 'Didn\'t receive confirmation instructions?'
+    fill_in "Email", :with => "shachiagarwalla@gmail.com"
+    click_button "Resend confirmation instructions"
+    ActionMailer::Base.deliveries.last.body.match("Welcome shachiagarwalla@gmail.com!")
+    ActionMailer::Base.deliveries.last.body.match("You can confirm your account email through the link below:")
+    ActionMailer::Base.deliveries.last.body.match("Confirm my account")
+    ActionMailer::Base.deliveries.last.subject.match("Confirmation instructions")
   end
 
   scenario "signs me in" do
     visit "/users/sign_in"
     within("#new_user") do
-      fill_in "Email", :with => "user@example.com"
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
@@ -33,7 +56,7 @@ RSpec.feature "the signin process", :type => :feature do
     expect(page).to have_content 'Log in'
     expect(page).to have_content 'Forgot your password?'
     within("#new_user") do
-      fill_in "Email", :with => "user@example.com"
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
@@ -43,7 +66,7 @@ RSpec.feature "the signin process", :type => :feature do
   scenario "double sign in" do
     visit "/users/sign_in"
     within("#new_user") do
-      fill_in "Email", :with => "user@example.com"
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
@@ -54,7 +77,7 @@ RSpec.feature "the signin process", :type => :feature do
   scenario "remember me not checked" do
     visit "/users/sign_in"
     within("#new_user") do
-      fill_in "Email", :with => "user@example.com"
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
@@ -67,7 +90,7 @@ RSpec.feature "the signin process", :type => :feature do
   scenario "remember me checked" do
     visit "/users/sign_in"
     within("#new_user") do
-      fill_in "Email", :with => "user@example.com"
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
       fill_in "Password", :with => "password"
     end
     check('user_remember_me')
