@@ -1,0 +1,32 @@
+html, body {
+    height:100%;
+    margin:0px;
+}
+.navbar{ /*fixes space between jummbotron and the header*/
+    margin-bottom: 0px;
+}
+.navbar-brand{ /* fixes the position of the image*/
+    padding: 5px 15px
+}
+h3{ /* fix the top margin for the header text*/
+    margin-top: 10px;
+}
+.jumbotron{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+a:-webkit-any-link{
+    text-decoration: none;
+}
+.sign-in{
+    color:#FF0000;
+}
+#navigation li{
+    list-style: none;
+    display: inline;
+    margin: 2em;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
