@@ -12,6 +12,25 @@ class WelcomeController < ApplicationController
     end
   end
   
+  def about
+  end
+  
+  def contact
+  end
+  
+  def help
+  end
+  
+  def howto
+  end
+  
+  def termsandconditions
+  end
+  
+  def main
+  end
+  
+  
   private
   
   def search_params
