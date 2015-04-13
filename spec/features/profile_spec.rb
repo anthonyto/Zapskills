@@ -57,6 +57,34 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     expect(page).to have_content "Description: Learned it"
     expect(page).to have_content "Level: 4"
   end
+  
+  scenario "adding same skills multiple times" do
+#Fails presently because multiple entries of the same skill is allowed
+    load Rails.root + "db/seeds.rb"
+    click_link("Profile")
+    click_button "Update User"
+    click_link("Add skills")
+    fill_in "Description", :with => "Learned it"
+    fill_in "experience_level", :with => "4"
+    select "2010", :from => "experience_start_date_1i"
+    select "November", :from => "experience_start_date_2i"
+    select "20", :from => "experience_start_date_3i"
+    select "Cooking", :from => "experience_skill_id"
+    click_button "Create Experience"
+    expect(page).to have_content "Skills"
+    expect(page).to have_content "Cooking"
+    expect(page).to have_content "Description: Learned it"
+    expect(page).to have_content "Level: 4"
+    click_link("Add skills")
+    fill_in "Description", :with => "Learned it"
+    fill_in "experience_level", :with => "4"
+    select "2010", :from => "experience_start_date_1i"
+    select "November", :from => "experience_start_date_2i"
+    select "20", :from => "experience_start_date_3i"
+    select "Cooking", :from => "experience_skill_id"
+    click_button "Create Experience"
+    expect(page).to have_content "Skill already added"
+  end
 
   scenario "edit user" do
     click_link("Profile")
@@ -69,6 +97,20 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     expect(page).to have_content "User was successfully updated"
     expect(page).to have_content "City: Madison"
     expect(page).to have_content "State: WI"
+  end
+
+  scenario "discarding changes to edit user" do
+    click_link("Profile")
+    click_button "Update User"
+    click_link("Edit")
+    expect(page).to have_content "Editing User"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    click_button "Update User"
+    click_link("Edit")
+    fill_in "City", :with => "Delhi"
+    click_link("Show")
+    expect(page).to have_content "City: Madison"
   end
 
   scenario "sign out from profile" do

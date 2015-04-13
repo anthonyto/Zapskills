@@ -19,6 +19,7 @@ gem 'geocoder'
 gem 'rspec-rails', '~> 3.0'
 gem 'capybara'
 gem 'factory_girl_rails'
+gem 'show_me_the_cookies'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
