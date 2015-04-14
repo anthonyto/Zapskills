@@ -1,14 +1,13 @@
 <footer class="footer" style="background-color: #E0F9FF; height: 80px;">
 	<div class="container">		
-    <p class="text-muted">ZapSkills Development</p>	
   	<div class="pull-left" id="navigation-container">
 			<ul id="navigation">
 				<li>Version 0.01</li>
-				<li><a href="aboutus.html">About us</a></li>
-				<li><a href="help.html">Help</a></li>
-				<li><a href="howto.html">How to</a></li>
-				<li><a href="contactus.html">Contact us</a></li>
-				<li><a href="termsandconditions.html">Terms & Conditions </a></li>
+				<li><%= link_to 'About', about_path%></li>
+				<li><%= link_to 'Help', help_path%></li>
+				<li><%= link_to 'How To', howto_path%></li>
+				<li><%= link_to 'Contact', contact_path%></li>
+				<li><%= link_to 'Terms and Conditions', termsandconditions_path%></li>
 			</ul>
 		</div>
 	</div>

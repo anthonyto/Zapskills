@@ -1,92 +1,60 @@
 <% @title="Profile"%>
 <div class="container target">
-    <div class="row">
-        <div class="col-sm-10">
-             <h1 class="">Jason</h1>
-         
-          <!--<button type="button" class="btn btn-success">Book me!</button>  <button type="button" class="btn btn-info">Send me a message</button>
-			-->
-		  <br>
-        </div>
-      <div class="col-sm-2"><a href="profile.html" class="pull-left"><img title="profile image" class="img-thumbnail heigh: 128; width:128;" src="images/zapskills_platypus.png"></a>
+	<div class="row">
+		<div class="col-sm-10">
+			<h1><%= current_user.first_name %></h1>
+			<br>
+		</div>
+		<div class="col-sm-2">
+			<a href="profile.html" class="pull-left"><img title="profile image" class="img-thumbnail heigh: 128; width:128;" src="images/zapskills_platypus.png"></a>
+		</div>
+	</div>
+	<br>
+</div>
 
-        </div>
-    </div>
-  <br>
- </div>
 <div class="row">
-        <div class="col-sm-3">
-            <!--left col-->
-            <ul class="list-group">
-                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Location</strong></span>Madison, WI </li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email </strong></span> jason@wisc.edu </li>
-			  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Rating </strong></span> <img src="images/stars_4.png" alt="4 Stars" width="100" height="25"> </li>
-			  <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <a href="#">Edit</a></strong></span><br></li>
-            </ul>
+	<div class="col-sm-3">
+		<!--left col-->
+		<ul class="list-group">
+			<li class="list-group-item text-muted" contenteditable="false">Profile</li>
+			<li class="list-group-item text-right">
+				<strong class="pull-left">Location</strong><%= current_user.city %>
+			</li>
+			<li class="list-group-item text-right">
+				<strong class="pull-left">Email </strong><%= current_user.email %>
+			</li>
+			<li class="list-group-item text-right">
+				<strong class="pull-left">Rating </strong><img src="images/stars_4.png" alt="4 Stars" width="100" height="25">
+			</li>
+			<li class="list-group-item text-right"><span class="pull-left">
+				<strong class=""> <a href="#">Edit</a></strong></span><br>
+			</li>
+		</ul>
 
-        </div>
-		<div class="col-sm-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">Tutoring</div>
-                <div class="panel-body"> 
+	</div>
+	<div class="col-sm-8">
+		<div class="panel panel-default">
+		<div class="panel-heading">Tutoring</div>
+			<div class="panel-body"> 
 				<div class="table-fixed">
-            <table class="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>Subject</th>
-                  <th>Experience</th>
-                </tr>
-              </thead>
-              <tbody>
-                    <tr><td>Java</td>
-                    <td>expert</td> </tr>
-				
-					<tr><td>Java</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Cooking</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Biking</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Fishing</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Jumping</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Running</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Climbing</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Screaming</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Hair pulling</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Tractor pulling</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Rock and Roll</td>
-					<td>expert</td></tr>
-					
-					<tr><td>Computing</td>
-					<td>expert</td></tr>
-					
-					<tr><td>420NoScopeYourMom</td>
-					<td>expert</td></tr>
-				</tbody>
-			  </table>
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Subject</th>
+								<th>Experience</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% current_user.experiences.each do |experience| %>
+								<tr>
+									<td><%= experience.skill.name %></td>
+									<td><%= experience.level %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
-
-
-<script src="/plugins/bootstrap-pager.js"></script>
