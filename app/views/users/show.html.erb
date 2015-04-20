@@ -27,7 +27,7 @@
 				<strong class="pull-left">Rating </strong><img src="images/stars_4.png" alt="4 Stars" width="100" height="25">
 			</li>
 			<li class="list-group-item text-right"><span class="pull-left">
-				<strong class=""> <a href="#">Edit</a></strong></span><br>
+				<strong><%= link_to "Edit", edit_user_path(current_user) %></strong>
 			</li>
 		</ul>
 
@@ -53,6 +53,7 @@
 							<% end %>
 						</tbody>
 					</table>
+					<%= link_to "Add Skill", new_user_experience_path(current_user) %>
 				</div>
 			</div>
 		</div>
