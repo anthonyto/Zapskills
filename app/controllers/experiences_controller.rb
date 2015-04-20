@@ -5,10 +5,7 @@ class ExperiencesController < ApplicationController
   def new
     @experience = Experience.new
   end
-
-  def edit
-  end
-
+  
   def create
     @experience = Experience.new(experience_params)
     @experience.update_attributes(user: current_user)
@@ -17,6 +14,9 @@ class ExperiencesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
   end
 
   def update
