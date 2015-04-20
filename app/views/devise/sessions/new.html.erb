@@ -32,36 +32,26 @@
 				  <% end -%>
 
 				  <div class="actions">
-				    <%= f.submit "Log in" %>
+				    <%= f.submit "Log in", class: "btn btn-primary btn-xs"%>
 				  </div>
-				<% end %>
-				<!-- <form>
-					<h2>Login with email</h2>
-					<label for="inputEmail" class="sr-only">Email address</label>
-					<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-					<label for="inputPassword" class="sr-only">Password</label>
-					<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-					<div class="checkbox">
-						<div class="col-md-8">
-						<label>
-							<input type="checkbox" value="remember-me"> Remember me
-						</label>
-						</div>
-						<div class="col-md-4">
-							<p style="font-size:1.0em"><a href="#">Forgot password?</a></p>
-						</div>
-					</div>
 					<br></br>
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-				</form> -->
+				  <div class="actions">
+					  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+				  </div>
+					<div class="actions">
+					  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+					</div>
+					
+				<% end %>
+
 			</div>
 			<!-- End of sign up text boxes and submit button -->
 			<!-- Facebook button -->
-			<div class="col-md-5">
+			<!-- <div class="col-md-5">
 				<h2 class="form-signin-heading"> Or login with Facebook</h2>
 				<button class="btn btn-facebook"><i class="fa fa-facebook"></i> Login with Facebook</button>
-				
-			</div>
+
+			</div> -->
 			<!-- End facebook button -->
 			<div class="col-md-1"></div>
 		</div> <!-- /container -->
