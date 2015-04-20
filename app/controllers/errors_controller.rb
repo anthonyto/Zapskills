@@ -1,4 +1,6 @@
 class ErrorsController < ApplicationController 
-  def 401 
+  
+  def unauthorized
   end
+  
 end

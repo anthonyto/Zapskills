@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def edit
     if !authorize_user(@user)
-      render 'errors/401'
+      render 'errors/unauthorized'
       return
     end
   end
