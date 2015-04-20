@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   def show
     if !current_user.complete_profile?
       render 'edit', notice: 'Please complete your profile.'
-      return
     end
   end
 
