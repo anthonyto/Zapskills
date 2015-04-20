@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   resources :skills
 
   resources :users do 
-    resources :experiences, only: [:index, :new, :create]
-    resources :reviews, only: [:index, :new, :create]
+    resources :experiences
+    resources :reviews
   end
     
  end

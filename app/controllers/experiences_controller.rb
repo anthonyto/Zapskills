@@ -1,18 +1,15 @@
 class ExperiencesController < ApplicationController
   before_action :set_experience, only: [:edit, :update, :destroy]
-
+  before_action :set_skills
+  
   def new
     @experience = Experience.new
-    # @skills = Skill.all.map { |skill| [skill.name] }
-    @skills = Skill.all
   end
 
   def edit
   end
 
   def create
-    # skill = Skill.find_by(:name => params[:skill])
-    # experience_params[:skill_id] = skill_id
     @experience = Experience.new(experience_params)
     @experience.update_attributes(user: current_user)
     if @experience.save
@@ -24,7 +21,7 @@ class ExperiencesController < ApplicationController
 
   def update
     if @experience.update(experience_params)
-      redirect_to @experience, notice: 'Experience was successfully updated.'
+      redirect_to current_user, notice: 'Skill was successfully updated.'
     else
       render :edit
     end
@@ -32,13 +29,17 @@ class ExperiencesController < ApplicationController
 
   def destroy
     @experience.destroy
-    redirect_to experiences_url, notice: 'Experience was successfully destroyed.'
+    redirect_to current_user, notice: 'Skill was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_experience
       @experience = Experience.find(params[:id])
+    end
+    
+    def set_skills
+      @skills = Skill.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -14,8 +14,8 @@
 	<div class="row">
 		<div class="col-md-6">
 		  <div class="form-group">
-		    <%= f.label :description %><br />
-		    <%= f.text_field :description, autofocus: true, class: "form-control" %>
+		    <%= f.label :description %>*<br />
+		    <%= f.text_field :description, required: true, autofocus: true, class: "form-control" %>
 		  </div>
 		</div>
 	</div>
@@ -23,8 +23,8 @@
 	<div class="row">
 		<div class="col-md-6">
 		  <div class="form-group">
-		    <%= f.label :start_date %><br />
-		    <%= f.date_field :start_date, autofocus: true, class: "form-control" %>
+		    <%= f.label :start_date %>*<br />
+		    <%= f.date_field :start_date, required: true, autofocus: true, class: "form-control" %>
 		  </div>
 		</div>
 	</div>
@@ -32,8 +32,8 @@
 	<div class="row">
 		<div class="col-md-6">
 		  <div class="form-group">
-		    <%= f.label :level %><br />
-				<%= f.select :level, ((1..5).map {|i| [i,i] }) %>
+		    <%= f.label :level %>*<br />
+				<%= f.select :level,((1..5).map {|i| [i,i] }), required: true %>
 		  </div>
 		</div>
 	</div>
@@ -41,8 +41,8 @@
 	<div class="row">
 		<div class="col-md-6">
 		  <div class="form-group">
-				<%= f.label :skill %><br />
-				<%= f.select :skill_id, options_from_collection_for_select(@skills, :id, :name), class: "form-control" %>
+				<%= f.label :skill %>*<br />
+				<%= f.select :skill_id,options_from_collection_for_select(@skills, :id, :name), required: true, class: "form-control" %>
 		  </div>
 		</div>
 	</div>
