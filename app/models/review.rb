@@ -3,5 +3,14 @@ class Review < ActiveRecord::Base
   has_one :reviewee, class_name: 'User', foreign_key: "reviewww_id"
   belongs_to :skill
   
+  validate :user_cannot_write_review_about_themselves, on: :create
+  
   validates_presence_of :stars, :body, :reviewer_id, :reviewee_id, :skill_id
+  
+  def user_cannot_write_review_about_themselves
+    if reviewer_id == reviewee_id
+      errors.add(:reviewer, "cannot write a review about yourself")
+    end
+  end
 end
+
