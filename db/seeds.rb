@@ -42,7 +42,7 @@ users.each do |first_name, last_name, city, state, zip_code, date_of_birth, pass
                 zip_code: zip_code, 
                 date_of_birth: date_of_birth, 
                 password: password)
-  user.experiences.create!(description: "Do this errday", level: 1, skill: skill)
+  user.experiences.create!(description: "Do this errday", level: 1, skill: skill, start_date: '1111-11-11')
   email_num += 1
 end
 
