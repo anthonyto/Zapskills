@@ -7,10 +7,14 @@ class WelcomeController < ApplicationController
   
   def results
     begin
-      @users = Experience.find_by(skill: params[:skill_id]).skill.users.near("#{params[:city]}, #{params[:state]}", params[:radius]).where.not(id: current_user.id)
+      if params[:skill_id] == ""
+        @users = Experience.all.users.near("#{params[:city]}, #{params[:state]}", params[:radius]).where.not(id: current_user.id)
+      else
+        @users = Experience.find_by(skill: params[:skill_id]).skill.users.near("#{params[:city]}, #{params[:state]}", params[:radius]).where.not(id: current_user.id) 
+      end
     rescue NoMethodError
       @skills = Skill.all
-      render 'search', notice: "No results"
+      redirect_to search_path, notice: "No results"
     end
   end
   

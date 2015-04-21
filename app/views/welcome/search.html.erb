@@ -1,29 +1,44 @@
 <% @title="Search"%>
-		
-<div class="row">
-	<div class="col-md-3 col-md-offset-4">
-		<form class="navbar-form" role="search">
-			<div class="form-group">
-			  <input type="text" class="form-control" placeholder="Search">
-			</div>
-			<button type="submit" class="btn btn-info">Search</button>
-		</forum>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-5 col-md-offset-4">
-		<label class="checkbox-inline">
-			<input type="checkbox" id="inlineCheckbox2" value="option2"> 
-			Search by tutor name
-		</label>
-		<label class="checkbox-inline">
-			<input type="checkbox" id="inlineCheckbox3" value="option3"> 
-			Search by skill
-		</label>
-		<label class="checkbox-inline">
-			<input type="checkbox" id="inlineCheckbox3" value="option4"> 
-			Search by location 
-		</label>
+<%= form_tag({controller: 'welcome', action: 'results'}, method: 'get', class: "navbar-form") do %>
+
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4">
+	    <%= label_tag :skill %><br>
+			<%= select_tag :skill_id, options_from_collection_for_select(@skills, :id, :name), include_blank: "All Skills" %>
 		</div>
-</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4">
+			<div class="form-group">
+		    <%= label_tag :city %><br>
+		    <%= text_field_tag :city, nil, class: "form-control" %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4">
+			<div class="form-group">
+		    <%= label_tag :state %><br>
+		    <%= text_field_tag :state, nil, class: "form-control" %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4">
+			<div class="form-group">
+		    <%= label_tag :radius %><br>
+		    <%= text_field_tag :radius, nil, class: "form-control" %>
+			</div>
+		</div>
+	</div><br />
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4">
+		  <div class="actions">
+		    <%= submit_tag "Search", class: "btn btn-info"%>
+		  </div>
+		</div>
+	</div>
+
+<% end %>
