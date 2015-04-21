@@ -1,1 +1,1 @@
-@users = Experience.find_by(skill: 3).skill.users.near("Madison, WI", 100).where.not(id: current_user.id) 
+@users = Experience.find_by(skill: 3).skill.users.near("Madison, WI", 100)

@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
   def results
     begin
       if params[:skill_id] == ""
-        @users = Experience.all.users.near("#{params[:city]}, #{params[:state]}", params[:radius]).where.not(id: current_user.id)
+        @users = User.near("#{params[:city]}, #{params[:state]}", params[:radius]).where.not(id: current_user.id)
       else
         @users = Experience.find_by(skill: params[:skill_id]).skill.users.near("#{params[:city]}, #{params[:state]}", params[:radius]).where.not(id: current_user.id) 
       end
