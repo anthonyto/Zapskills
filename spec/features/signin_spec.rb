@@ -5,6 +5,13 @@ RSpec.feature "the signin process", :type => :feature do
     User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
   end
 
+  it "go to homepage" do
+    visit "/users/sign_in"
+    click_link 'ZapSkills'
+    expect(page).to have_content 'Welcome to ZapSkills'
+    expect(page).to have_content 'What is ZapSkills'
+  end
+
   scenario "click on search does nothing" do
     visit "/users/sign_in"
     click_link 'Search'

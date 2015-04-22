@@ -11,6 +11,13 @@ RSpec.feature "the searching", :type => :feature do
     click_button "Log in"
   end
 
+  it "go to homepage" do
+    click_link("Search")
+    click_link 'ZapSkills'
+    expect(page).to have_content 'Welcome to ZapSkills'
+    expect(page).to have_content 'What is ZapSkills'
+  end
+
   scenario "visit search page" do
     click_link("Search")
     expect(page).to have_content "Skill"

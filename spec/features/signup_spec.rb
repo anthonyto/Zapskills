@@ -2,6 +2,13 @@ require "rails_helper"
 
 RSpec.describe "the signin_signup process", :type => :feature do
 
+  it "go to homepage" do
+    visit "/users/sign_up"
+    click_link 'ZapSkills'
+    expect(page).to have_content 'Welcome to ZapSkills'
+    expect(page).to have_content 'What is ZapSkills'
+  end
+
   it "signs me up from sign in" do
     visit ''
     click_link 'Sign Up'

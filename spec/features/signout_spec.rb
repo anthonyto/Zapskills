@@ -5,6 +5,19 @@ RSpec.feature "the signout process", :type => :feature do
     User.create(:email => "user@example.com", :password => "password")
   end
 
+  it "go to homepage" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Sign Out")
+    click_link 'ZapSkills'
+    expect(page).to have_content 'Welcome to ZapSkills'
+    expect(page).to have_content 'What is ZapSkills'
+  end
+
   scenario "signs me out after signing in" do
     visit "/users/sign_in"
     within("#new_user") do
