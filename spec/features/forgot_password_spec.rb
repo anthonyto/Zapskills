@@ -13,6 +13,7 @@ RSpec.describe "the forgot password process", :type => :feature do
   it "forgot pwd" do
     visit 'users/sign_in'
     click_link 'Forgot your password?'
+    expect(page).to have_selector(:link_or_button, 'Send me reset password instructions')
     expect(page).to have_content 'Forgot your password?'
   end
 

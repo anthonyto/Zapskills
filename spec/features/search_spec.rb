@@ -27,6 +27,7 @@ RSpec.feature "the searching", :type => :feature do
   scenario "go to profile page from search" do
     click_link("Search")
     click_link("Profile")
+    expect(page).to have_selector(:link_or_button, 'Update')
     expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
   end
 

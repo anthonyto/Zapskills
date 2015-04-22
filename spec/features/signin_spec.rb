@@ -15,12 +15,14 @@ RSpec.feature "the signin process", :type => :feature do
   scenario "click on search does nothing" do
     visit "/users/sign_in"
     click_link 'Search'
+    expect(page).to have_selector(:link_or_button, 'Log in')
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
 
   scenario "confirmation instruction" do
     visit "/users/sign_in"
     click_link 'Didn\'t receive confirmation instructions?'
+    expect(page).to have_selector(:link_or_button, 'Resend confirmation instructions')
     expect(page).to have_content 'Resend confirmation instructions'
   end
 
@@ -60,6 +62,7 @@ RSpec.feature "the signin process", :type => :feature do
   it "signs me in from sign up" do
     visit '/users/sign_up'
     click_link "Login"
+    expect(page).to have_selector(:link_or_button, 'Log in')
     expect(page).to have_content 'Welcome Back! Email Password Remember me Forgot your password? Didn\'t receive confirmation instructions?'
     within("#new_user") do
       fill_in "Email", :with => "shachiagarwalla@gmail.com"
