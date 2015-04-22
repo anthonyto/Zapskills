@@ -28,6 +28,7 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     click_button "Update"
+    expect(page).to have_selector(:link_or_button, 'Edit')
     expect(page).to have_content "User was successfully updated"
   end
   
@@ -40,6 +41,7 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     expect(page).to have_content "example"
   end
 
+#TODO: Add button presence
   scenario "go to add skills page from edit profile" do
     click_link("Profile")
     click_button "Update"
