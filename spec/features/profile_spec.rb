@@ -18,7 +18,7 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
 
   scenario "update profile" do
     click_link("Profile")
-    fill_in "First name", :with => "user"
+    fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     click_button "Update User"
     expect(page).to have_content "User was successfully updated"
@@ -26,16 +26,18 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
   
   scenario "updated profile" do
     click_link("Profile")
-    fill_in "First name", :with => "user"
+    fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     click_button "Update User"
-    expect(page).to have_content "First name: user"
-    expect(page).to have_content "Last name: example"
+    expect(page).to have_content "dummy"
+    expect(page).to have_content "example"
   end
 
   scenario "go to add skills page from edit profile" do
     click_link("Profile")
     click_button "Update User"
+    click_link("Edit")
+    expect(page).to have_content "New Skill"
     click_link("Add skills")
     expect(page).to have_content "New Skill"
   end
@@ -102,7 +104,6 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
   scenario "discarding changes to edit user" do
     click_link("Profile")
     click_button "Update User"
-    click_link("Edit")
     expect(page).to have_content "Editing User"
     fill_in "City", :with => "Madison"
     fill_in "State", :with => "WI"
@@ -122,6 +123,5 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
   scenario "search page from profile" do
     click_link("Profile")
     click_link("Search")
-    expect(page).to have_content "Zapskills Home Search for skills:"
   end
 end

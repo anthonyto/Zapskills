@@ -52,9 +52,8 @@ RSpec.feature "the signin process", :type => :feature do
   
   it "signs me in from sign up" do
     visit '/users/sign_up'
-    click_link 'Log in'
-    expect(page).to have_content 'Log in'
-    expect(page).to have_content 'Forgot your password?'
+    click_link "Login"
+    expect(page).to have_content 'Welcome Back! Email Password Remember me Forgot your password? Didn\'t receive confirmation instructions?'
     within("#new_user") do
       fill_in "Email", :with => "shachiagarwalla@gmail.com"
       fill_in "Password", :with => "password"
@@ -83,8 +82,7 @@ RSpec.feature "the signin process", :type => :feature do
     click_button "Log in"
     expire_cookies
     visit "/users/sign_in"
-    expect(page).to have_content 'Log in'
-    expect(page).to have_content 'Forgot your password?'
+    expect(page).to have_content 'Welcome Back'
   end
 
   scenario "remember me checked" do
