@@ -18,6 +18,26 @@ RSpec.feature "the signout process", :type => :feature do
     expect(page).to have_content 'What is ZapSkills'
   end
 
+  it "checks footer links" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Sign Out")
+    click_link 'About'
+    expect(page).to have_content 'About us page!'
+    click_link 'Help'
+    expect(page).to have_content 'Help!'
+    click_link 'How To'
+    expect(page).to have_content 'How to'
+    click_link 'Contact'
+    expect(page).to have_content 'Contact Us'
+    click_link 'Terms and Conditions'
+    expect(page).to have_content 'Terms and Conditions'
+  end
+
   scenario "signs me out after signing in" do
     visit "/users/sign_in"
     within("#new_user") do
