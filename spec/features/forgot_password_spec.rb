@@ -2,6 +2,14 @@ require "rails_helper"
 
 RSpec.describe "the forgot password process", :type => :feature do
 
+  it "go to home" do
+    visit 'users/sign_in'
+    click_link 'Forgot your password?'
+    click_link 'ZapSkills'
+    expect(page).to have_content 'Welcome to ZapSkills'
+    expect(page).to have_content 'What is ZapSkills'
+  end
+
   it "forgot pwd" do
     visit 'users/sign_in'
     click_link 'Forgot your password?'

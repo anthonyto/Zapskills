@@ -11,6 +11,13 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     click_button "Log in"
   end
 
+ it "go to homepage" do
+    click_link("Profile")
+    click_link 'ZapSkills'
+    expect(page).to have_content 'Welcome to ZapSkills'
+    expect(page).to have_content 'What is ZapSkills'
+  end
+
   scenario "visit profile page" do
     click_link("Profile")
     expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
