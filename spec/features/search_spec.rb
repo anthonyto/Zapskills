@@ -20,6 +20,7 @@ RSpec.feature "the searching", :type => :feature do
 
   scenario "visit search page" do
     click_link("Search")
+    expect(page).to have_selector(:link_or_button, 'Search')
     expect(page).to have_content "Skill"
     expect(page).to have_content "City State Radius"
   end
