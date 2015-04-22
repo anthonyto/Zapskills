@@ -13,24 +13,26 @@ RSpec.feature "the searching", :type => :feature do
 
   scenario "visit search page" do
     click_link("Search")
-    expect(page).to have_content "Zapskills Home Search for skills:"
+    expect(page).to have_content "Skill"
+    expect(page).to have_content "City State Radius"
   end
 
   scenario "go to profile page from search" do
     click_link("Search")
     click_link("Profile")
-    expect(page).to have_content "Editing User"
+    expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
   end
 
   scenario "sign out from search page" do
     click_link("Search")
     click_link("Sign Out")
-    expect(page).to have_content "You need to sign in or sign up before continuing"
+    expect(page).to have_content "Signed out successfully"
   end
 
   scenario "search show no results" do
     load Rails.root + "db/seeds.rb"
     click_link("Search")
+    #expect(page).to have_no_content "City"
     fill_in "City", :with => "Madison"
     fill_in "State", :with => "WI"
     fill_in "Radius", :with => "1"
@@ -45,9 +47,9 @@ RSpec.feature "the searching", :type => :feature do
     click_link("Profile")
     fill_in "City", :with => "Madison"
     fill_in "State", :with => "WI"
-    click_button "Update User"
+    click_button "Update"
     expect(page).to have_content "User was successfully updated"
-    click_link("Add skills")
+    click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     fill_in "experience_level", :with => "4"
     select "2010", :from => "experience_start_date_1i"

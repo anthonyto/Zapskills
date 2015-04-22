@@ -14,12 +14,11 @@ RSpec.feature "the signout process", :type => :feature do
     click_button "Log in"
     expect(page).to have_content "Signed in successfully"
     click_link("Sign Out")
-    expect(page).to have_content "You need to sign in or sign up before continuing"
+    expect(page).to have_content "Signed out successfully"
   end
 
   scenario "signing out without signing in redirects to signin page" do
     visit "/users/sign_out"
-    #click_link("Sign Out")
     expect(page).to have_content "You need to sign in or sign up before continuing"
   end
 end
