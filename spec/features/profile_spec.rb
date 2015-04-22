@@ -13,14 +13,14 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
 
   scenario "visit profile page" do
     click_link("Profile")
-    expect(page).to have_content "Editing User"
+    expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
   end
 
   scenario "update profile" do
     click_link("Profile")
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
-    click_button "Update User"
+    click_button "Update"
     expect(page).to have_content "User was successfully updated"
   end
   
@@ -28,14 +28,14 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     click_link("Profile")
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
-    click_button "Update User"
+    click_button "Update"
     expect(page).to have_content "dummy"
     expect(page).to have_content "example"
   end
 
   scenario "go to add skills page from edit profile" do
     click_link("Profile")
-    click_button "Update User"
+    click_button "Update"
     click_link("Edit")
     expect(page).to have_content "New Skill"
     click_link("Add skills")
@@ -45,7 +45,7 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
   scenario "actually add skills" do
     load Rails.root + "db/seeds.rb"
     click_link("Profile")
-    click_button "Update User"
+    click_button "Update"
     click_link("Add skills")
     fill_in "Description", :with => "Learned it"
     fill_in "experience_level", :with => "4"
@@ -64,7 +64,7 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
 #Fails presently because multiple entries of the same skill is allowed
     load Rails.root + "db/seeds.rb"
     click_link("Profile")
-    click_button "Update User"
+    click_button "Update"
     click_link("Add skills")
     fill_in "Description", :with => "Learned it"
     fill_in "experience_level", :with => "4"
@@ -90,12 +90,12 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
 
   scenario "edit user" do
     click_link("Profile")
-    click_button "Update User"
+    click_button "Update"
     click_link("Edit")
     expect(page).to have_content "Editing User"
     fill_in "City", :with => "Madison"
     fill_in "State", :with => "WI"
-    click_button "Update User"
+    click_button "Update"
     expect(page).to have_content "User was successfully updated"
     expect(page).to have_content "City: Madison"
     expect(page).to have_content "State: WI"
@@ -103,12 +103,13 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
 
   scenario "discarding changes to edit user" do
     click_link("Profile")
-    click_button "Update User"
-    expect(page).to have_content "Editing User"
+    click_button "Update"
+    expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
     fill_in "City", :with => "Madison"
     fill_in "State", :with => "WI"
-    click_button "Update User"
-    click_link("Edit")
+    click_button "Update"
+    expect(page).to have_content "qwrty"
+    click_button ("Edit")
     fill_in "City", :with => "Delhi"
     click_link("Show")
     expect(page).to have_content "City: Madison"
@@ -117,11 +118,13 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
   scenario "sign out from profile" do
     click_link("Profile")
     click_link("Sign Out")
-    expect(page).to have_content "You need to sign in or sign up before continuing"
+    expect(page).to have_content "Signed out successfully"
   end
 
   scenario "search page from profile" do
     click_link("Profile")
     click_link("Search")
+    expect(page).to have_content "Skill"
+    expect(page).to have_content "City State Radius"
   end
 end
