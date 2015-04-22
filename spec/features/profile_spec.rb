@@ -23,6 +23,20 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
   end
 
+  it "checks footer links" do
+    click_link("Profile")
+    click_link 'About'
+    expect(page).to have_content 'About us page!'
+    click_link 'Help'
+    expect(page).to have_content 'Help!'
+    click_link 'How To'
+    expect(page).to have_content 'How to'
+    click_link 'Contact'
+    expect(page).to have_content 'Contact Us'
+    click_link 'Terms and Conditions'
+    expect(page).to have_content 'Terms and Conditions'
+  end
+
   scenario "update profile" do
     click_link("Profile")
     fill_in "First name", :with => "dummy"

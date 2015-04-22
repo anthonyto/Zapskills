@@ -30,7 +30,7 @@ users = [
 
 email_num = 0
 
-skill = Skill.find_by(name: "cooking")
+skill = Skill.find_by(name: "Cooking")
 
 
 users.each do |first_name, last_name, city, state, zip_code, date_of_birth, password|

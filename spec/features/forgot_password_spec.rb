@@ -10,6 +10,21 @@ RSpec.describe "the forgot password process", :type => :feature do
     expect(page).to have_content 'What is ZapSkills'
   end
 
+  it "checks footer links" do
+    visit 'users/sign_in'
+    click_link 'Forgot your password?'
+    click_link 'About'
+    expect(page).to have_content 'About us page!'
+    click_link 'Help'
+    expect(page).to have_content 'Help!'
+    click_link 'How To'
+    expect(page).to have_content 'How to'
+    click_link 'Contact'
+    expect(page).to have_content 'Contact Us'
+    click_link 'Terms and Conditions'
+    expect(page).to have_content 'Terms and Conditions'
+  end
+
   it "forgot pwd" do
     visit 'users/sign_in'
     click_link 'Forgot your password?'
