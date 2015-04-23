@@ -45,5 +45,10 @@ RSpec.describe "the forgot password process", :type => :feature do
     ActionMailer::Base.deliveries.last.body.match("If you didn't request this, please ignore this email.")
     ActionMailer::Base.deliveries.last.body.match("Your password won't change until you access the link above and create a new one.")
     ActionMailer::Base.deliveries.last.subject.match("Reset password instructions")
+    expect(page).to have_selector(:link_or_button, 'Login')
+    expect(page).to have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Out')
+    expect(page).to_not have_selector(:link_or_button, 'Profile')
   end
 end

@@ -11,7 +11,6 @@ RSpec.describe WelcomeController, :type => :controller do
       response.should be_success
       response.should render_template("search")
     end
-#TODO: Skill responds as empty
     it "skills is not empty" do
       @user = FactoryGirl.create :user
       sign_in 
@@ -25,15 +24,12 @@ RSpec.describe WelcomeController, :type => :controller do
     end
   end
 
-#TODO: Results tests
   describe "GET results" do
     it "response should be success" do
-      #@user = FactoryGirl.create :user
       sign_in
       get :results
-      flash[:notice].should be_nil
-      response.should be_success
-      response.should render_template("search")
+      flash[:notice].should eq("No results")
+      response.should redirect_to(search_path)
     end
     it "responds unsuccessfully" do
       sign_in nil

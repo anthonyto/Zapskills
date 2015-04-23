@@ -54,4 +54,24 @@ RSpec.feature "the signout process", :type => :feature do
     visit "/users/sign_out"
     expect(page).to have_content "You need to sign in or sign up before continuing"
   end
+  
+  scenario "header links check before and after signing out" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
+    click_link("Sign Out")
+    expect(page).to have_selector(:link_or_button, 'Login')
+    expect(page).to have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Out')
+    expect(page).to_not have_selector(:link_or_button, 'Profile')
+  end
 end

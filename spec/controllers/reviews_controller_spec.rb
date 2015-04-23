@@ -63,8 +63,8 @@ RSpec.describe ReviewsController, :type => :controller do
   end
   describe "GET edit" do
     it "response is success" do
+      sign_in
       @user = FactoryGirl.create :user
-      sign_in @user
       @review = FactoryGirl.create :review
       get :edit, {user_id:@user.id, id:@review.id}
       flash[:notice].should be_nil
@@ -75,52 +75,6 @@ RSpec.describe ReviewsController, :type => :controller do
       @user = FactoryGirl.create :user
       @review = FactoryGirl.create :review
       get :edit, {user_id:@user.id, id:@review.id}
-      response.should_not be_success
-    end
-  end
-
-  describe "GET show" do
-    it "responds successfully with an HTTP 200 status code" do
-      @user = FactoryGirl.create :user
-      sign_in @user
-      @review = FactoryGirl.create :review
-      get :show, {user_id:@user.id, id:@review.id}
-      flash[:notice].should be_nil
-      response.should have_http_status(200)
-      response.should render_template("show")
-    end
-    it "responds unsuccessfully" do
-      sign_in nil
-      @review = FactoryGirl.create :review
-      @user = FactoryGirl.create :user
-      get :show, {user_id:@user.id, id:@review.id}
-      response.should_not be_success
-    end
-  end
-
-  describe "GET index" do
-    it "responds successfully with an HTTP 200 status code" do
-      sign_in
-      @user = FactoryGirl.create :user
-      get :index, user_id:@user.id
-      flash[:notice].should be_nil
-      response.should be_success
-      response.should have_http_status(200)
-      response.should render_template("index")
-    end
-    it "responds successfully with and user created" do
-      sign_in
-      @review = FactoryGirl.create :review
-      @user = FactoryGirl.create :user
-      get :index, user_id:@user.id
-      assigns(:reviews).should_not be_empty
-      response.should be_success
-      response.should render_template("index")
-    end
-    it "responds unsuccessfully" do
-      sign_in nil
-      @user = FactoryGirl.create :user
-      get :index, user_id:@user.id
       response.should_not be_success
     end
   end
