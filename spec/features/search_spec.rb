@@ -25,6 +25,15 @@ RSpec.feature "the searching", :type => :feature do
     expect(page).to have_content "City State Radius"
   end
 
+  scenario "visit search page and check the header links" do
+    click_link("Search")
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
+  end
+
   it "checks footer links" do
     click_link("Search")
     click_link 'About'
@@ -44,12 +53,22 @@ RSpec.feature "the searching", :type => :feature do
     click_link("Profile")
     expect(page).to have_selector(:link_or_button, 'Update')
     expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
   end
 
   scenario "sign out from search page" do
     click_link("Search")
     click_link("Sign Out")
     expect(page).to have_content "Signed out successfully"
+    expect(page).to have_selector(:link_or_button, 'Login')
+    expect(page).to have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Out')
+    expect(page).to_not have_selector(:link_or_button, 'Profile')
   end
 
   scenario "search show no results" do
@@ -74,6 +93,11 @@ RSpec.feature "the searching", :type => :feature do
     expect(page).to have_content 'Contact Us'
     click_link 'Terms and Conditions'
     expect(page).to have_content 'Terms and Conditions'
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
   end
   
   scenario "search show some result" do
@@ -89,6 +113,11 @@ RSpec.feature "the searching", :type => :feature do
     expect(page).to have_content "Skills"
     expect(page).to have_content "Rating"
     page.should have_selector('table tr', :count => 13)
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
   end
 
 end

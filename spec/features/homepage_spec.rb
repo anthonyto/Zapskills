@@ -35,6 +35,11 @@ RSpec.feature "visit homepage", :type => :feature do
     click_link 'ZapSkills'
     expect(page).to have_content 'Welcome to ZapSkills'
     expect(page).to have_content 'What is ZapSkills'
+    expect(page).to have_selector(:link_or_button, 'Login')
+    expect(page).to have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Out')
+    expect(page).to_not have_selector(:link_or_button, 'Profile')
   end
 
   scenario "and click on Login" do

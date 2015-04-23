@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :review do
-    appointment_id "4"
-    skill "255"
+    skill 
     stars "4"
     body "limit: 65535"
   end
@@ -12,8 +11,9 @@ FactoryGirl.define do
   end
   factory :experience do
     description "abcdfef"
-    start_date "11/23/1989"
+    start_date "1989-11-23"
     level "4"
+    skill
   end
   factory :user do
     first_name     "Michael"
@@ -25,10 +25,5 @@ FactoryGirl.define do
     state "WI"
     zip_code "53726"
     date_of_birth "23/11/1989"
-    factory :user_with_experience do
-      after(:create) do |user|
-        create(:experience, user: user)
-      end
-    end
   end
 end

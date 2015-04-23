@@ -61,6 +61,25 @@ RSpec.feature "the signin process", :type => :feature do
     expect(page).to have_content "Signed in successfully"
   end
 
+  scenario "header links check before and after signing in" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
+      fill_in "Password", :with => "password"
+    end
+    expect(page).to have_selector(:link_or_button, 'Login')
+    expect(page).to have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Out')
+    expect(page).to_not have_selector(:link_or_button, 'Profile')
+    click_button "Log in"
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
+  end
+
   given(:other_user) { User.create(:email => 'other@example.com', :password => 'rous') }
 
   scenario "Signing in as another user" do
@@ -122,4 +141,15 @@ RSpec.feature "the signin process", :type => :feature do
     expect(page).to have_content 'You are already signed in'
   end
 
+  scenario "does not allow to signup after signin in" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    visit '/users/sign_up'
+    expect(page).to_not have_content 'SIGN UP Email Password (8 characters minimum) Password confirmation'
+    expect(page).to have_content "You are already signed in"
+  end
 end

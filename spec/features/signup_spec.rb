@@ -42,4 +42,24 @@ RSpec.describe "the signin_signup process", :type => :feature do
     click_button "Sign up"
     expect(page).to have_content "Welcome! You have signed up successfully"    
   end
+
+  it "check header buttons change before/after signup" do
+    visit ''
+    click_link 'Sign Up'
+    expect(page).to have_selector(:link_or_button, 'Login')
+    expect(page).to have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Out')
+    expect(page).to_not have_selector(:link_or_button, 'Profile')
+    fill_in "user_email", :with => "user@example.com"
+    fill_in "Password", :with => "password"
+    fill_in "Password confirmation", :with => "password"
+    click_button "Sign up"
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
+  end
+
 end

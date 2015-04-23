@@ -56,49 +56,6 @@ RSpec.describe SkillsController, :type => :controller do
     end
   end
 
-  describe "GET show" do
-    it "responds successfully with an HTTP 200 status code" do
-      sign_in 
-      @skill = FactoryGirl.create :skill 
-      get :show, id:@skill.id
-      flash[:notice].should be_nil
-      response.should have_http_status(200)
-      response.should render_template("show")
-    end
-    it "responds unsuccessfully" do
-      sign_in nil
-      @user = FactoryGirl.create :user
-      get :show, id:@user.id
-      response.should_not be_success
-    end
-  end
-
-  describe "GET index" do
-#TODO
-#    it "responds successfully with an HTTP 200 status code" do
-#      @user = FactoryGirl.attributes_for :user
-#      sign_in @user
-#      get :index
-#      flash[:notice].should be_nil
-#      response.should be_success
-#      response.should have_http_status(200)
-#      response.should render_template("index")
-#    end
-#    it "responds successfully with and user created" do
-#      sign_in
-#      @user1 = FactoryGirl.attributes_for :user
-#      post :create, user:@user1
-#      get :index
-#      assigns(:users).should_not be_empty
-#      response.should be_success
-#      response.should render_template("index")
-#    end
-    it "responds unsuccessfully" do
-      sign_in nil
-      get :index
-      response.should_not be_success
-    end
-  end
 
   describe "GET new" do
 #TODO: undefined method experiences
