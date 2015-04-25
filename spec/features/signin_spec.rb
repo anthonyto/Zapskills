@@ -6,6 +6,24 @@ RSpec.feature "Signin process: ", :type => :feature do
     User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
   end
 
+  scenario "invalid password" do
+    within("#new_user") do
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
+      fill_in "Password", :with => "invalid_pwd"
+    end
+    click_button "Log in"
+    expect(page).to have_content "Invalid email or password"
+  end
+
+  scenario "invalid email" do
+    within("#new_user") do
+      fill_in "Email", :with => "sagarwalla@gmail.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    expect(page).to have_content "Invalid email or password"
+  end
+
   scenario "clicking on search does nothing" do
     click_link 'Search'
     expect(page).to have_selector(:link_or_button, 'Log in')
@@ -18,10 +36,20 @@ RSpec.feature "Signin process: ", :type => :feature do
     expect(page).to have_content 'Resend confirmation instructions'
     fill_in "Email", :with => "shachiagarwalla@gmail.com"
     click_button "Resend confirmation instructions"
+    expect(page).to have_content "You will receive an email with instructions for how to confirm your email address in a few minutes"
     ActionMailer::Base.deliveries.last.body.match("Welcome shachiagarwalla@gmail.com!")
     ActionMailer::Base.deliveries.last.body.match("You can confirm your account email through the link below:")
     ActionMailer::Base.deliveries.last.body.match("Confirm my account")
     ActionMailer::Base.deliveries.last.subject.match("Confirmation instructions")
+  end
+
+  scenario "confirmation instruction" do
+    click_link 'Didn\'t receive confirmation instructions?'
+    expect(page).to have_selector(:link_or_button, 'Resend confirmation instructions')
+    expect(page).to have_content 'Resend confirmation instructions'
+    fill_in "Email", :with => "sagarwalla@gmail.com"
+    click_button "Resend confirmation instructions"
+    expect(page).to have_content "Email not found"
   end
 
   scenario "sign in" do
