@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "the searching", :type => :feature do
+RSpec.feature "Search: ", :type => :feature do
   before :each do
     User.create(:email => "user@example.com", :password => "password", :city => "Madison", :zip_code => "53726", :state => "WI")
     visit "/users/sign_in"
@@ -9,69 +9,22 @@ RSpec.feature "the searching", :type => :feature do
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
-  end
-
-  it "go to homepage" do
     click_link("Search")
-    click_link 'ZapSkills'
-    expect(page).to have_content 'Welcome to ZapSkills'
-    expect(page).to have_content 'What is ZapSkills'
   end
 
   scenario "visit search page" do
-    click_link("Search")
     expect(page).to have_selector(:link_or_button, 'Search')
     expect(page).to have_content "Skill"
     expect(page).to have_content "City State Radius"
   end
 
-  scenario "visit search page and check the header links" do
-    click_link("Search")
-    expect(page).to_not have_selector(:link_or_button, 'Login')
-    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
-    expect(page).to have_selector(:link_or_button, 'Sign Out')
-    expect(page).to have_selector(:link_or_button, 'Search')
-    expect(page).to have_selector(:link_or_button, 'Profile')
-  end
-
-  it "checks footer links" do
-    click_link("Search")
-    click_link 'About'
-    expect(page).to have_content 'About us page!'
-    click_link 'Help'
-    expect(page).to have_content 'Help!'
-    click_link 'How To'
-    expect(page).to have_content 'How to'
-    click_link 'Contact'
-    expect(page).to have_content 'Contact Us'
-    click_link 'Terms and Conditions'
-    expect(page).to have_content 'Terms and Conditions'
-  end
-
-  scenario "go to profile page from search" do
-    click_link("Search")
+  scenario "visit profile page from search page" do
     click_link("Profile")
     expect(page).to have_selector(:link_or_button, 'Update')
     expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
-    expect(page).to_not have_selector(:link_or_button, 'Login')
-    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
-    expect(page).to have_selector(:link_or_button, 'Sign Out')
-    expect(page).to have_selector(:link_or_button, 'Search')
-    expect(page).to have_selector(:link_or_button, 'Profile')
   end
 
-  scenario "sign out from search page" do
-    click_link("Search")
-    click_link("Sign Out")
-    expect(page).to have_content "Signed out successfully"
-    expect(page).to have_selector(:link_or_button, 'Login')
-    expect(page).to have_selector(:link_or_button, 'Sign Up')
-    expect(page).to have_selector(:link_or_button, 'Search')
-    expect(page).to_not have_selector(:link_or_button, 'Sign Out')
-    expect(page).to_not have_selector(:link_or_button, 'Profile')
-  end
-
-  scenario "search show no results" do
+  scenario "search query shows no results (valid entries)" do
     load Rails.root + "db/seeds.rb"
     click_link("Search")
     fill_in "City", :with => "Madison"
@@ -100,7 +53,7 @@ RSpec.feature "the searching", :type => :feature do
     expect(page).to have_selector(:link_or_button, 'Profile')
   end
   
-  scenario "search show some result" do
+  scenario "search query shows some result (valid entries)" do
     load Rails.root + "db/seeds.rb"
     click_link("Search")
     fill_in "City", :with => "Madison"
@@ -119,5 +72,4 @@ RSpec.feature "the searching", :type => :feature do
     expect(page).to have_selector(:link_or_button, 'Search')
     expect(page).to have_selector(:link_or_button, 'Profile')
   end
-
 end

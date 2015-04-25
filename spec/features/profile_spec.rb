@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "the profile visiting and editing", :type => :feature do
+RSpec.feature "User Profile: ", :type => :feature do
   before :each do
     User.create(:email => "user@example.com", :password => "password")
     visit "/users/sign_in"
@@ -9,36 +9,14 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
-  end
-
- it "go to homepage" do
     click_link("Profile")
-    click_link 'ZapSkills'
-    expect(page).to have_content 'Welcome to ZapSkills'
-    expect(page).to have_content 'What is ZapSkills'
   end
 
   scenario "visit profile page" do
-    click_link("Profile")
     expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
   end
 
-  it "checks footer links" do
-    click_link("Profile")
-    click_link 'About'
-    expect(page).to have_content 'About us page!'
-    click_link 'Help'
-    expect(page).to have_content 'Help!'
-    click_link 'How To'
-    expect(page).to have_content 'How to'
-    click_link 'Contact'
-    expect(page).to have_content 'Contact Us'
-    click_link 'Terms and Conditions'
-    expect(page).to have_content 'Terms and Conditions'
-  end
-
   scenario "update profile" do
-    click_link("Profile")
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     click_button "Update"
@@ -47,7 +25,6 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
   end
   
   scenario "updated profile" do
-    click_link("Profile")
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     click_button "Update"
@@ -55,9 +32,7 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
     expect(page).to have_content "example"
   end
 
-#TODO: Add button presence
   scenario "go to add skills page from edit profile" do
-    click_link("Profile")
     click_button "Update"
     click_link("Edit")
     expect(page).to have_content "New Skill"
@@ -112,7 +87,6 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
   end
 
   scenario "edit user" do
-    click_link("Profile")
     click_button "Update"
     click_link("Edit")
     expect(page).to have_content "Editing User"
@@ -125,7 +99,6 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
   end
 
   scenario "discarding changes to edit user" do
-    click_link("Profile")
     click_button "Update"
     expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
     fill_in "City", :with => "Madison"
@@ -139,13 +112,11 @@ RSpec.feature "the profile visiting and editing", :type => :feature do
   end
 
   scenario "sign out from profile" do
-    click_link("Profile")
     click_link("Sign Out")
     expect(page).to have_content "Signed out successfully"
   end
 
   scenario "search page from profile" do
-    click_link("Profile")
     click_link("Search")
     expect(page).to have_content "Skill"
     expect(page).to have_content "City State Radius"
