@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "the searching", :type => :feature do
   before :each do
-    User.create(:email => "user@example.com", :password => "password")
+    User.create(:email => "user@example.com", :password => "password", :city => "Madison", :zip_code => "53726", :state => "WI")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user@example.com"

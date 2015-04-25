@@ -3,31 +3,21 @@ require_relative "../support/controller_helpers"
 
 RSpec.describe ExperiencesController, :type => :controller do
 
-#  def create
-#    @experience = Experience.new(experience_params)
-#    @experience.update_attributes(user: current_user)
-#    if @experience.save
-#      redirect_to current_user
-#    else
-#      render :new
-#    end
-#  end
-#  def update
-#    if @experience.update(experience_params)
-#      redirect_to current_user, notice: 'Skill was successfully updated.'
-#    else
-#      render :edit
-#    end
-#  end
   describe "POST create" do
     it "experience created" do
       @user = FactoryGirl.create :user
       sign_in @user
-      @experience = FactoryGirl.attributes_for :experience
+      @skill = FactoryGirl.create :skill
+      #puts @skill.id
+      @experience = FactoryGirl.attributes_for(:experience, skill_id:@skill.id)
+      #puts @user.skills.where(id: @skill.id).empty?
+      #@user.skills.find_each do |sk|
+      #  puts sk.name
+      #end
       post :create, { user_id:@user.id, experience: @experience}
       flash[:notice].should be_nil
-      response.should render_template("new")
-      response.should redirect_to(users_url)
+      response.should_not render_template("new")
+      response.should redirect_to(@user)
     end
     it "responds unsuccessfully" do
       sign_in nil
@@ -41,10 +31,12 @@ RSpec.describe ExperiencesController, :type => :controller do
     it "experience updated" do
       @user = FactoryGirl.create :user
       sign_in @user
-      @experience = FactoryGirl.create :experience
-      patch :update, {user_id:@user.id, id:@experience.id, experience: {:start_date => "2000-12-01"}}
+      @skill = FactoryGirl.create(:skill)
+      @experience = FactoryGirl.create(:experience, skill_id:@skill.id, user_id:@user.id)
+      patch :update, {user_id:@user.id, id:@experience.id, experience: {:description => "asdfghj"}}
+      response.should_not render_template("edit")
       flash[:notice].should eq("Skill was successfully updated.")
-      response.should redirect_to(current_user)
+      response.should redirect_to(@user)
     end
     it "responds unsuccessfully" do
       sign_in nil

@@ -15,15 +15,16 @@ FactoryGirl.define do
     level "4"
     skill
   end
-  factory :user do
-    first_name     "Michael"
-    last_name      "Harlt"
-    email    "michael@example.com"
-    password "foobar123"
-    password_confirmation "foobar123"
-    city "Madison"
-    state "WI"
-    zip_code "53726"
-    date_of_birth "23/11/1989"
+  factory :user do |u|
+    u.sequence(:first_name) { |n| "Michael#{n}"}
+    u.last_name      "Harlt"
+    u.sequence(:email) { |n|  "michael#{n}@example.com"}
+    u.password "foobar123"
+    u.password_confirmation "foobar123"
+    u.city "Madison"
+    u.state "WI"
+    u.zip_code "53726"
+    u.date_of_birth "23/11/1989"
   end
+
 end
