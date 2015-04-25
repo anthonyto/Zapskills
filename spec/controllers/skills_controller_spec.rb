@@ -58,19 +58,14 @@ RSpec.describe SkillsController, :type => :controller do
 
 
   describe "GET new" do
-#TODO: undefined method experiences
-=begin
     it "responds successfully" do
-      @user = FactoryGirl.attributes_for :user_with_experience
-      puts @user
+      @user = FactoryGirl.create :user
       sign_in @user
       get :new
       flash[:notice].should be_nil
       response.should be_success
       response.should have_http_status(200)
-      response.should render_template("new")
     end
-=end
     it "responds unsuccessfully" do
       sign_in nil
       get :new
@@ -79,26 +74,16 @@ RSpec.describe SkillsController, :type => :controller do
   end
 
   describe "POST create" do
-#TODO
-#    it "responds successfully and does not render new" do
-#      @user = FactoryGirl.attributes_for :user
-#      sign_in @user
-#      @skill = FactoryGirl.create :skill
-#      puts @user
-#      puts @skill
-#      post :create, skill:@skill
-#      flash[:notice].should_not be_nil
-#      flash[:notice].should eq("Skill was successfully created.")
-#      response.should redirect_to(user_path(assigns(:user)))
-#      response.should_not render_template("new")
-#    end
-#    it "should not create user and remder new" do
-#      @user = FactoryGirl.attributes_for(:user, :password => 'abcdefghr')
-#      sign_in @user
-#      post :create, user:@user
-#      response.should redirect_to(user_path(assigns(:user)))
-#      response.should_not render_template("index")
-#    end
+    it "responds successfully and does not render new" do
+      @user = FactoryGirl.create :user
+      sign_in @user
+      @skill = FactoryGirl.attributes_for :skill
+      post :create, skill: {:name => "Cook"}
+      flash[:notice].should_not be_nil
+      flash[:notice].should eq("Skill was successfully created.")
+      response.should redirect_to(user_path(assigns(:user)))
+      response.should_not render_template("new")
+    end
     it "responds unsuccessfully because not signed-in" do
       sign_in nil
       @user = FactoryGirl.attributes_for :user

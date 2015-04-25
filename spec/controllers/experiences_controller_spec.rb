@@ -46,6 +46,27 @@ RSpec.describe ExperiencesController, :type => :controller do
       response.should_not be_success
     end
   end
+
+  describe "PUT update" do
+    it "experience updated" do
+      @user = FactoryGirl.create :user
+      sign_in @user
+      @skill = FactoryGirl.create(:skill)
+      @experience = FactoryGirl.create(:experience, skill_id:@skill.id, user_id:@user.id)
+      put :update, {user_id:@user.id, id:@experience.id, experience: {:description => "asdfghj"}}
+      response.should_not render_template("edit")
+      flash[:notice].should eq("Skill was successfully updated.")
+      response.should redirect_to(@user)
+    end
+    it "responds unsuccessfully" do
+      sign_in nil
+      @user = FactoryGirl.create :user
+      @experience = FactoryGirl.create :experience
+      put :update, {user_id:@user.id, id:@experience.id}, experience: {:start_date => "2000-12-01"}
+      response.should_not be_success
+    end
+  end
+
   describe "DELETE destroy" do
     it "skill destroyed" do
       @user = FactoryGirl.create :user

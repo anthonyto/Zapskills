@@ -34,6 +34,23 @@ RSpec.describe UsersController, :type => :controller do
       response.should_not be_success
     end
   end
+
+  describe "PUT update" do
+    it "redirects to users_url" do
+      @user = FactoryGirl.create :user
+      sign_in @user
+      put :update, id:@user.id, user: {:email => "john.doe@example1.com"}
+      flash[:notice].should_not be_nil
+      flash[:notice].should eq("User was successfully updated.")
+      response.should redirect_to(user_path(assigns(:user)))
+    end
+    it "responds unsuccessfully" do
+      sign_in nil
+      @user = FactoryGirl.create :user
+      put :update, id:@user.id, user: {:email => "john.doe@example1.com"}
+      response.should_not be_success
+    end
+  end
   
   describe "DELETE destroy" do
     it "redirects to users_url" do
