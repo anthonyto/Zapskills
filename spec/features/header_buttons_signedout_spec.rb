@@ -19,6 +19,11 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
     click_button "Send me reset password instructions"
   end
 
+  scenario "Confirmation instructions page" do
+    visit "users/sign_in"
+    click_link 'Didn\'t receive confirmation instructions?'
+  end
+
   scenario "homepage" do
     visit ""
     click_link 'ZapSkills'

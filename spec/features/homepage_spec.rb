@@ -56,6 +56,16 @@ RSpec.feature "Visit homepage: ", :type => :feature do
     expect(page).to have_content 'Welcome Back!'
     click_link 'ZapSkills'
   end
+
+  scenario "After logging in" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link 'ZapSkills'
+  end
   
   scenario "Search page after logging in" do
     visit "/users/sign_in"

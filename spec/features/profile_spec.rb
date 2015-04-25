@@ -111,11 +111,6 @@ RSpec.feature "User Profile: ", :type => :feature do
     expect(page).to have_content "City: Madison"
   end
 
-  scenario "sign out from profile" do
-    click_link("Sign Out")
-    expect(page).to have_content "Signed out successfully"
-  end
-
   scenario "search page from profile" do
     click_link("Search")
     expect(page).to have_content "Skill"

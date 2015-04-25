@@ -23,4 +23,11 @@ RSpec.describe "Forgot password process: ", :type => :feature do
     ActionMailer::Base.deliveries.last.body.match("Your password won't change until you access the link above and create a new one.")
     ActionMailer::Base.deliveries.last.subject.match("Reset password instructions")
   end
+
+  scenario "invalid user forgot password" do
+    User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
+    fill_in "Email", :with =>"sagarwalla@gmail.com"
+    click_button "Send me reset password instructions"
+    expect(page).to have_content 'Email not found'
+  end
 end

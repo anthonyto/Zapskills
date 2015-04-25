@@ -18,6 +18,16 @@ RSpec.feature "check footer links: ", :type => :feature do
     visit "/users/sign_in"
   end
 
+  scenario "After signign in" do
+    User.create(:email => "user@example.com", :password => "password")
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+  end
+
   scenario "Signout" do
     User.create(:email => "user@example.com", :password => "password")
     visit "/users/sign_in"
@@ -36,6 +46,11 @@ RSpec.feature "check footer links: ", :type => :feature do
   scenario "Forgot Password page" do
     visit "users/sign_in"
     click_link 'Forgot your password?'
+  end
+
+  scenario "Confirmation instructions page" do
+    visit "users/sign_in"
+    click_link 'Didn\'t receive confirmation instructions?'
   end
 
   scenario "Homepage" do
