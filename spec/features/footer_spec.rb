@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "the footer to homepage process:", :type => :feature do
+RSpec.feature "the footer to homepage process: ", :type => :feature do
   before :each do
     visit ""
   end
@@ -15,23 +15,23 @@ RSpec.feature "the footer to homepage process:", :type => :feature do
     expect(page).to_not have_selector(:link_or_button, 'Profile')
   end
 
-  it "About" do
+  scenario "About page to home" do
     click_link 'About'
   end
 
-  it "Help!" do
+  scenario "Help page to home" do
     click_link 'Help'
   end
 
-  it "How to" do
+  scenario "How to page to home" do
     click_link 'How To'
   end
 
-  it "Contact Us" do
+  scenario "Contact Us page to home" do
     click_link 'Contact'
   end
 
-  it "Terms and Conditions" do
+  scenario "Terms and Conditions page to home" do
     click_link 'Terms and Conditions'
   end
 end
