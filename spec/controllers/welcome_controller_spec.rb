@@ -37,4 +37,45 @@ RSpec.describe WelcomeController, :type => :controller do
       response.should_not be_success
     end
   end
+ 
+  describe "GET about" do
+   it "response should be success" do
+      sign_in
+      get :about
+      response.should be_success
+    end
+  end
+
+  describe "GET help" do
+   it "response should be success" do
+      sign_in
+      get :help
+      response.should be_success
+    end
+  end
+
+  describe "GET howto" do
+   it "response should be success" do
+      sign_in
+      get :howto
+      response.should be_success
+    end
+  end
+
+  describe "GET contact" do
+   it "response should be success" do
+      sign_in
+      get :contact
+      response.should be_success
+    end
+  end
+
+  describe "GET termsandconditions" do
+   it "response should be success" do
+      sign_in
+      get :termsandconditions
+      response.should be_success
+    end
+  end
+
 end

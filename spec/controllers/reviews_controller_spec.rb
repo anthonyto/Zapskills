@@ -24,6 +24,23 @@ RSpec.describe ReviewsController, :type => :controller do
     end
   end
 
+  describe "PUT update" do
+    it "redirects to user_reviews_url" do
+      sign_in @user1
+      @review = FactoryGirl.create(:review, reviewee_id: @user.id, reviewer_id:@user1.id )
+      put :update, {user_id:@user.id, id:@review.id, review: {:description => "john.doeexample1.com"}}
+      flash[:notice].should_not be_nil
+      flash[:notice].should eq("Review was successfully updated.")
+      response.should redirect_to(@user)
+    end
+    it "responds unsuccessfully" do
+      sign_in nil
+      @review = FactoryGirl.create(:review, reviewee_id: @user.id, reviewer_id:@user1.id )
+      put :update, {user_id:@user.id, id:@review.id, review: {:description => "john.doeexample1.com"}}
+      response.should_not be_success
+    end
+  end
+
   describe "DELETE destroy" do
     it "redirects to user_reviews_url" do
       sign_in @user1
