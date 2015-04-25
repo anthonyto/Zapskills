@@ -7,13 +7,33 @@ class ExperiencesController < ApplicationController
   end
   
   def create
+    #puts "controller start"
+    #current_user.skills.find_each do |sk|
+    #  puts sk.name
+    #end
+    #puts "controller end"
     @experience = Experience.new(experience_params)
-    @experience.update_attributes(user: current_user)
-    if @experience.save
+    #puts "controller start"
+    #current_user.skills.find_each do |sk|
+    #  puts sk.name
+    #end
+    #puts "controller end"
+    @experience.assign_attributes(user: current_user)
+    #puts "controller start"
+    #puts @experience.skill_id
+    #current_user.skills.find_each do |sk|
+    #  puts sk.name
+    #end
+    #puts "controller end"
+    if @experience.save!
       redirect_to current_user
     else
       render :new
     end
+    #puts "controller start"
+    #current_user.skills.find_each do |sk|
+    #  puts sk.name
+    #end
   end
 
   def edit
