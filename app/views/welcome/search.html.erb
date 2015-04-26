@@ -19,7 +19,7 @@
 				<div class="form-group">
 			    <%= label_tag :state %><br>
 			    <!-- <%= text_field_tag :state, nil, class: "form-control" %> -->
-					<%= select_tag :state, options_for_select(us_states, "WI") %>
+					<%= select_tag :state, options_for_select(us_states) %>
 				</div>
 			</div>
 		</div>
@@ -31,15 +31,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-5 col-md-offset-4">
-				<div class="form-group">
-			    <%= label_tag :radius %><br>
-			    <%= text_field_tag :radius, nil, class: "form-control" %>
-				</div>
-			</div>
-		</div><br />
 	</div>
+	
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4">
+			<div class="form-group">
+		    <%= label_tag :radius %> (miles)<br>
+		    <%= text_field_tag :radius, nil, class: "form-control", required: true %>
+			</div>
+		</div>
+	</div><br />
 	
 	<div class="row">
 		<div class="col-md-5 col-md-offset-4">
@@ -52,6 +53,12 @@
 <% end %>
 
 <script>
+	if ($("#around_me").prop('checked') === true) {
+	  $('#optional-fields').hide();      
+	} else {
+	  $('#optional-fields').show();
+	}
+	
 	$("#around_me").click(function () {
 		if ($(this).prop('checked') === true) {
 	    $('#optional-fields').hide();      
