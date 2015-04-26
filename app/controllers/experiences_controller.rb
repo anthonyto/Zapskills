@@ -11,6 +11,10 @@ class ExperiencesController < ApplicationController
       flash[:notice] = "Sorry, you already have that skill."
       redirect_to new_user_experience_path(current_user) and return
     end
+    if Date.parse(experience_params[:start_date]) < current_user.date_of_birth
+      flash[:notice] = "No way you've been doing that since before you were born. Liar."
+      redirect_to new_user_experience_path(current_user) and return
+    end
     @experience = Experience.new(experience_params)
     @experience.assign_attributes(user: current_user)
     if @experience.save
@@ -24,6 +28,10 @@ class ExperiencesController < ApplicationController
   end
 
   def update
+    if Date.parse(experience_params[:start_date]) < current_user.date_of_birth
+      flash[:notice] = "No way you've been doing that since before you were born. Liar."
+      redirect_to edit_user_experience_path(current_user, @experience) and return
+    end
     if @experience.update(experience_params)
       redirect_to current_user, notice: 'Skill was successfully updated.'
     else
