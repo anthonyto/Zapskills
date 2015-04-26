@@ -33,7 +33,7 @@ RSpec.describe ExperiencesController, :type => :controller do
       sign_in @user
       @skill = FactoryGirl.create(:skill)
       @experience = FactoryGirl.create(:experience, skill_id:@skill.id, user_id:@user.id)
-      patch :update, {user_id:@user.id, id:@experience.id, experience: {:description => "asdfghj"}}
+      patch :update, {user_id:@user.id, id:@experience.id, experience: {:description => "asdfghj", :start_date => "11-11-9999"}}
       response.should_not render_template("edit")
       flash[:notice].should eq("Skill was successfully updated.")
       response.should redirect_to(@user)
@@ -53,7 +53,7 @@ RSpec.describe ExperiencesController, :type => :controller do
       sign_in @user
       @skill = FactoryGirl.create(:skill)
       @experience = FactoryGirl.create(:experience, skill_id:@skill.id, user_id:@user.id)
-      put :update, {user_id:@user.id, id:@experience.id, experience: {:description => "asdfghj"}}
+      put :update, {user_id:@user.id, id:@experience.id, experience: {:description => "asdfghj", :start_date => "11-11-9999"}}
       response.should_not render_template("edit")
       flash[:notice].should eq("Skill was successfully updated.")
       response.should redirect_to(@user)

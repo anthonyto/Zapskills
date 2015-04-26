@@ -17,10 +17,10 @@ class WelcomeController < ApplicationController
         end
       rescue NoMethodError
         @skills = Skill.all
-        redirect_to search_path, notice: "No results"
+        redirect_to search_path, notice: "No results" and return
       end
     end
-    if @users.empty?
+    if @users.nil?
       @skills = Skill.all
       redirect_to search_path, notice: "No results"
     end
