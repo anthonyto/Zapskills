@@ -39,8 +39,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
   end
   
-  scenario "actually add skills" do
-    load Rails.root + "db/seeds.rb"
+  scenario "go to add skills page from Profile" do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
@@ -124,6 +123,9 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "Start date", :with => "1999-11-23"
     click_button "Create"
     click_link 'Add Skill'
+    expect(page).to have_content "Cooking"
+    expect(page).to have_content "4"
+    click_link("Add Skill")
     fill_in "Description", :with => "Learned it twice"
     select "5", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"

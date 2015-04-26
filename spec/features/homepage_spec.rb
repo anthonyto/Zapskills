@@ -87,18 +87,6 @@ RSpec.feature "Visit homepage: ", :type => :feature do
     end
     click_button "Log in"
     click_link("Profile")
-    click_link 'ZapSkills'
-  end
-
-  scenario "Updated Profile Page" do
-    User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
-    visit "/users/sign_in"
-    within("#new_user") do
-      fill_in "Email", :with => "shachiagarwalla@gmail.com"
-      fill_in "Password", :with => "password"
-    end
-    click_button "Log in"
-    click_link("Profile")
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
@@ -106,6 +94,17 @@ RSpec.feature "Visit homepage: ", :type => :feature do
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
+    click_link 'ZapSkills'
+  end
+
+  scenario "Profile page" do
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "shachiagarwalla@gmail.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Profile")
     click_link 'ZapSkills'
   end
 
