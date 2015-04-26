@@ -8,20 +8,20 @@
 			<%= select_tag :skill_id, options_from_collection_for_select(@skills, :id, :name), include_blank: "All Skills" %>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col-md-5 col-md-offset-4">
 			<div class="form-group">
-		    <%= label_tag :city %><br>
-		    <%= text_field_tag :city, nil, class: "form-control" %>
+		    <%= label_tag :state %><br>
+		    <!-- <%= text_field_tag :state, nil, class: "form-control" %> -->
+				<%= select_tag :state, options_for_select(us_states, "WI") %>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-5 col-md-offset-4">
 			<div class="form-group">
-		    <%= label_tag :state %><br>
-		    <%= text_field_tag :state, nil, class: "form-control" %>
+		    <%= label_tag :city %><br>
+		    <%= text_field_tag :city, nil, class: "form-control" %>
 			</div>
 		</div>
 	</div>

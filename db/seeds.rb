@@ -34,7 +34,7 @@ skill = Skill.find_by(name: "cooking")
 
 
 users.each do |first_name, last_name, city, state, zip_code, date_of_birth, password|
-  user = User.create!( first_name: first_name, 
+  user = User.create( first_name: first_name, 
                 last_name: last_name, 
                 email: "foo#{email_num}@bar.com", 
                 city: city, 
@@ -42,7 +42,9 @@ users.each do |first_name, last_name, city, state, zip_code, date_of_birth, pass
                 zip_code: zip_code, 
                 date_of_birth: date_of_birth, 
                 password: password)
-  user.experiences.create!(description: "Do this errday", level: 1, skill: skill, start_date: '1111-11-11')
+  user.experiences.create(description: "I stink at this", level: 1, skill_id: rand(1..8), start_date: '1111-11-11')
+  user.experiences.create(description: "I'm pretty good at this", level: 1, skill_id: rand(1..8), start_date: '1111-11-11')
+  user.experiences.create(description: "somethingsomething blah blah", level: 1, skill_id: rand(1..8), start_date: '1111-11-11')
   email_num += 1
 end
 
