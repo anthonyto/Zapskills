@@ -33,22 +33,24 @@
 		<div class="col-md-6">
 		  <div class="form-group">
 		    <%= f.label :level %>*<br />
-				<%= f.select :level,((1..5).map {|i| [i,i] }), required: true %>
+				<%= f.select :level,((1..5).map {|i| [i,i] }), selected: @experience.level, required: true %>
 		  </div>
 		</div>
 	</div>
 	
-	<div class="row">
-		<div class="col-md-6">
-		  <div class="form-group">
-				<%= f.label :skill %>*<br />
-				<%= f.select :skill_id, options_from_collection_for_select(@skills, :id, :name, @experience.skill_id), required: true, class: "form-control" %>
-		  </div>
+	<% unless @experience %>
+		<div class="row">
+			<div class="col-md-6">
+			  <div class="form-group">
+					<%= f.label :skill %>*<br />
+					<%= f.select :skill_id, options_from_collection_for_select(@skills, :id, :name, @experience.skill_id), required: true, class: "form-control" %>
+			  </div>
+			</div>
 		</div>
-	</div>
+	<% end %>
 	
   <div class="actions">
-    <%= f.submit "Create", class: "btn btn-primary"%>
+    <%= f.submit "Submit", class: "btn btn-primary"%>
   </div>
 	
 <% end %>

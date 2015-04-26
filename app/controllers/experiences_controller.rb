@@ -24,10 +24,6 @@ class ExperiencesController < ApplicationController
   end
 
   def update
-    unless current_user.experiences.find_by(skill_id: experience_params[:skill_id]).nil? 
-      flash[:notice] = "Sorry, you already have that skill."
-      redirect_to new_user_experience_path(current_user) and return
-    end
     if @experience.update(experience_params)
       redirect_to current_user, notice: 'Skill was successfully updated.'
     else
