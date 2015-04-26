@@ -16,74 +16,75 @@ RSpec.feature "User Profile: ", :type => :feature do
     expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
   end
 
-  scenario "update profile" do
+  scenario "update profile first time" do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
-    click_button "Update"
-    expect(page).to have_selector(:link_or_button, 'Edit')
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
     expect(page).to have_content "User was successfully updated"
+    expect(page).to have_content "Madison"
   end
   
-  scenario "updated profile" do
+  scenario "go to add skills page from Profile" do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
-    click_button "Update"
-    expect(page).to have_content "dummy"
-    expect(page).to have_content "example"
-  end
-
-  scenario "go to add skills page from edit profile" do
-    click_button "Update"
-    click_link("Edit")
-    expect(page).to have_content "New Skill"
-    click_link("Add skills")
-    expect(page).to have_content "New Skill"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link("Add Skill")
+    expect(page).to have_content "NEW SKILL"
   end
 
   scenario "actually add skills" do
     load Rails.root + "db/seeds.rb"
-    click_link("Profile")
-    click_button "Update"
-    click_link("Add skills")
+    fill_in "First name", :with => "dummy"
+    fill_in "Last name", :with => "example"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link("Add Skill")
+    expect(page).to have_content "NEW SKILL"
     fill_in "Description", :with => "Learned it"
-    fill_in "experience_level", :with => "4"
-    select "2010", :from => "experience_start_date_1i"
-    select "November", :from => "experience_start_date_2i"
-    select "20", :from => "experience_start_date_3i"
+    select "4", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    click_button "Create Experience"
-    expect(page).to have_content "Skills"
+    fill_in "Start date", :with => "1999-11-23"
+    click_button "Create"
     expect(page).to have_content "Cooking"
-    expect(page).to have_content "Description: Learned it"
-    expect(page).to have_content "Level: 4"
+    expect(page).to have_content "4"
+    expect(page).to have_content "Skills Subject Level"
   end
   
   scenario "adding same skills multiple times" do
-#Fails presently because multiple entries of the same skill is allowed
     load Rails.root + "db/seeds.rb"
-    click_link("Profile")
-    click_button "Update"
-    click_link("Add skills")
+    fill_in "First name", :with => "dummy"
+    fill_in "Last name", :with => "example"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    fill_in "experience_level", :with => "4"
-    select "2010", :from => "experience_start_date_1i"
-    select "November", :from => "experience_start_date_2i"
-    select "20", :from => "experience_start_date_3i"
+    select "4", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    click_button "Create Experience"
-    expect(page).to have_content "Skills"
+    fill_in "Start date", :with => "1999-11-23"
+    click_button "Create"
     expect(page).to have_content "Cooking"
-    expect(page).to have_content "Description: Learned it"
-    expect(page).to have_content "Level: 4"
-    click_link("Add skills")
-    fill_in "Description", :with => "Learned it"
-    fill_in "experience_level", :with => "4"
-    select "2010", :from => "experience_start_date_1i"
-    select "November", :from => "experience_start_date_2i"
-    select "20", :from => "experience_start_date_3i"
+    expect(page).to have_content "4"
+    click_link("Add Skill")
+    fill_in "Description", :with => "Learned it twice"
+    select "5", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    click_button "Create Experience"
-    expect(page).to have_content "Skill already added"
+    fill_in "Start date", :with => "2009-11-23"
+    click_button "Create"
+    expect(page).to have_content "Skill can't be duplicate"
   end
 
   scenario "edit user" do

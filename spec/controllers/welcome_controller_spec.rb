@@ -4,7 +4,6 @@ require_relative "../support/controller_helpers"
 RSpec.describe WelcomeController, :type => :controller do
   describe "GET search" do
     it "response should be success" do
-      #@user = FactoryGirl.create :user
       sign_in
       get :search
       flash[:notice].should be_nil

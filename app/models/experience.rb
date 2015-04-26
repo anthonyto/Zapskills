@@ -9,12 +9,12 @@ class Experience < ActiveRecord::Base
   validates_presence_of :skill_id, :level, :start_date, :description
   
   def user_cannot_have_duplicate_skills
-    #puts "models start"
-    #puts skill_id
-    #user.skills.find_each do |sk|
-    #  puts sk.name
-    #end
-    #puts "model end"
+    puts "models start"
+    puts skill_id
+    user.skills.find_each do |sk|
+      puts sk.name
+    end
+    puts "model end"
     unless user.skills.where(id: skill_id).empty?
       errors.add(:skill_id, "can't be duplicate")
     end

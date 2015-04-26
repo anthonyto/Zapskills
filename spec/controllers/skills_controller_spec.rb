@@ -1,3 +1,4 @@
+=begin
 require "rails_helper"
 require_relative "../support/controller_helpers"
 
@@ -93,3 +94,4 @@ RSpec.describe SkillsController, :type => :controller do
     end
   end
 end
+=end

@@ -2,6 +2,7 @@ require "rails_helper"
 require_relative "../support/controller_helpers"
 
 RSpec.describe UsersController, :type => :controller do
+
   describe "GET edit" do
     it "response is success" do
       @user = FactoryGirl.create :user
@@ -97,8 +98,8 @@ RSpec.describe UsersController, :type => :controller do
     end
     it "responds successfully with and user created" do
       sign_in
-      @user1 = FactoryGirl.attributes_for :user
-      post :create, user:@user1
+      @user = FactoryGirl.attributes_for :user
+      post :create, user:@user
       get :index
       assigns(:users).should_not be_empty
       response.should be_success
@@ -137,13 +138,6 @@ RSpec.describe UsersController, :type => :controller do
       response.should redirect_to(user_path(assigns(:user)))
       response.should_not render_template("new")
     end
-#    it "should not create user and remder new" do
-#      @user = FactoryGirl.attributes_for(:user, :password => 'abcdefghr')
-#      sign_in @user
-#      post :create, user:@user
-#      response.should redirect_to(user_path(assigns(:user)))
-#      response.should_not render_template("index")
-#    end
     it "responds unsuccessfully because not signed-in" do
       sign_in nil
       @user = FactoryGirl.attributes_for :user
