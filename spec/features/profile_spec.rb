@@ -49,14 +49,6 @@ RSpec.feature "User Profile: ", :type => :feature do
     click_button("Update")
     click_link("Add Skill")
     expect(page).to have_content "NEW SKILL"
-    fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
-    select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
-    click_button "Create"
-    expect(page).to have_content "Cooking"
-    expect(page).to have_content "4"
-    expect(page).to have_content "Skills Subject Level"
   end
 
   scenario "actually add skills" do
@@ -75,10 +67,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Create"
-    within('td') do
-      click_link("Edit")
-    end
-    expect(page).to have_content "Cooking" 
+    expect(page).to have_content "Cooking 4" 
   end
 
   scenario "adding multiple skills" do
@@ -107,7 +96,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     expect(page).to have_content "Piano 5"
   end
   
-  scenario "adding same skills multiple times" do
+  scenario "adding same skill multiple times" do
     load Rails.root + "db/seeds.rb"
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
@@ -122,10 +111,9 @@ RSpec.feature "User Profile: ", :type => :feature do
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Create"
-    click_link 'Add Skill'
     expect(page).to have_content "Cooking"
     expect(page).to have_content "4"
-    click_link("Add Skill")
+    click_link 'Add Skill'
     fill_in "Description", :with => "Learned it twice"
     select "5", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
