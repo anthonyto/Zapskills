@@ -2,6 +2,87 @@ require "rails_helper"
 require_relative "../support/controller_helpers"
 
 RSpec.describe ExperiencesController, :type => :controller do
+
+  describe "POST create" do
+    it "experience created" do
+      @user = FactoryGirl.create :user
+      sign_in @user
+      @skill = FactoryGirl.create :skill
+      #puts @skill.id
+      @experience = FactoryGirl.attributes_for(:experience, skill_id:@skill.id)
+      #puts @user.skills.where(id: @skill.id).empty?
+      #@user.skills.find_each do |sk|
+      #  puts sk.name
+      #end
+      post :create, { user_id:@user.id, experience: @experience}
+      flash[:notice].should be_nil
+      response.should_not render_template("new")
+      response.should redirect_to(@user)
+    end
+    it "responds unsuccessfully" do
+      sign_in nil
+      @user = FactoryGirl.create :user
+      @experience = FactoryGirl.attributes_for :experience
+      post :create, { user_id:@user.id, experience: @experience}
+      response.should_not be_success
+    end
+  end
+  describe "PATCH update" do
+    it "experience updated" do
+      @user = FactoryGirl.create :user
+      sign_in @user
+      @skill = FactoryGirl.create(:skill)
+      @experience = FactoryGirl.create(:experience, skill_id:@skill.id, user_id:@user.id)
+      patch :update, {user_id:@user.id, id:@experience.id, experience: {:description => "asdfghj"}}
+      response.should_not render_template("edit")
+      flash[:notice].should eq("Skill was successfully updated.")
+      response.should redirect_to(@user)
+    end
+    it "responds unsuccessfully" do
+      sign_in nil
+      @user = FactoryGirl.create :user
+      @experience = FactoryGirl.create :experience
+      patch :update, {user_id:@user.id, id:@experience.id}, experience: {:start_date => "2000-12-01"}
+      response.should_not be_success
+    end
+  end
+
+  describe "PUT update" do
+    it "experience updated" do
+      @user = FactoryGirl.create :user
+      sign_in @user
+      @skill = FactoryGirl.create(:skill)
+      @experience = FactoryGirl.create(:experience, skill_id:@skill.id, user_id:@user.id)
+      put :update, {user_id:@user.id, id:@experience.id, experience: {:description => "asdfghj"}}
+      response.should_not render_template("edit")
+      flash[:notice].should eq("Skill was successfully updated.")
+      response.should redirect_to(@user)
+    end
+    it "responds unsuccessfully" do
+      sign_in nil
+      @user = FactoryGirl.create :user
+      @experience = FactoryGirl.create :experience
+      put :update, {user_id:@user.id, id:@experience.id}, experience: {:start_date => "2000-12-01"}
+      response.should_not be_success
+    end
+  end
+
+  describe "DELETE destroy" do
+    it "skill destroyed" do
+      @user = FactoryGirl.create :user
+      sign_in @user
+      @experience = FactoryGirl.create :experience
+      delete :destroy, {user_id:@user.id, id:@experience.id}
+      flash[:notice].should eq("Skill was successfully destroyed.")
+    end
+    it "responds unsuccessfully" do
+      sign_in nil
+      @user = FactoryGirl.create :user
+      @experience = FactoryGirl.create :experience
+      delete :destroy, {user_id:@user.id, id:@experience.id}
+      response.should_not be_success
+    end
+  end
   describe "GET edit" do
     it "response is success" do
       @user = FactoryGirl.create :user
@@ -16,52 +97,6 @@ RSpec.describe ExperiencesController, :type => :controller do
       @user = FactoryGirl.create :user
       @experience = FactoryGirl.create :experience
       get :edit, {user_id:@user.id, id:@experience.id}
-      response.should_not be_success
-    end
-  end
-
-  describe "GET show" do
-    it "responds successfully with an HTTP 200 status code" do
-      @user = FactoryGirl.create :user
-      sign_in @user
-      @experience = FactoryGirl.create :experience
-      get :show, {user_id:@user.id, id:@experience.id}
-      flash[:notice].should be_nil
-      response.should have_http_status(200)
-      response.should render_template("show")
-    end
-    it "responds unsuccessfully" do
-      sign_in nil
-      @experience = FactoryGirl.create :experience
-      @user = FactoryGirl.create :user
-      get :show, {user_id:@user.id, id:@experience.id}
-      response.should_not be_success
-    end
-  end
-
-  describe "GET index" do
-    it "responds successfully with an HTTP 200 status code" do
-      sign_in
-      @user = FactoryGirl.create :user
-      get :index, user_id:@user.id
-      flash[:notice].should be_nil
-      response.should be_success
-      response.should have_http_status(200)
-      response.should render_template("index")
-    end
-    it "responds successfully with and user created" do
-      sign_in
-      @experience = FactoryGirl.create :experience
-      @user = FactoryGirl.create :user
-      get :index, user_id:@user.id
-      assigns(:experiences).should_not be_empty
-      response.should be_success
-      response.should render_template("index")
-    end
-    it "responds unsuccessfully" do
-      sign_in nil
-      @user = FactoryGirl.create :user
-      get :index, user_id:@user.id
       response.should_not be_success
     end
   end
