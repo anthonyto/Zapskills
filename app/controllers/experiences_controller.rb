@@ -7,8 +7,12 @@ class ExperiencesController < ApplicationController
   end
   
   def create
+    unless current_user.experiences.find_by(skill_id: experience_params[:skill_id]).nil? 
+      flash[:notice] = "Sorry, you already have that skill."
+      redirect_to new_user_experience_path(current_user) and return
+    end
     @experience = Experience.new(experience_params)
-    @experience.update_attributes(user: current_user)
+    @experience.assign_attributes(user: current_user)
     if @experience.save
       redirect_to current_user
     else
@@ -20,6 +24,10 @@ class ExperiencesController < ApplicationController
   end
 
   def update
+    unless current_user.experiences.find_by(skill_id: experience_params[:skill_id]).nil? 
+      flash[:notice] = "Sorry, you already have that skill."
+      redirect_to new_user_experience_path(current_user) and return
+    end
     if @experience.update(experience_params)
       redirect_to current_user, notice: 'Skill was successfully updated.'
     else
@@ -33,17 +41,18 @@ class ExperiencesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_experience
-      @experience = Experience.find(params[:id])
-    end
-    
-    def set_skills
-      @skills = Skill.all
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def experience_params
-      params.require(:experience).permit(:description, :start_date, :level, :user_id, :skill_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_experience
+    @experience = Experience.find(params[:id])
+  end
+  
+  def set_skills
+    @skills = Skill.all
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def experience_params
+    params.require(:experience).permit(:description, :start_date, :level, :user_id, :skill_id)
+  end
 end
