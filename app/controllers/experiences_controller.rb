@@ -24,20 +24,23 @@ class ExperiencesController < ApplicationController
     #  puts sk.name
     #end
     #puts "controller end"
-    #puts "controller start"
-    #puts @experience.skill_id
-    #current_user.skills.find_each do |sk|
-    #  puts sk.name
-    #end
-    #puts "controller end"
+    @experience.update_attributes(user: current_user)
+    puts "controller start"
+    puts @experience.skill_id
+    current_user.skills.find_each do |sk|
+      puts sk.name
+    end
+    puts "controller end"
+    if @experience.save
       redirect_to current_user
     else
       render :new
     end
-    #puts "controller start"
-    #current_user.skills.find_each do |sk|
-    #  puts sk.name
-    #end
+    puts "controller start"
+    current_user.skills.find_each do |sk|
+      puts sk.name
+    end
+    puts "controller end"
   end
 
   def edit
