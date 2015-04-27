@@ -113,7 +113,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Delete Review")
     expect(page).to have_content "Review was successfully destroyed."
     expect(page).to_not have_content "Great job"
-    page.should have_selector('table tr', :count => 2)
+    page.should have_selector('table tr', :count => 3)
     expect(page).to have_content "Profile"
     expect(page).to have_content "dummy"
     click_link("Sign Out")
@@ -127,7 +127,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Log in"
     click_link("Profile")
     expect(page).to_not have_content "Great job"
-    page.should have_selector('table tr', :count => 2)
+    page.should have_selector('table tr', :count => 3)
     click_link("Sign Out")
 
 #Reviewer
@@ -137,12 +137,6 @@ RSpec.feature "Search: ", :type => :feature do
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
-    click_link("Profile")
-    fill_in "First name", :with => "user_second"
-    fill_in "Last name", :with => "example"
-    fill_in "State", :with => "Wisconsin"
-    fill_in "Date of birth", :with => "1989-11-23"
-    click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "10"
@@ -151,8 +145,9 @@ RSpec.feature "Search: ", :type => :feature do
     page.should have_selector('table tr', :count => 2)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
     expect(page).to_not have_content "Great job"
-    page.should have_selector('table tr', :count => 2)
+    page.should have_selector('table tr', :count => 3)
     expect(page).to_not have_content "Edit Review"
+    click_link("Sign Out")
 
 #Third user
     User.create(:email => "user_third@example.com", :password => "password", :city => "Madison", :zip_code => "53701", :state => "WI")
@@ -176,7 +171,7 @@ RSpec.feature "Search: ", :type => :feature do
     page.should have_selector('table tr', :count => 3)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
     expect(page).to_not have_content "Great job"
-    page.should have_selector('table tr', :count => 2)
+    page.should have_selector('table tr', :count => 3)
   end
 
   scenario "search for the skill and write a review and a 3rd user cannot edit" do
@@ -228,6 +223,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Edit Review")
     expect(page).to have_content "EDIT A REVIEW"
     fill_in "Body", :with => "Awesome one"
+    click_button("Submit")
     expect(page).to have_content "Review was successfully updated."
     expect(page).to have_content "Awesome one"
     expect(page).to_not have_content "Great job"
@@ -246,7 +242,7 @@ RSpec.feature "Search: ", :type => :feature do
     end
     click_button "Log in"
     click_link("Profile")
-    expect(page).to have_content "Awesome job"
+    expect(page).to have_content "Awesome one"
     expect(page).to_not have_content "Great job"
     page.should have_selector('table tr', :count => 4)
     expect(page).to_not have_content "Edit Review"
@@ -260,12 +256,6 @@ RSpec.feature "Search: ", :type => :feature do
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
-    click_link("Profile")
-    fill_in "First name", :with => "user_second"
-    fill_in "Last name", :with => "example"
-    fill_in "State", :with => "Wisconsin"
-    fill_in "Date of birth", :with => "1989-11-23"
-    click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "10"
@@ -273,11 +263,12 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Search Results"
     page.should have_selector('table tr', :count => 2)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
-    expect(page).to have_content "Awesome job"
+    expect(page).to have_content "Awesome one"
     expect(page).to_not have_content "Great job"
     page.should have_selector('table tr', :count => 4)
     expect(page).to have_content "Edit Review"
     expect(page).to have_content "Delete Review"
+    click_link("Sign Out")
 
 #Third user
     User.create(:email => "user_third@example.com", :password => "password", :city => "Madison", :zip_code => "53701", :state => "WI")
@@ -300,7 +291,7 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Search Results"
     page.should have_selector('table tr', :count => 3)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
-    expect(page).to have_content "Awesome job"
+    expect(page).to have_content "Awesome one"
     expect(page).to_not have_content "Great job"
     page.should have_selector('table tr', :count => 4)
     expect(page).to_not have_content "Edit Review"
