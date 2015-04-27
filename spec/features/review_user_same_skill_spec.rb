@@ -55,6 +55,42 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "WRITE A REVIEW"
   end
 
+  scenario "leave description empty, reviewee, reviewer" do
+    select "Camping", :from => "review_skill_id"
+    select "5", :from =>  "Stars"
+    click_button("Submit")
+    click_link("Sign Out")
+#Reviewee
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Profile")
+    page.should have_selector('table tr', :count => 3)
+    click_link("Sign Out")
+
+#Reviewer
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user_second@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Search")
+    select "Camping", :from => "skill_id"
+    fill_in "Radius", :with => "10"
+    click_button "Search"
+    expect(page).to have_content "Search Results"
+    page.should have_selector('table tr', :count => 2)
+    find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
+    expect(page).to_not have_content "Great job"
+    page.should have_selector('table tr', :count => 3)
+    expect(page).to_not have_content "Edit Review"
+    click_link("Sign Out")
+  end
+
   scenario "add and check for review" do
     select "Camping", :from => "review_skill_id"
     select "5", :from =>  "Stars"
