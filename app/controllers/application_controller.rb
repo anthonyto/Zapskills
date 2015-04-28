@@ -4,4 +4,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   
+  def verify_complete_profile
+    unless (current_user.first_name != nil &&
+            current_user.last_name != nil &&
+            current_user.city != nil &&
+            current_user.state != nil &&
+            current_user.zip_code != nil &&
+            current_user.date_of_birth != nil)
+      redirect_to edit_user_path(current_user), notice: 'Please complete your profile before proceeding.' and return
+    end
+  end
+  
 end

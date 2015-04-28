@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:main, :about, :contact, :help, :termsandconditions, :howto]
+  before_action :verify_complete_profile, only: [:search, :results]
   
   def search
     @skills = Skill.all

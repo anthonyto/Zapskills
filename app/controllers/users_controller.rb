@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :verify_complete_profile, only: [:show]
   
   def index
     @users = User.all
@@ -7,10 +8,6 @@ class UsersController < ApplicationController
 
   # There needs to be authorization here about what user can see what profile and how those profiles look
   def show
-    @user = User.find(params[:id])
-    if @user == current_user && !current_user.complete_profile?
-     redirect_to edit_user_path(current_user), notice: 'Please complete your profile before proceeding.'
-    end
   end
 
   def new
