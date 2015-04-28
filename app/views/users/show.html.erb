@@ -94,8 +94,8 @@
 									<td><%= review.stars %></td>
 									<td><%= review.body %></td>
 									<% if review.reviewer_id == current_user.id %>
-										<td><%= link_to "Edit", edit_user_review_path(@user, review.id) %></td>
-										<td><%= link_to "Delete", user_review_path(@user, review.id), method: "delete" %></td>
+										<td><%= link_to "Edit Review", edit_user_review_path(@user, review.id) %></td>
+										<td><%= link_to "Delete Review", user_review_path(@user, review.id), method: "delete" %></td>
 									<% end %>
 								</tr>
 							<% end %>

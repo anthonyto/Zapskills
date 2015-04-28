@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.feature "User Profile: ", :type => :feature do
   before :each do
+    sleep(3)
     User.create(:email => "user@example.com", :password => "password")
     visit "/users/sign_in"
     within("#new_user") do
@@ -52,7 +53,7 @@ RSpec.feature "User Profile: ", :type => :feature do
   end
 
   scenario "actually add skills" do
-    load Rails.root + "db/seeds.rb"
+    load Rails.root + "db/skill_seeds.rb"
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
@@ -61,7 +62,6 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
-    expect(page).to have_content "NEW SKILL"
     fill_in "Description", :with => "Learned it"
     select "4", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
@@ -70,8 +70,74 @@ RSpec.feature "User Profile: ", :type => :feature do
     expect(page).to have_content "Cooking 4" 
   end
 
+  scenario "delete skills" do
+    load Rails.root + "db/skill_seeds.rb"
+    fill_in "First name", :with => "dummy"
+    fill_in "Last name", :with => "example"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link("Add Skill")
+    fill_in "Description", :with => "Learned it"
+    select "4", :from =>  "Level"
+    select "Cooking", :from => "experience_skill_id"
+    fill_in "Start date", :with => "1999-11-23"
+    click_button "Submit"
+    expect(page).to have_content "Cooking 4"
+    click_link("Delete")
+    expect(page).to_not have_content "Cooking 4"
+  end
+
+  scenario "adding after deleting skills" do
+    load Rails.root + "db/skill_seeds.rb"
+    fill_in "First name", :with => "dummy"
+    fill_in "Last name", :with => "example"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link("Add Skill")
+    fill_in "Description", :with => "Learned it"
+    select "4", :from =>  "Level"
+    select "Cooking", :from => "experience_skill_id"
+    fill_in "Start date", :with => "1999-11-23"
+    click_button "Submit"
+    click_link("Delete")
+    click_link("Add Skill")
+    fill_in "Description", :with => "Learned it"
+    select "3", :from =>  "Level"
+    select "Cooking", :from => "experience_skill_id"
+    fill_in "Start date", :with => "1999-11-23"
+    click_button "Submit"
+    expect(page).to have_content "Cooking 3"
+  end
+
+  scenario "edit skills" do
+    load Rails.root + "db/skill_seeds.rb"
+    fill_in "First name", :with => "dummy"
+    fill_in "Last name", :with => "example"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link("Add Skill")
+    fill_in "Description", :with => "Learned it"
+    select "4", :from =>  "Level"
+    select "Cooking", :from => "experience_skill_id"
+    fill_in "Start date", :with => "1999-11-23"
+    click_button "Submit"
+    click_link("Edit Skill")
+    select "3", :from =>  "Level"
+    click_button "Submit"
+    expect(page).to have_content "Cooking 3"
+  end
+
   scenario "adding multiple skills" do
-    load Rails.root + "db/seeds.rb"
+    load Rails.root + "db/skill_seeds.rb"
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
@@ -97,7 +163,7 @@ RSpec.feature "User Profile: ", :type => :feature do
   end
   
   scenario "adding same skill multiple times" do
-    load Rails.root + "db/seeds.rb"
+    load Rails.root + "db/skill_seeds.rb"
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
@@ -123,7 +189,7 @@ RSpec.feature "User Profile: ", :type => :feature do
   end
 
   scenario "adding multiple skills multiple times" do
-    load Rails.root + "db/seeds.rb"
+    load Rails.root + "db/skill_seeds.rb"
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
@@ -176,11 +242,23 @@ RSpec.feature "User Profile: ", :type => :feature do
     expect(page).to have_content "LocationMadison"
   end
 
-  # Test for around_me and in another city
   scenario "search page from profile" do
-    # pending
-    # click_link("Search")
-    # expect(page).to have_content "Skill"
-    # expect(page).to have_content "City State Radius"
+    click_link("Search")
+    expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
+    fill_in "First name", :with => "dummy"
+    fill_in "Last name", :with => "example"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link "Edit"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    click_button "Update"
+    click_link("Search") 
+    expect(page).to have_content "Skill"
+    expect(page).to have_content "Radius"
+    expect(page).to have_content "Around me"
   end
 end
