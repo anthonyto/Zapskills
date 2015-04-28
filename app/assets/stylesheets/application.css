@@ -23,6 +23,11 @@ html, body
 	width: 100%;
 }
 
+body
+{
+/*	background-color: #F5F5F5;*/
+}
+
 #full-height-container {
     position:relative; /* needed for footer positioning*/
     margin:0 auto; /* center, not in IE5 */
@@ -40,6 +45,7 @@ h3{ /* fix the top margin for the header text*/
 .jumbotron{
     margin-bottom: 0px;
     margin-top: 0px;
+/*		margin: 40px 40px 40px 40px;*/
 }
 a:-webkit-any-link{
     text-decoration: none;
