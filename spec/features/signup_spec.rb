@@ -19,5 +19,9 @@ RSpec.describe "Signup process: ", :type => :feature do
   scenario "sign up from url" do
     visit '/users/sign_up'
   end
-
+ 
+  scenario "sign up from sign in page" do
+    visit '/users/sign_in'
+    click_link 'Sign Up'
+  end
 end

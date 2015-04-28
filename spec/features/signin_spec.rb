@@ -43,7 +43,7 @@ RSpec.feature "Signin process: ", :type => :feature do
     ActionMailer::Base.deliveries.last.subject.match("Confirmation instructions")
   end
 
-  scenario "confirmation instruction" do
+  scenario "confirmation instruction: invalid email" do
     click_link 'Didn\'t receive confirmation instructions?'
     expect(page).to have_selector(:link_or_button, 'Resend confirmation instructions')
     expect(page).to have_content 'Resend confirmation instructions'
@@ -73,6 +73,7 @@ RSpec.feature "Signin process: ", :type => :feature do
   end
   
   scenario "sign me in from sign up page" do
+    visit '/users/sign_up'
     click_link "Login"
     expect(page).to have_selector(:link_or_button, 'Log in')
     expect(page).to have_content 'Welcome Back! Email Password Remember me Forgot your password? Didn\'t receive confirmation instructions?'

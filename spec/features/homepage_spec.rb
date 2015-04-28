@@ -127,5 +127,4 @@ RSpec.feature "Visit homepage: ", :type => :feature do
     click_link("Add Skill")
     click_link 'ZapSkills'
   end
-
 end

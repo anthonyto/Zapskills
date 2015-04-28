@@ -8,7 +8,7 @@ RSpec.describe ReviewsController, :type => :controller do
   end
 
   describe "PATCH update" do
-    it "redirects to user_reviews_url" do
+    it "redirects to user_url" do
       sign_in @user1
       @review = FactoryGirl.create(:review, reviewee_id: @user.id, reviewer_id:@user1.id )
       patch :update, {user_id:@user.id, id:@review.id, review: {:description => "john.doeexample1.com"}}
@@ -25,7 +25,7 @@ RSpec.describe ReviewsController, :type => :controller do
   end
 
   describe "PUT update" do
-    it "redirects to user_reviews_url" do
+    it "redirects to user_url" do
       sign_in @user1
       @review = FactoryGirl.create(:review, reviewee_id: @user.id, reviewer_id:@user1.id )
       put :update, {user_id:@user.id, id:@review.id, review: {:description => "john.doeexample1.com"}}
@@ -42,7 +42,7 @@ RSpec.describe ReviewsController, :type => :controller do
   end
 
   describe "DELETE destroy" do
-    it "redirects to user_reviews_url" do
+    it "redirects to user_url" do
       sign_in @user1
       @review = FactoryGirl.create(:review, reviewee_id: @user.id, reviewer_id:@user1.id )
       delete :destroy, {user_id:@user.id, id:@review.id}

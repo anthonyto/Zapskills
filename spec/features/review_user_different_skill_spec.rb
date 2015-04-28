@@ -55,7 +55,7 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "WRITE A REVIEW"
   end
 
-  scenario "leave description empty, reviewee, reviewer" do
+  scenario "leave description empty, reviewee, reviewer, third user do not see any review" do
     select "Camping", :from => "review_skill_id"
     select "5", :from =>  "Stars"
     click_button("Submit")

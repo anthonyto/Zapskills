@@ -29,7 +29,7 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
     click_button "Sign up"
   end
 
-  scenario "Profile Page" do
+  scenario "Update Profile Page" do
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "shachiagarwalla@gmail.com"
