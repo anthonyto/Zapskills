@@ -1,0 +1,13 @@
+.navbar{ /*fixes space between jummbotron and the header*/
+    margin-bottom: 0px;
+		background-color: #FFFFFF;
+		border-color: #FFFFFF;
+}
+.navbar-brand{ /* fixes the position of the image*/
+    padding: 5px 15px
+}
+#navigation li{
+    list-style: none;
+    display: inline;
+    margin: 2em;
+}

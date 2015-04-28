@@ -33,3 +33,21 @@ html, body
 
     min-height:100%; /* real browsers */
 }
+
+h3{ /* fix the top margin for the header text*/
+    margin-top: 10px;
+}
+.jumbotron{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+a:-webkit-any-link{
+    text-decoration: none;
+}
+.sign-in{
+    color:#FF0000;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
