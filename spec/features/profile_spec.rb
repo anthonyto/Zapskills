@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.feature "User Profile: ", :type => :feature do
   before :each do
+    sleep(3)
     User.create(:email => "user@example.com", :password => "password")
     visit "/users/sign_in"
     within("#new_user") do
@@ -243,6 +244,19 @@ RSpec.feature "User Profile: ", :type => :feature do
 
   scenario "search page from profile" do
     click_link("Search")
+    expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
+    fill_in "First name", :with => "dummy"
+    fill_in "Last name", :with => "example"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link "Edit"
+    fill_in "City", :with => "Madison"
+    fill_in "State", :with => "WI"
+    click_button "Update"
+    click_link("Search") 
     expect(page).to have_content "Skill"
     expect(page).to have_content "Radius"
     expect(page).to have_content "Around me"

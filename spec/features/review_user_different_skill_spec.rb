@@ -110,7 +110,7 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Radius", :with => "10"
     click_button "Search"
     expect(page).to have_content "Search Results"
-    page.should have_selector('table tr', :count => 3)
+    page.should have_selector('table tr', :count => 2)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
     expect(page).to_not have_content "Great job"
     page.should have_selector('table tr', :count => 3)
@@ -230,7 +230,7 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Radius", :with => "10"
     click_button "Search"
     expect(page).to have_content "Search Results"
-    page.should have_selector('table tr', :count => 3)
+    page.should have_selector('table tr', :count => 2)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
     expect(page).to_not have_content "Great job"
     page.should have_selector('table tr', :count => 3)
@@ -266,7 +266,7 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Radius", :with => "10"
     click_button "Search"
     expect(page).to have_content "Search Results"
-    page.should have_selector('table tr', :count => 3)
+    page.should have_selector('table tr', :count => 2)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
 
     expect(page).to have_content "Great job"
@@ -351,7 +351,7 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Radius", :with => "10"
     click_button "Search"
     expect(page).to have_content "Search Results"
-    page.should have_selector('table tr', :count => 3)
+    page.should have_selector('table tr', :count => 2)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
     expect(page).to have_content "Awesome one"
     expect(page).to_not have_content "Great job"

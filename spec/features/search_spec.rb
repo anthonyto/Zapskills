@@ -12,6 +12,12 @@ RSpec.feature "Search: ", :type => :feature do
     end
     click_button "Log in"
     click_link("Search")
+    fill_in "First name", :with => "dummy"
+    fill_in "Last name", :with => "example"
+    fill_in "State", :with => "Wisconsin"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link("Search")
   end
 
   scenario "visit search page" do
@@ -23,8 +29,7 @@ RSpec.feature "Search: ", :type => :feature do
 
   scenario "visit profile page from search page" do
     click_link("Profile")
-    expect(page).to have_selector(:link_or_button, 'Update')
-    expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
+    expect(page).to have_selector(:link_or_button, 'Edit')
   end
 
   scenario "checkbox checked" do
@@ -46,13 +51,6 @@ RSpec.feature "Search: ", :type => :feature do
 
   scenario "search for the skill that the logged in user is good at (Around me checked)" do
     click_link("Profile")
-    fill_in "First name", :with => "dummy"
-    fill_in "Last name", :with => "example"
-    fill_in "City", :with => "Madison"
-    fill_in "State", :with => "Wisconsin"
-    fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
-    click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "4", :from =>  "Level"
@@ -69,11 +67,6 @@ RSpec.feature "Search: ", :type => :feature do
 
   scenario "search for the skill that the logged in user is good at (Around me unchecked)" do
     click_link("Profile")
-    fill_in "First name", :with => "dummy"
-    fill_in "Last name", :with => "example"
-    fill_in "State", :with => "Wisconsin"
-    fill_in "Date of birth", :with => "1989-11-23"
-    click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "4", :from =>  "Level"
@@ -92,13 +85,6 @@ RSpec.feature "Search: ", :type => :feature do
 
   scenario "search for the skill gives a result (Around me checked)" do
     click_link("Profile")
-    fill_in "First name", :with => "dummy"
-    fill_in "Last name", :with => "example"
-    fill_in "City", :with => "Madison"
-    fill_in "State", :with => "Wisconsin"
-    fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
-    click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "4", :from =>  "Level"
@@ -113,6 +99,12 @@ RSpec.feature "Search: ", :type => :feature do
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
+    click_link("Search")
+    fill_in "First name", :with => "user_second"
+    fill_in "Last name", :with => "example"
+    fill_in "State", :with => "Wisconsin"
+    fill_in "Date of birth", :with => "1959-11-23"
+    click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "10"
@@ -123,13 +115,6 @@ RSpec.feature "Search: ", :type => :feature do
 
   scenario "search for the skill gives a result (Around me unchecked)" do
     click_link("Profile")
-    fill_in "First name", :with => "dummy"
-    fill_in "Last name", :with => "example"
-    fill_in "City", :with => "Madison"
-    fill_in "State", :with => "Wisconsin"
-    fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
-    click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "4", :from =>  "Level"
@@ -145,6 +130,12 @@ RSpec.feature "Search: ", :type => :feature do
     end
     click_button "Log in"
     click_link("Search")
+    fill_in "First name", :with => "user_second"
+    fill_in "Last name", :with => "example"
+    fill_in "State", :with => "Wisconsin"
+    fill_in "Date of birth", :with => "1959-11-23"
+    click_button("Update")
+    click_link("Search")
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "10"
     click_button "Search"
@@ -154,13 +145,6 @@ RSpec.feature "Search: ", :type => :feature do
 
   scenario "search for the skill gives a result (Around me checked and user having same skill)" do
     click_link("Profile")
-    fill_in "First name", :with => "dummy"
-    fill_in "Last name", :with => "example"
-    fill_in "City", :with => "Madison"
-    fill_in "State", :with => "Wisconsin"
-    fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
-    click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "4", :from =>  "Level"
@@ -197,13 +181,6 @@ RSpec.feature "Search: ", :type => :feature do
 
   scenario "search for the skill gives a result (Around me unchecked and user having the same skill)" do
     click_link("Profile")
-    fill_in "First name", :with => "dummy"
-    fill_in "Last name", :with => "example"
-    fill_in "City", :with => "Madison"
-    fill_in "State", :with => "Wisconsin"
-    fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
-    click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "4", :from =>  "Level"
