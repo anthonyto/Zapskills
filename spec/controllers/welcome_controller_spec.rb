@@ -4,7 +4,8 @@ require_relative "../support/controller_helpers"
 RSpec.describe WelcomeController, :type => :controller do
   describe "GET search" do
     it "response should be success" do
-      sign_in
+      @user = FactoryGirl.create :user
+      sign_in @user
       get :search
       flash[:notice].should be_nil
       response.should be_success
@@ -12,7 +13,7 @@ RSpec.describe WelcomeController, :type => :controller do
     end
     it "skills is not empty" do
       @user = FactoryGirl.create :user
-      sign_in 
+      sign_in @user 
       get :search
       assigns(:skills).should be_empty
     end
@@ -25,7 +26,8 @@ RSpec.describe WelcomeController, :type => :controller do
 
   describe "GET results" do
     it "response should be success" do
-      sign_in
+      @user = FactoryGirl.create :user
+      sign_in @user
       get :results
       flash[:notice].should eq("No results")
       response.should redirect_to(search_path)
