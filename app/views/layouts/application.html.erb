@@ -24,9 +24,10 @@
 </head>
 <body>
 	
+	<%= render 'layouts/header' %>
+	
 	<div id="full-height-container">
-		<%= render 'layouts/header' %>
-	  
+			  
 		<% if notice %>
 			<p id="notice"><%= notice %></p>
 		<% end %>
@@ -35,8 +36,16 @@
 		<% end %>
 
 		<%= yield %>
+		
 	</div>
 
+	<br \>
+	<br \>
+	<br \>
+	<br \>
+	<br \>
+	
 	<%= render 'layouts/footer' %>
+
 </body>
 </html>
