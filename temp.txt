@@ -1,3 +1,0 @@
-@users = Experience.find_by(skill: 3).skill.users.near("Madison, WI", 100)
-
-@users = User.near("Madison, WI", 100)
