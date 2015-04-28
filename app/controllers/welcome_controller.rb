@@ -6,19 +6,24 @@ class WelcomeController < ApplicationController
   end
   
   def results
+    # if the user isn't searching "around_me", then set a location based on their parameters
+    # otherwise, use the current_user's location
     if search_params[:around_me] == "1"
-      @users = User.near(current_user, search_params[:radius]).where.not(id: current_user.id)
+      location = "#{current_user.latitude}, #{current_user.longitude}"
     else
-      begin
-        if search_params[:skill_id] == ""
-          @users = User.near("#{search_params[:city]}, #{search_params[:state]}", search_params[:radius]).where.not(id: current_user.id)
-        else
-          @users = Experience.find_by(skill: search_params[:skill_id]).skill.users.near("#{search_params[:city]}, #{search_params[:state]}", search_params[:radius]).where.not(id: current_user.id) 
-        end
-      rescue NoMethodError
-        @skills = Skill.all
-        redirect_to search_path, notice: "No results" and return
+      location = "#{search_params[:city]}, #{search_params[:state]}"
+    end
+    # if a skill_id isn't included, just search all users around the location
+    # otherwise, look for all skills of skill_id around the location 
+    begin
+      if search_params[:skill_id] == ""
+        @users = User.near(location, search_params[:radius]).where.not(id: current_user.id)
+      else
+        @users = Experience.find_by(skill: search_params[:skill_id]).skill.users.near(location, search_params[:radius]).where.not(id: current_user.id) 
       end
+    rescue NoMethodError
+      @skills = Skill.all
+      redirect_to search_path, notice: "No results" and return
     end
     if @users.nil?
       @skills = Skill.all
