@@ -10,9 +10,11 @@
 		<p>A community where you are the student and the tutor. No that doesn’t mean you are teaching yourself! Many people like yourself want to learn the skills you have and they have the skills you want. From Mathematics, Musical instruments or advance thumb wrestling, your skills are the key to others knowledge. </p>
 		</div>
   	<div class="clearfix"></div><br \>
-		<div class="text-center">
-			<%= link_to 'Get Started Today!', new_user_registration_path, class: 'btn btn-default btn-lg' %>
-		</div>
+		<% unless current_user %>
+			<div class="text-center">
+				<%= link_to 'Get Started Today!', new_user_registration_path, class: 'btn btn-default btn-lg' %>
+			</div>
+		<% end %>
 	</div>
 </div>
 

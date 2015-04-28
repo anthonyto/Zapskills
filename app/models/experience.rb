@@ -8,6 +8,8 @@ class Experience < ActiveRecord::Base
   
   validates_presence_of :skill_id, :level, :start_date, :description
   
+  # enum level: [:beginner, :intermediate, :advanced, :expert, :guru]
+  
   # There is something seriously wrong with this validation. 
   def user_cannot_have_duplicate_skills
     puts "models start"
