@@ -38,7 +38,7 @@
 				<div class="panel-body"> 
 					<div class="table-fixed">
 						<% if @user.skills.empty? %>
-							This user doesn't have any skills yet. What a loser. 
+							This user doesn't have any skills yet. What a loser. <br \>
 						<% else %>
 							<table class="table table-striped table-hover">
 								<thead>
@@ -62,9 +62,9 @@
 									<% end %>
 								</tbody>
 							</table>
-							<% if @user == current_user %>
-								<%= link_to "Add Skill", new_user_experience_path(current_user) %>
-							<% end %>
+						<% end %>
+						<% if @user == current_user %>
+							<%= link_to "Add Skill", new_user_experience_path(current_user) %>
 						<% end %>
 					</div>
 				</div>
