@@ -5,7 +5,7 @@ RSpec.describe "Signup process: ", :type => :feature do
   before :each do
     User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
     visit ''
-    click_link 'Sign Up'
+    click_link 'Get Started Today!'
   end
 
   scenario "7 character password" do

@@ -21,7 +21,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
@@ -33,7 +33,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989"
     click_button("Update")
@@ -44,7 +44,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
@@ -57,13 +57,13 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -75,13 +75,13 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -95,20 +95,20 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link("Delete")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "3", :from =>  "Level"
+    select "Intermediate", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -120,18 +120,18 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link("Edit Skill")
-    select "3", :from =>  "Level"
+    select "Intermediate", :from =>  "Level"
     click_button "Submit"
     expect(page).to have_content "Cooking 3"
   end
@@ -141,19 +141,19 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link 'Add Skill'
     fill_in "Description", :with => "Learned it twice"
-    select "5", :from =>  "Level"
+    select "Guru", :from =>  "Level"
     select "Piano", :from => "experience_skill_id"
     fill_in "Start date", :with => "2009-11-23"
     click_button "Submit"
@@ -167,13 +167,13 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -181,7 +181,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     expect(page).to have_content "4"
     click_link 'Add Skill'
     fill_in "Description", :with => "Learned it twice"
-    select "5", :from =>  "Level"
+    select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "2009-11-23"
     click_button "Submit"
@@ -193,25 +193,25 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link 'Add Skill'
     fill_in "Description", :with => "Learned it twice"
-    select "5", :from =>  "Level"
+    select "Guru", :from =>  "Level"
     select "Piano", :from => "experience_skill_id"
     fill_in "Start date", :with => "2009-11-23"
     click_button "Submit"
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -219,7 +219,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     click_link("Profile")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "5", :from =>  "Level"
+    select "Guru", :from =>  "Level"
     select "Piano", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -230,13 +230,13 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link "Edit"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Ohio", :from => "user_state"
     click_button "Update"
     expect(page).to have_content "User was successfully updated"
     expect(page).to have_content "LocationMadison"
@@ -248,13 +248,13 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link "Edit"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Ohio", :from => "user_state"
     click_button "Update"
     click_link("Search") 
     expect(page).to have_content "Skill"

@@ -76,7 +76,7 @@ RSpec.feature "Signin process: ", :type => :feature do
     visit '/users/sign_up'
     click_link "Login"
     expect(page).to have_selector(:link_or_button, 'Log in')
-    expect(page).to have_content 'Welcome Back! Email Password Remember me Forgot your password? Didn\'t receive confirmation instructions?'
+    expect(page).to have_content 'Welcome Back! Email Password Remember me Not yet a member? Sign up here. Forgot your password? Didn\'t receive confirmation instructions?'
     within("#new_user") do
       fill_in "Email", :with => "shachiagarwalla@gmail.com"
       fill_in "Password", :with => "password"

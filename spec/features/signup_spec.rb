@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Signup process: ", :type => :feature do
 
   after :each do
-    expect(page).to have_content 'SIGN UP Email Password (8 characters minimum) Password confirmation'
+    expect(page).to have_content 'Sign Up Email Password Password confirmation'
     fill_in "user_email", :with => "user@example.com"
     fill_in "Password", :with => "password"
     fill_in "Password confirmation", :with => "password"
@@ -13,7 +13,7 @@ RSpec.describe "Signup process: ", :type => :feature do
 
   scenario "sign up from homepage" do
     visit ''
-    click_link 'Sign Up'
+    click_link 'Get Started Today!'
   end
 
   scenario "sign up from url" do
@@ -22,6 +22,6 @@ RSpec.describe "Signup process: ", :type => :feature do
  
   scenario "sign up from sign in page" do
     visit '/users/sign_in'
-    click_link 'Sign Up'
+    click_link 'Not yet a member? Sign up here.'
   end
 end
