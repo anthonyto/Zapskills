@@ -14,7 +14,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Search")
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
-    fill_in "State", :with => "Wisconsin"
+    select "Wisconsin", :from => "user_state"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Search")
@@ -53,7 +53,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Profile")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -69,7 +69,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Profile")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -87,7 +87,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Profile")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -102,7 +102,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Search")
     fill_in "First name", :with => "user_second"
     fill_in "Last name", :with => "example"
-    fill_in "State", :with => "Wisconsin"
+    select "Wisconsin", :from => "user_state"
     fill_in "Date of birth", :with => "1959-11-23"
     click_button("Update")
     click_link("Search")
@@ -117,7 +117,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Profile")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -132,7 +132,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Search")
     fill_in "First name", :with => "user_second"
     fill_in "Last name", :with => "example"
-    fill_in "State", :with => "Wisconsin"
+    select "Wisconsin", :from => "user_state"
     fill_in "Date of birth", :with => "1959-11-23"
     click_button("Update")
     click_link("Search")
@@ -147,7 +147,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Profile")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -162,12 +162,12 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Profile")
     fill_in "First name", :with => "dummy_new"
     fill_in "Last name", :with => "example"
-    fill_in "State", :with => "Wisconsin"
+    select "Wisconsin", :from => "user_state"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "5", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -183,7 +183,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Profile")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "4", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
@@ -198,12 +198,12 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Profile")
     fill_in "First name", :with => "dummy_new"
     fill_in "Last name", :with => "example"
-    fill_in "State", :with => "Wisconsin"
+    select "Wisconsin", :from => "user_state"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
-    select "5", :from =>  "Level"
+    select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
