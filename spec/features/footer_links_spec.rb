@@ -80,7 +80,7 @@ RSpec.feature "check footer links: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
@@ -98,7 +98,7 @@ RSpec.feature "check footer links: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
-    fill_in "State", :with => "WI"
+    select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
