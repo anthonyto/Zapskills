@@ -1,7 +1,1 @@
- User.near("Madison, WI", 10).where.not(id: 15).where.not(skills: nil)
- 
- www.freeepy.com
- 
-def round(num)
-  (num*2).round / 2.0
-end
+  www.freeepy.com
