@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "Search: ", :type => :feature do
   before :each do
     load Rails.root + "db/skill_seeds.rb"
-    sleep (3)
+    sleep (2)
     User.create(:email => "user@example.com", :password => "password", :city => "Madison", :zip_code => "53726", :state => "WI")
     visit "/users/sign_in"
     within("#new_user") do
@@ -214,4 +214,5 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Search Results"
     page.should have_selector('table tr', :count => 2)
   end
+
 end
