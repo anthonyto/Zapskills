@@ -65,6 +65,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "1000"
     click_button "Search"
@@ -97,6 +100,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Cooking", :from => "skill_id"
     fill_in "Radius", :with => "1000"
     click_button "Search"
@@ -129,6 +135,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "1000"
     click_button "Search"
@@ -162,6 +171,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "100"
     click_button "Search"
@@ -194,6 +206,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Cooking", :from => "skill_id"
     fill_in "Radius", :with => "100"
     click_button "Search"
@@ -226,6 +241,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "100"
     click_button "Search"
@@ -259,6 +277,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "10"
     click_button "Search"
@@ -291,6 +312,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Cooking", :from => "skill_id"
     fill_in "Radius", :with => "10"
     click_button "Search"
@@ -323,6 +347,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "10"
     click_button "Search"
@@ -356,6 +383,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "1"
     click_button "Search"
@@ -388,6 +418,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Cooking", :from => "skill_id"
     fill_in "Radius", :with => "1"
     click_button "Search"
@@ -420,6 +453,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "1"
     click_button "Search"
@@ -453,6 +489,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "50"
     click_button "Search"
@@ -485,6 +524,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Cooking", :from => "skill_id"
     fill_in "Radius", :with => "50"
     click_button "Search"
@@ -517,6 +559,9 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
+    uncheck("Around me")
+    select "New York", :from => "state", visible: false
+    fill_in "City", :with => "New York", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "50"
     click_button "Search"
