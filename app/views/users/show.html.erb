@@ -105,10 +105,10 @@
 									<% end %>
 								</tbody>
 							</table>
-							<% if @user != current_user && !@user.skills.empty? %>
-								<%= link_to "Add Review", new_user_review_path(@user, current_user) %>
-							<% end %>
 						<% end%>
+						<% if @user != current_user && !@user.skills.empty? %>
+							<%= link_to "Add Review", new_user_review_path(@user, current_user) %>
+						<% end %>
 					</div>
 				</div>
 			</div>
