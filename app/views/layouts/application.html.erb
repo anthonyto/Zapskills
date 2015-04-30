@@ -24,20 +24,17 @@
 </head>
 <body>
 	
-	<%= render 'layouts/header' %>
-	
-	<div id="full-height-container">
-			  
-		<% if notice %>
-			<p id="notice"><%= notice %></p>
-		<% end %>
-	  <% if alert%>
-			<p id="alert"><%= alert %></p>
-		<% end %>
 
-		<%= yield %>
+	<%= render 'layouts/header' %>
 		
-	</div>
+	<% if notice %>
+		<p id="notice"><%= notice %></p>
+	<% end %>
+	<% if alert%>
+		<p id="alert"><%= alert %></p>
+	<% end %>
+
+	<%= yield %>
 
 </body>
 </html>

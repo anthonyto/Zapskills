@@ -14,7 +14,6 @@
  *= require_self
  */
 
-
 html, body
 {
 	margin: 0;
@@ -26,17 +25,6 @@ html, body
 body
 {
 /*	background-color: #F5F5F5;*/
-}
-
-#full-height-container {
-    position:relative; /* needed for footer positioning*/
-    margin:0 auto; /* center, not in IE5 */
-    width:100%;
-
-    height:auto !important; /* real browsers */
-    height:100%; /* IE6: treaded as min-height*/
-
-    min-height:100%; /* real browsers */
 }
 
 h3{ /* fix the top margin for the header text*/
