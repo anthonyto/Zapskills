@@ -65,9 +65,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
-    uncheck("Around me")
-    select "Illinois", :from => "state", visible: false
-    fill_in "City", :with => "Chicago", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "1000"
     click_button "Search"
@@ -100,9 +97,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
-    uncheck("Around me")
-    select "Illinois", :from => "state", visible: false
-    fill_in "City", :with => "Chicago", visible: false
     select "Cooking", :from => "skill_id"
     fill_in "Radius", :with => "1000"
     click_button "Search"
@@ -135,9 +129,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
-    uncheck("Around me")
-    select "Illinois", :from => "state", visible: false
-    fill_in "City", :with => "Chicago", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "1000"
     click_button "Search"
@@ -171,9 +162,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
-    uncheck("Around me")
-    select "Illinois", :from => "state", visible: false
-    fill_in "City", :with => "Chicago", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "200"
     click_button "Search"
@@ -206,9 +194,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
-    uncheck("Around me")
-    select "Illinois", :from => "state", visible: false
-    fill_in "City", :with => "Chicago", visible: false
     select "Cooking", :from => "skill_id"
     fill_in "Radius", :with => "200"
     click_button "Search"
@@ -241,9 +226,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
-    uncheck("Around me")
-    select "Illinois", :from => "state", visible: false
-    fill_in "City", :with => "Chicago", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "200"
     click_button "Search"
@@ -277,9 +259,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
-    uncheck("Around me")
-    select "Illinois", :from => "state", visible: false
-    fill_in "City", :with => "Chicago", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "10"
     click_button "Search"
@@ -312,9 +291,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
-    uncheck("Around me")
-    select "Illinois", :from => "state", visible: false
-    fill_in "City", :with => "Chicago", visible: false
     select "Cooking", :from => "skill_id"
     fill_in "Radius", :with => "10"
     click_button "Search"
@@ -347,9 +323,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
-    uncheck("Around me")
-    select "Illinois", :from => "state", visible: false
-    fill_in "City", :with => "Chicago", visible: false
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "10"
     click_button "Search"
