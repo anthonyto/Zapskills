@@ -52,7 +52,7 @@ RSpec.feature "Search: ", :type => :feature do
     page.should have_selector('table tr', :count => 2)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
     click_link("Add Review")
-    expect(page).to have_content "WRITE A REVIEW"
+    expect(page).to have_content "Write A Review"
   end
 
   scenario "leave description empty, reviewee, reviewer" do
@@ -68,7 +68,8 @@ RSpec.feature "Search: ", :type => :feature do
     end
     click_button "Log in"
     click_link("Profile")
-    page.should have_selector('table tr', :count => 3)
+    expect(page).to have_content "No Reviews"
+    page.should have_selector('table tr', :count => 2)
     click_link("Sign Out")
 
 #Reviewer
@@ -86,9 +87,35 @@ RSpec.feature "Search: ", :type => :feature do
     page.should have_selector('table tr', :count => 2)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
     expect(page).to_not have_content "Great job"
-    page.should have_selector('table tr', :count => 3)
+    page.should have_selector('table tr', :count => 2)
+    expect(page).to have_content "No Reviews"
     expect(page).to_not have_content "Edit Review"
     click_link("Sign Out")
+
+#Third user
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Madison", :zip_code => "53701", :state => "WI")
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user_third@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Profile")
+    fill_in "First name", :with => "user_third"
+    fill_in "Last name", :with => "example"
+    select "Wisconsin", :from => "user_state"
+    fill_in "Date of birth", :with => "1991-11-23"
+    click_button("Update")
+    click_link("Search")
+    select "Camping", :from => "skill_id"
+    fill_in "Radius", :with => "10"
+    click_button "Search"
+    expect(page).to have_content "Search Results"
+    page.should have_selector('table tr', :count => 3)
+    find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
+    expect(page).to_not have_content "Great job"
+    expect(page).to have_content "No Reviews"
+    page.should have_selector('table tr', :count => 2)
   end
 
   scenario "add and check for review" do
@@ -149,7 +176,8 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Delete Review")
     expect(page).to have_content "Review was successfully destroyed."
     expect(page).to_not have_content "Great job"
-    page.should have_selector('table tr', :count => 3)
+    page.should have_selector('table tr', :count => 2)
+    expect(page).to have_content "No Reviews"
     expect(page).to have_content "Profile"
     expect(page).to have_content "dummy"
     click_link("Sign Out")
@@ -163,7 +191,8 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Log in"
     click_link("Profile")
     expect(page).to_not have_content "Great job"
-    page.should have_selector('table tr', :count => 3)
+    expect(page).to have_content "No Reviews"
+    page.should have_selector('table tr', :count => 2)
     click_link("Sign Out")
 
 #Reviewer
@@ -181,7 +210,8 @@ RSpec.feature "Search: ", :type => :feature do
     page.should have_selector('table tr', :count => 2)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
     expect(page).to_not have_content "Great job"
-    page.should have_selector('table tr', :count => 3)
+    expect(page).to have_content "No Reviews"
+    page.should have_selector('table tr', :count => 2)
     expect(page).to_not have_content "Edit Review"
     click_link("Sign Out")
 
@@ -207,7 +237,8 @@ RSpec.feature "Search: ", :type => :feature do
     page.should have_selector('table tr', :count => 3)
     find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
     expect(page).to_not have_content "Great job"
-    page.should have_selector('table tr', :count => 3)
+    expect(page).to have_content "No Reviews"
+    page.should have_selector('table tr', :count => 2)
   end
 
   scenario "search for the skill and write a review and a 3rd user cannot edit" do

@@ -14,7 +14,7 @@ RSpec.feature "User Profile: ", :type => :feature do
   end
 
   scenario "visit profile page" do
-    expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
+    expect(page).to have_content "Please complete your profile before proceeding. Update Profile"
   end
 
   scenario "update profile first time" do
@@ -37,7 +37,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "Zip code", :with => "53726"
     fill_in "Date of birth", :with => "1989"
     click_button("Update")
-    expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
+    expect(page).to have_content "Please complete your profile before proceeding. Update Profile"
   end
   
   scenario "go to add skills page from Profile" do
@@ -49,7 +49,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
-    expect(page).to have_content "NEW SKILL"
+    expect(page).to have_content "New Skill"
   end
 
   scenario "actually add skills" do
@@ -67,7 +67,8 @@ RSpec.feature "User Profile: ", :type => :feature do
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
-    expect(page).to have_content "Cooking 4" 
+    expect(page).to have_content "Cooking"
+    expect(page).to have_content "Edit Skill Delete" 
   end
 
   scenario "delete skills" do
@@ -85,9 +86,10 @@ RSpec.feature "User Profile: ", :type => :feature do
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
-    expect(page).to have_content "Cooking 4"
+    expect(page).to have_content "Cooking"
+    expect(page).to have_content "Edit Skill Delete"
     click_link("Delete")
-    expect(page).to_not have_content "Cooking 4"
+    expect(page).to_not have_content "Cooking"
   end
 
   scenario "adding after deleting skills" do
@@ -112,7 +114,8 @@ RSpec.feature "User Profile: ", :type => :feature do
     select "Cooking", :from => "experience_skill_id"
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
-    expect(page).to have_content "Cooking 3"
+    expect(page).to have_content "Cooking"
+    expect(page).to have_content "Edit Skill Delete"
   end
 
   scenario "edit skills" do
@@ -133,7 +136,8 @@ RSpec.feature "User Profile: ", :type => :feature do
     click_link("Edit Skill")
     select "Intermediate", :from =>  "Level"
     click_button "Submit"
-    expect(page).to have_content "Cooking 3"
+    expect(page).to have_content "Cooking"
+    expect(page).to have_content "Edit Skill Delete"
   end
 
   scenario "adding multiple skills" do
@@ -157,9 +161,10 @@ RSpec.feature "User Profile: ", :type => :feature do
     select "Piano", :from => "experience_skill_id"
     fill_in "Start date", :with => "2009-11-23"
     click_button "Submit"
-    expect(page).to have_content "Cooking 4"
+    expect(page).to have_content "Cooking"
     expect(page).to have_content "Skills Subject Level"
-    expect(page).to have_content "Piano 5"
+    expect(page).to have_content "Piano"
+    expect(page).to have_content "Edit Skill Delete"
   end
   
   scenario "adding same skill multiple times" do
@@ -178,7 +183,7 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     expect(page).to have_content "Cooking"
-    expect(page).to have_content "4"
+    expect(page).to have_content "Edit Skill Delete"
     click_link 'Add Skill'
     fill_in "Description", :with => "Learned it twice"
     select "Guru", :from =>  "Level"
@@ -244,7 +249,7 @@ RSpec.feature "User Profile: ", :type => :feature do
 
   scenario "search page from profile" do
     click_link("Search")
-    expect(page).to have_content "Please complete your profile before proceeding. UPDATE PROFILE"
+    expect(page).to have_content "Please complete your profile before proceeding. Update Profile"
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
