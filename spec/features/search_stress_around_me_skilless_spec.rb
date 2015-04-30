@@ -51,7 +51,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
-    User.create(:email => "user_third@example.com", :password => "password", :city => "New York", :zip_code => "10002", :state => "NY")
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Chicago", :zip_code => "60290", :state => "IL")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user_third@example.com"
@@ -86,7 +86,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
-    User.create(:email => "user_third@example.com", :password => "password", :city => "New York", :zip_code => "10002", :state => "NY")
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Chicago", :zip_code => "60290", :state => "IL")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user_third@example.com"
@@ -121,7 +121,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
-    User.create(:email => "user_third@example.com", :password => "password", :city => "New York", :zip_code => "10002", :state => "NY")
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Chicago", :zip_code => "60290", :state => "IL")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user_third@example.com"
@@ -157,7 +157,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
-    User.create(:email => "user_third@example.com", :password => "password", :city => "New York", :zip_code => "10002", :state => "NY")
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Chicago", :zip_code => "60290", :state => "IL")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user_third@example.com"
@@ -192,7 +192,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
-    User.create(:email => "user_third@example.com", :password => "password", :city => "New York", :zip_code => "10002", :state => "NY")
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Chicago", :zip_code => "60290", :state => "IL")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user_third@example.com"
@@ -227,7 +227,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
-    User.create(:email => "user_third@example.com", :password => "password", :city => "New York", :zip_code => "10002", :state => "NY")
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Chicago", :zip_code => "60290", :state => "IL")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user_third@example.com"
@@ -263,7 +263,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
-    User.create(:email => "user_third@example.com", :password => "password", :city => "New York", :zip_code => "10002", :state => "NY")
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Chicago", :zip_code => "60290", :state => "IL")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user_third@example.com"
@@ -298,7 +298,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
-    User.create(:email => "user_third@example.com", :password => "password", :city => "New York", :zip_code => "10002", :state => "NY")
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Chicago", :zip_code => "60290", :state => "IL")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user_third@example.com"
@@ -333,7 +333,7 @@ RSpec.feature "Search: ", :type => :feature do
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
-    User.create(:email => "user_third@example.com", :password => "password", :city => "New York", :zip_code => "10002", :state => "NY")
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Chicago", :zip_code => "60290", :state => "IL")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user_third@example.com"
