@@ -43,13 +43,15 @@ class ReviewsController < ApplicationController
   private
   
     def update_rating(user)
-      rating = 0
+      rating = 0.0
       # get the sum of all ratings for the user
       user.reviews.each do |review|
         rating += review.stars
       end
       # get the average and round to nearest 0.5
-      rating = round(rating/user.reviews.count)
+      if rating != 0
+        rating = round(rating/user.reviews.count)
+      end
       user.update_attributes(rating: rating)
     end
   
