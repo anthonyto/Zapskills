@@ -55,7 +55,72 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Write A Review"
   end
 
-  scenario "leave description empty, reviewee, reviewer" do
+  scenario "dont fill skill, stars, but fill description, reviewee, reviewer, third user can see" do
+    fill_in "Body", :with => "Great job"
+    click_button("Submit")
+    click_link("Sign Out")
+#Reviewee
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Profile")
+    expect(page).to have_content "Great job"
+    page.should have_selector('table tr', :count => 4)
+    expect(page).to_not have_content "No Reviews"
+    expect(page).to_not have_content "Edit Review"
+    click_link("Sign Out")
+
+#Reviewer
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user_second@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Search")
+    select "Camping", :from => "skill_id"
+    fill_in "Radius", :with => "10"
+    click_button "Search"
+    expect(page).to have_content "Search Results"
+    page.should have_selector('table tr', :count => 2)
+    find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
+    expect(page).to have_content "Great job"
+    page.should have_selector('table tr', :count => 4)
+    expect(page).to_not have_content "No Reviews"
+    expect(page).to have_content "Edit Review"
+    click_link("Sign Out")
+
+#Third user
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Madison", :zip_code => "53701", :state => "WI")
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user_third@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Profile")
+    fill_in "First name", :with => "user_third"
+    fill_in "Last name", :with => "example"
+    select "Wisconsin", :from => "user_state"
+    fill_in "Date of birth", :with => "1991-11-23"
+    click_button("Update")
+    click_link("Search")
+    select "Camping", :from => "skill_id"
+    fill_in "Radius", :with => "10"
+    click_button "Search"
+    expect(page).to have_content "Search Results"
+    page.should have_selector('table tr', :count => 3)
+    find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
+    expect(page).to have_content "Great job"
+    page.should have_selector('table tr', :count => 4)
+    expect(page).to_not have_content "No Reviews"
+    expect(page).to_not have_content "Edit Review"
+  end
+
+  scenario "leave description empty, reviewee, reviewer, third user cannot see" do
     select "Camping", :from => "review_skill_id"
     select "5", :from =>  "Stars"
     click_button("Submit")
@@ -363,5 +428,114 @@ RSpec.feature "Search: ", :type => :feature do
     page.should have_selector('table tr', :count => 4)
     expect(page).to_not have_content "Edit Review"
     expect(page).to_not have_content "Delete Review"    
+  end
+
+  scenario "2 users add review for the same user's same skill" do
+    select "Camping", :from => "review_skill_id"
+    select "5", :from =>  "Stars"
+    fill_in "Body", :with => "Great job"
+    click_button("Submit")
+    expect(page).to have_content "Review was successfully created."
+    expect(page).to have_content "Camping"
+    expect(page).to have_content "Great job"
+    page.should have_selector('table tr', :count => 4)
+    expect(page).to have_content "Profile"
+    click_link("Sign Out")
+
+#Third User profile
+    User.create(:email => "user_third@example.com", :password => "password", :city => "Madison", :zip_code => "53701", :state => "WI")
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user_third@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Profile")
+    fill_in "First name", :with => "user_third"
+    fill_in "Last name", :with => "example"
+    select "Wisconsin", :from => "user_state"
+    fill_in "Date of birth", :with => "1991-11-23"
+    click_button("Update")
+    click_link("Search")
+    select "Camping", :from => "skill_id"
+    fill_in "Radius", :with => "10"
+    click_button "Search"
+    expect(page).to have_content "Search Results"
+    page.should have_selector('table tr', :count => 3)
+    find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
+    click_link("Add Review")
+    expect(page).to have_content "Write A Review"
+    select "Camping", :from => "review_skill_id"
+    select "5", :from =>  "Stars"
+    fill_in "Body", :with => "Awesome one"
+    click_button("Submit")
+    expect(page).to have_content "Review was successfully created."
+    expect(page).to have_content "Camping"
+    expect(page).to have_content "Great job"
+    expect(page).to have_content "Awesome one"
+    page.should have_selector('table tr', :count => 5)
+    click_link("Sign Out")
+
+#Reviewee
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Profile")
+    expect(page).to have_content "Great job"
+    expect(page).to have_content "Awesome one"
+    page.should have_selector('table tr', :count => 5)
+    expect(page).to_not have_content "No Reviews"
+    expect(page).to_not have_content "Edit Review"
+    click_link("Sign Out")
+
+#Reviewer
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user_second@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Search")
+    select "Camping", :from => "skill_id"
+    fill_in "Radius", :with => "10"
+    click_button "Search"
+    expect(page).to have_content "Search Results"
+    page.should have_selector('table tr', :count => 2)
+    find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
+    expect(page).to have_content "Great job"
+    expect(page).to have_content "Awesome one"
+    page.should have_selector('table tr', :count => 5)
+    expect(page).to_not have_content "No Reviews"
+    expect(page).to have_content "Edit Review"
+    expect(page).to have_content("Edit Review", :count => 1)
+    find(:xpath, "//tr[td[contains(.,'Great job')]]/td/a", :text => 'Edit Review').click
+    expect(page).to have_content "EDIT A REVIEW"
+    click_link("Sign Out")
+
+#Third User
+    visit "/users/sign_in"
+    within("#new_user") do
+      fill_in "Email", :with => "user_third@example.com"
+      fill_in "Password", :with => "password"
+    end
+    click_button "Log in"
+    click_link("Search")
+    select "Camping", :from => "skill_id"
+    fill_in "Radius", :with => "10"
+    click_button "Search"
+    expect(page).to have_content "Search Results"
+    page.should have_selector('table tr', :count => 3)
+    find(:xpath, "//tr[td[contains(.,'Camping')]]/td/a", :text => 'dummy').click
+    expect(page).to have_content "Great job"
+    expect(page).to have_content "Awesome one"
+    page.should have_selector('table tr', :count => 5)
+    expect(page).to_not have_content "No Reviews"
+    expect(page).to have_content("Edit Review", :count => 1)
+    find(:xpath, "//tr[td[contains(.,'Awesome one')]]/td/a", :text => 'Edit Review').click
+    expect(page).to have_content "EDIT A REVIEW"
+    click_link("Sign Out")
   end
 end
