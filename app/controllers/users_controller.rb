@@ -16,8 +16,7 @@ class UsersController < ApplicationController
 
   def edit
     if !authorize_user(@user)
-      render 'errors/unauthorized'
-      return
+      redirect_to errors_401_path and return
     end
   end
 
@@ -52,7 +51,11 @@ class UsersController < ApplicationController
   
     # Use callbacks to share common setup or constraints between actions.
      def set_user
-       @user = User.find(params[:id])
+       begin 
+         @user = User.find(params[:id])
+       rescue ActiveRecord::RecordNotFound
+         redirect_to errors_404_path and return
+       end
      end
  
     # Never trust parameters from the scary internet, only allow the white list through.

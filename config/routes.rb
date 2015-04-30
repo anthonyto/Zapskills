@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/howto', to: 'welcome#howto', as: 'howto'
   get '/contact', to: 'welcome#contact', as: 'contact'
   get '/termsandconditions', to: 'welcome#termsandconditions', as: 'termsandconditions'
+  get '/errors/401', to: 'errors#unauthorized', as: 'errors_401'
+  get '/errors/404', to: 'errors#not_found', as: 'errors_404'
   
   resources :skills
 
