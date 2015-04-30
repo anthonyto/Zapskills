@@ -23,7 +23,18 @@
 					<strong class="pull-left">Email </strong><%= @user.email %>
 				</li>
 				<li class="list-group-item text-right">
-					<strong class="pull-left">Rating </strong><img src="images/stars_4.png" alt="4 Stars" width="100" height="25">
+					<strong class="pull-left">Rating </strong>
+					<!-- Implement the user rating star here. Pretty janky implementation, but whatever. -->
+					<% if @user.rating == 0 %>
+						No rating yet
+					<% else %>
+						<!--Get the nearest whole number, while rounding down -->
+						<%= image_tag "stars_#{@user.rating.to_i/1}.png" %>
+						<!-- If there is a .5, then also add a half star -->
+						<% if @user.rating > @user.rating.to_i/1 %>
+							<%= image_tag "stars_half.png" %>
+						<% end %>
+					<% end %>
 				</li>
 				<% if @user == current_user %>
 					<li class="list-group-item text-left"><span>

@@ -13,7 +13,14 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "zapskills_platypus.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
+  before_save :default_values
+  
+  def default_values
+    self.rating ||= 0
+  end
+  
   def location
     return "#{self.city}, #{self.state}, #{self.zip_code}"
   end
 end
+
