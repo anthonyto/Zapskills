@@ -18,7 +18,7 @@ class WelcomeController < ApplicationController
     # otherwise, look for all skills of skill_id around the location 
     begin
       if search_params[:skill_id] == ""
-        @users = User.near(location, search_params[:radius]).where.not(id: current_user.id)
+        @users = User.includes(:experiences).near(location, search_params[:radius]).where.not(id: current_user.id)
       else
         @users = Experience.find_by(skill: search_params[:skill_id]).skill.users.near(location, search_params[:radius]).where.not(id: current_user.id) 
       end
