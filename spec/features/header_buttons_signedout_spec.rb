@@ -6,13 +6,12 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
   end
   after :each do
     expect(page).to have_selector(:link_or_button, 'Login')
-    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
     expect(page).to have_selector(:link_or_button, 'Search')
     expect(page).to_not have_selector(:link_or_button, 'Sign Out')
     expect(page).to_not have_selector(:link_or_button, 'Profile')
-    expect(page).to_not have_selector(:link_or_button, 'Contact')
-    expect(page).to_not have_selector(:link_or_button, 'How To')
-    expect(page).to_not have_selector(:link_or_button, 'Terms and Conditions')
+    expect(page).to have_selector(:link_or_button, 'Contact')
+    expect(page).to have_selector(:link_or_button, 'How To')
+    expect(page).to have_selector(:link_or_button, 'Terms and Conditions')
   end
 
   scenario "forgot password page" do
@@ -20,11 +19,13 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
     click_link 'Forgot your password?'
     fill_in "Email", :with =>"shachiagarwalla@gmail.com"
     click_button "Send me reset password instructions"
+    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "Confirmation instructions page" do
     visit "users/sign_in"
     click_link 'Didn\'t receive confirmation instructions?'
+    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "homepage" do
@@ -32,10 +33,12 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
     click_link 'ZapSkills'
     expect(page).to have_content 'Welcome to ZapSkills'
     expect(page).to have_content 'What is ZapSkills'
+    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "Signin Page" do
     visit "/users/sign_in"
+    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "Sign out Page" do
@@ -47,6 +50,7 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
     end
     click_button "Log in"
     click_link("Sign Out")
+    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "Signup Page" do
