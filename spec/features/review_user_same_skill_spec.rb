@@ -353,7 +353,7 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Review was successfully created."
     page.should have_selector('table tr', :count => 4)
     click_link("Edit Review")
-    expect(page).to have_content "EDIT A REVIEW"
+    expect(page).to have_content "Edit A Review"
     fill_in "Body", :with => "Awesome one"
     click_button("Submit")
     expect(page).to have_content "Review was successfully updated."
@@ -512,7 +512,7 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Edit Review"
     expect(page).to have_content("Edit Review", :count => 1)
     find(:xpath, "//tr[td[contains(.,'Great job')]]/td/a", :text => 'Edit Review').click
-    expect(page).to have_content "EDIT A REVIEW"
+    expect(page).to have_content "Edit A Review"
     click_link("Sign Out")
 
 #Third User
@@ -535,7 +535,7 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to_not have_content "No Reviews"
     expect(page).to have_content("Edit Review", :count => 1)
     find(:xpath, "//tr[td[contains(.,'Awesome one')]]/td/a", :text => 'Edit Review').click
-    expect(page).to have_content "EDIT A REVIEW"
+    expect(page).to have_content "Edit A Review"
     click_link("Sign Out")
   end
 end

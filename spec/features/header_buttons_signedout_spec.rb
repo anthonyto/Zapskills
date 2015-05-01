@@ -10,6 +10,9 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
     expect(page).to have_selector(:link_or_button, 'Search')
     expect(page).to_not have_selector(:link_or_button, 'Sign Out')
     expect(page).to_not have_selector(:link_or_button, 'Profile')
+    expect(page).to_not have_selector(:link_or_button, 'Contact')
+    expect(page).to_not have_selector(:link_or_button, 'How To')
+    expect(page).to_not have_selector(:link_or_button, 'Terms and Conditions')
   end
 
   scenario "forgot password page" do

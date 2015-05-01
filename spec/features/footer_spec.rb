@@ -15,14 +15,6 @@ RSpec.feature "the footer to homepage process: ", :type => :feature do
     expect(page).to_not have_selector(:link_or_button, 'Profile')
   end
 
-  scenario "About page to home" do
-    click_link 'About'
-  end
-
-  scenario "Help page to home" do
-    click_link 'Help'
-  end
-
   scenario "How to page to home" do
     click_link 'How To'
   end

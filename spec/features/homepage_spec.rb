@@ -12,7 +12,7 @@ RSpec.feature "Visit homepage: ", :type => :feature do
   end
 
   scenario "do nothing" do
-    expect(page).to have_content 'About Help How To Contact Terms and Conditions'
+    expect(page).to have_content 'More Contact How To Terms and Conditions'
   end
 
   scenario "from forgot password page" do
