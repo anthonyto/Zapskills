@@ -70,7 +70,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Great job"
     page.should have_selector('table tr', :count => 4)
     expect(page).to_not have_content "No Reviews"
-    expect(page).to_not have_content "Edit Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Reviewer
@@ -90,7 +91,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Great job"
     page.should have_selector('table tr', :count => 4)
     expect(page).to_not have_content "No Reviews"
-    expect(page).to have_content "Edit Review"
+    expect(page).to have_selector(:link_or_button, 'Edit Review')
+    expect(page).to have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Third user
@@ -117,7 +119,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Great job"
     page.should have_selector('table tr', :count => 4)
     expect(page).to_not have_content "No Reviews"
-    expect(page).to_not have_content "Edit Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
   end
 
   scenario "leave description empty, reviewee, reviewer, third user cannot see" do
@@ -154,7 +157,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to_not have_content "Great job"
     page.should have_selector('table tr', :count => 2)
     expect(page).to have_content "No Reviews"
-    expect(page).to_not have_content "Edit Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Third user
@@ -213,8 +217,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Review was successfully created."
     expect(page).to have_content "Camping"
     expect(page).to have_content "Great job"
-    expect(page).to have_content "Edit Review"
-    expect(page).to have_content "Delete Review" 
+    expect(page).to have_selector(:link_or_button, 'Edit Review')
+    expect(page).to have_selector(:link_or_button, 'Delete Review')
     page.should have_selector('table tr', :count => 4)
     expect(page).to have_content "Profile"
     click_link("Sign Out")
@@ -227,8 +231,8 @@ RSpec.feature "Search: ", :type => :feature do
     click_link("Profile")
     expect(page).to have_content "Great job"
     page.should have_selector('table tr', :count => 4)
-    expect(page).to_not have_content "Edit Review"
-    expect(page).to_not have_content "Delete Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
   end
 
   scenario "search for the skill and write and delete the review, check reviewee, reviewer and third user cannot see" do
@@ -277,7 +281,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to_not have_content "Great job"
     expect(page).to have_content "No Reviews"
     page.should have_selector('table tr', :count => 2)
-    expect(page).to_not have_content "Edit Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Third user
@@ -341,8 +346,8 @@ RSpec.feature "Search: ", :type => :feature do
 
     expect(page).to have_content "Great job"
     page.should have_selector('table tr', :count => 4)
-    expect(page).to_not have_content "Edit Review"
-    expect(page).to_not have_content "Delete Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
   end
 
   scenario "search for the skill and write and edit the review, check reviewee, reviewer and third user see edited review" do
@@ -362,8 +367,8 @@ RSpec.feature "Search: ", :type => :feature do
     page.should have_selector('table tr', :count => 4)
     expect(page).to have_content "Profile"
     expect(page).to have_content "dummy"
-    expect(page).to have_content "Edit Review"
-    expect(page).to have_content "Delete Review"
+    expect(page).to have_selector(:link_or_button, 'Edit Review')
+    expect(page).to have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Reviewee
@@ -377,8 +382,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     expect(page).to_not have_content "Great job"
     page.should have_selector('table tr', :count => 4)
-    expect(page).to_not have_content "Edit Review"
-    expect(page).to_not have_content "Delete Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Reviewer
@@ -398,8 +403,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     expect(page).to_not have_content "Great job"
     page.should have_selector('table tr', :count => 4)
-    expect(page).to have_content "Edit Review"
-    expect(page).to have_content "Delete Review"
+    expect(page).to have_selector(:link_or_button, 'Edit Review')
+    expect(page).to have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Third user
@@ -426,8 +431,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     expect(page).to_not have_content "Great job"
     page.should have_selector('table tr', :count => 4)
-    expect(page).to_not have_content "Edit Review"
-    expect(page).to_not have_content "Delete Review"    
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
   end
 
   scenario "2 users add review for the same user's same skill" do
@@ -488,7 +493,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     page.should have_selector('table tr', :count => 5)
     expect(page).to_not have_content "No Reviews"
-    expect(page).to_not have_content "Edit Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Reviewer
@@ -509,7 +515,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     page.should have_selector('table tr', :count => 5)
     expect(page).to_not have_content "No Reviews"
-    expect(page).to have_content "Edit Review"
+    expect(page).to have_selector(:link_or_button, 'Delete Review')
+    expect(page).to have_selector(:link_or_button, 'Edit Review')
     expect(page).to have_content("Edit Review", :count => 1)
     find(:xpath, "//tr[td[contains(.,'Great job')]]/td/a", :text => 'Edit Review').click
     expect(page).to have_content "Edit A Review"
@@ -533,6 +540,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     page.should have_selector('table tr', :count => 5)
     expect(page).to_not have_content "No Reviews"
+    expect(page).to have_selector(:link_or_button, 'Edit Review')
+    expect(page).to have_selector(:link_or_button, 'Delete Review')
     expect(page).to have_content("Edit Review", :count => 1)
     find(:xpath, "//tr[td[contains(.,'Awesome one')]]/td/a", :text => 'Edit Review').click
     expect(page).to have_content "Edit A Review"
@@ -614,7 +623,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     page.should have_selector('table tr', :count => 6)
     expect(page).to_not have_content "No Reviews"
-    expect(page).to_not have_content "Edit Review"
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
     click_link("Sign Out")
 
 #Reviewer
@@ -635,7 +645,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     page.should have_selector('table tr', :count => 6)
     expect(page).to_not have_content "No Reviews"
-    expect(page).to have_content "Edit Review"
+    expect(page).to have_selector(:link_or_button, 'Edit Review')
+    expect(page).to have_selector(:link_or_button, 'Delete Review')
     expect(page).to have_content("Edit Review", :count => 2)
     find(:xpath, "//tr[td[contains(.,'Great job')]]/td/a", :text => 'Edit Review').click
     expect(page).to have_content "Edit A Review"
@@ -650,7 +661,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     page.should have_selector('table tr', :count => 6)
     expect(page).to_not have_content "No Reviews"
-    expect(page).to have_content "Edit Review"
+    expect(page).to have_selector(:link_or_button, 'Delete Review')
+    expect(page).to have_selector(:link_or_button, 'Edit Review')
     expect(page).to have_content("Edit Review", :count => 2)
     find(:xpath, "//tr[td[contains(.,'Awesome one')]]/td/a", :text => 'Edit Review').click
     expect(page).to have_content "Edit A Review"
@@ -680,8 +692,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     expect(page).to have_content "Great job"
     page.should have_selector('table tr', :count => 6)
-    expect(page).to_not have_content "Edit Review"
-    expect(page).to_not have_content "Delete Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
   end
 
   scenario "1 user adds reviews for 1 skill of two different user" do
@@ -750,8 +762,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Great job"
     expect(page).to_not have_content "No Reviews"
     page.should have_selector('table tr', :count => 4)
-    expect(page).to_not have_content "Edit Review"
-    expect(page).to_not have_content "Delete Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Second User
@@ -765,8 +777,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Awesome one"
     expect(page).to_not have_content "No Reviews"
     page.should have_selector('table tr', :count => 4)
-    expect(page).to_not have_content "Edit Review"
-    expect(page).to_not have_content "Delete Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
     click_link("Search")
     select "Camping", :from => "skill_id"
     fill_in "Radius", :with => "10"
@@ -777,7 +789,8 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Great job"
     page.should have_selector('table tr', :count => 4)
     expect(page).to_not have_content "No Reviews"
-    expect(page).to_not have_content "Edit Review"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Review')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
     click_link("Sign Out")
 
 #Third User
