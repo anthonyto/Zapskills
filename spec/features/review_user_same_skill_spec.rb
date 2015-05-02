@@ -55,6 +55,49 @@ RSpec.feature "Search: ", :type => :feature do
     expect(page).to have_content "Write A Review"
   end
 
+  scenario "Signed out successfully" do
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    click_link "Sign Out"
+    expect(page).to have_content "Signed out successfully"
+  end
+
+  scenario "Go to search" do
+    expect(page).to have_selector(:link_or_button, 'Search')
+    click_link("Search")
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_content "Skill"
+    expect(page).to have_content "Around me"
+    expect(page).to have_content "Radius (miles)"
+  end
+
+  scenario "Go to Profile" do
+    expect(page).to have_selector(:link_or_button, 'Profile')
+    click_link("Profile")
+    expect(page).to have_content "user_second@example.com"
+    expect(page).to have_content "Profile"
+  end
+
+  scenario "go to homepage" do
+    click_link 'ZapSkills'
+    expect(page).to have_content 'Welcome to ZapSkills'
+    expect(page).to have_content 'What is ZapSkills'
+  end
+
+  scenario "go to about page" do
+    click_link 'How To'
+    expect(page).to have_content 'How to'
+  end
+
+  scenario "go to contact" do
+    click_link 'Contact'
+    expect(page).to have_content 'Contact'
+  end
+
+  scenario "go to terms and conditions" do
+    click_link 'Terms and Conditions'
+    expect(page).to have_content 'Terms and Conditions'
+  end
+
   scenario "dont fill skill, stars, but fill description, reviewee, reviewer, third user can see" do
     fill_in "Body", :with => "Great job"
     click_button("Submit")
