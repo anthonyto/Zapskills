@@ -71,6 +71,29 @@ RSpec.feature "User Profile: ", :type => :feature do
     expect(page).to have_content "Edit Skill Delete" 
   end
 
+  scenario "skill adding before birth" do
+    load Rails.root + "db/skill_seeds.rb"
+    fill_in "First name", :with => "dummy"
+    fill_in "Last name", :with => "example"
+    fill_in "City", :with => "Madison"
+    select "Wisconsin", :from => "user_state"
+    fill_in "Zip code", :with => "53726"
+    fill_in "Date of birth", :with => "1989-11-23"
+    click_button("Update")
+    click_link("Add Skill")
+    fill_in "Description", :with => "Learned it"
+    select "Expert", :from =>  "Level"
+    select "Cooking", :from => "experience_skill_id"
+    fill_in "Start date", :with => "1979-11-23"
+    click_button "Submit"
+    expect(page).to have_content "No way you've been doing that since before you were born"
+    click_link("Profile")
+    page.should have_selector('table tr', :count => 0)
+    expect(page).to_not have_content "Cooking"
+    expect(page).to_not have_selector(:link_or_button, 'Edit Skill')
+    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
+  end
+
   scenario "delete skills" do
     load Rails.root + "db/skill_seeds.rb"
     fill_in "First name", :with => "dummy"
