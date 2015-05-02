@@ -4,6 +4,7 @@ RSpec.feature "Visit homepage: ", :type => :feature do
   before :each do
     visit ""
     User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
+    sleep(1)
   end
 
   after :each do

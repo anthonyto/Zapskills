@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "User Profile: ", :type => :feature do
   before :each do
-    sleep(3)
+    sleep(2)
     User.create(:email => "user@example.com", :password => "password")
     visit "/users/sign_in"
     within("#new_user") do

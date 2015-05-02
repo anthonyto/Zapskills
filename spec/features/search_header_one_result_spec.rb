@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "Search: ", :type => :feature do
   before :each do
     load Rails.root + "db/skill_seeds.rb"
-    sleep (2)
+    sleep (1)
     User.create(:email => "user@example.com", :password => "password", :city => "Madison", :zip_code => "53726", :state => "WI")
     visit "/users/sign_in"
     within("#new_user") do

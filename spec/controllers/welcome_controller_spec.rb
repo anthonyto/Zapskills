@@ -2,6 +2,10 @@ require "rails_helper"
 require_relative "../support/controller_helpers"
 
 RSpec.describe WelcomeController, :type => :controller do
+  before :each do
+    sleep(1)
+  end
+
   describe "GET search" do
     it "response should be success" do
       @user = FactoryGirl.create :user

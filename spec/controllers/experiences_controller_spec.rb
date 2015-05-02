@@ -2,6 +2,9 @@ require "rails_helper"
 require_relative "../support/controller_helpers"
 
 RSpec.describe ExperiencesController, :type => :controller do
+  before :each do
+    sleep(1)
+  end
 
   describe "POST create" do
     it "experience created" do

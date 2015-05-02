@@ -4,6 +4,7 @@ RSpec.feature "Signin process: ", :type => :feature do
   before :each do
     visit "/users/sign_in"
     User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
+    sleep(1)
   end
 
   scenario "invalid password" do

@@ -2,6 +2,10 @@ require "rails_helper"
 
 RSpec.describe "Signup process: ", :type => :feature do
 
+  before :each do
+    sleep(1)
+  end
+
   after :each do
     expect(page).to have_content 'Sign Up Email Password Password confirmation'
     fill_in "user_email", :with => "user@example.com"

@@ -5,6 +5,7 @@ RSpec.describe ReviewsController, :type => :controller do
   before do
     @user = FactoryGirl.create :user
     @user1 = FactoryGirl.create :user
+    sleep(1)
   end
 
   describe "PATCH update" do

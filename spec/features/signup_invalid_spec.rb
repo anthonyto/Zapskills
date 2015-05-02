@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe "Signup process: ", :type => :feature do
 
   before :each do
+    sleep(1)
     User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
     visit ''
     click_link 'Get Started Today!'

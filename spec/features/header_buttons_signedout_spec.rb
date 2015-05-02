@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.feature "check header buttons after signing in: ", :type => :feature do
   before :each do
     User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
+    sleep(1)
   end
   after :each do
     expect(page).to have_selector(:link_or_button, 'Login')

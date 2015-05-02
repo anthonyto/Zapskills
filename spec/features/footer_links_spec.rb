@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.feature "check footer links: ", :type => :feature do
+  before :each do
+    sleep(1)
+  end
+
   after :each do
     click_link 'How To'
     expect(page).to have_content 'How to'

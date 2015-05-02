@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.feature "the footer to homepage process: ", :type => :feature do
   before :each do
     visit ""
+    sleep(1)
   end
   after :each do
     click_link 'ZapSkills'

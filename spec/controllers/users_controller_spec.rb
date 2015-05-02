@@ -2,6 +2,9 @@ require "rails_helper"
 require_relative "../support/controller_helpers"
 
 RSpec.describe UsersController, :type => :controller do
+  before :each do
+    sleep(1)
+  end
 
   describe "GET edit" do
     it "response is success" do
