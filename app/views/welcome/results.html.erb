@@ -11,7 +11,8 @@
     <tbody>
 			<% @users.each do |user| %>
 	      <tr>
-	        <td><%= link_to user.first_name, user_path(user) %></td>
+	        <td>	<%= image_tag user.avatar.url, class: "thumb" %>
+								<%= link_to user.first_name, user_path(user) %></td>
 	        <td>
 						<% skills = user.skills.map{|s| s.name}.join(", ") %>
 						<%= skills %>
