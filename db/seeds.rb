@@ -6,7 +6,16 @@ skills = [
   "Painting", 
   "Sculpting", 
   "Fishing", 
-  "Camping"
+  "Camping", 
+  "Singing", 
+  "Sleeping", 
+  "Running", 
+  "Juggling", 
+  "Quiddich", 
+  "Hockey", 
+  "Cheerleading", 
+  "Football", 
+  "Freestyle Rap"
 ]
 
 skills.each do |name|
