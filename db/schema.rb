@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421165347) do
+ActiveRecord::Schema.define(version: 20150503202857) do
 
   create_table "experiences", force: :cascade do |t|
     t.string   "description", limit: 255
-    t.date     "start_date"
     t.integer  "level",       limit: 4
     t.integer  "user_id",     limit: 4
     t.integer  "skill_id",    limit: 4
