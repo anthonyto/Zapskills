@@ -27,19 +27,17 @@
 	
 
 	<%= render 'layouts/header' %>
+	<%= render 'layouts/spacebar' %>
 		
-	<div style="margin-top: 55px">
-		
-		<% if notice %>
-			<p id="notice"><%= notice %></p>
-		<% end %>
-		<% if alert%>
-			<p id="alert"><%= alert %></p>
-		<% end %>
+	<% if notice %>
+		<p id="notice"><%= notice %></p>
+	<% end %>
+	<% if alert%>
+		<p id="alert"><%= alert %></p>
+	<% end %>
 
-		<%= yield %>
-		
-	</div>
+	<%= yield %>
+	
 
 </body>
 </html>
