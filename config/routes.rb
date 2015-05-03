@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   
   resources :skills
 
-  resources :users do 
+  resources :users, except: [:index, :new, :create] do 
     resources :experiences, only: [:new, :create, :edit, :update, :destroy]
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
