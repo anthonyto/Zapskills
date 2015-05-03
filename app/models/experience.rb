@@ -6,7 +6,7 @@ class Experience < ActiveRecord::Base
   # validate :user_cannot_have_duplicate_skills, on: :create
   # validate :user_cannot_have_duplicate_skills, on: :update
   
-  validates_presence_of :skill_id, :level, :start_date, :description
+  validates_presence_of :skill_id, :level, :description
   
   # enum level: [:beginner, :intermediate, :advanced, :expert, :guru]
   
