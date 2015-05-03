@@ -1,0 +1,44 @@
+.full-image
+{
+/*	background-size: 100% auto;*/
+	
+/*	position: fixed;*/
+  top: 0; 
+  left: 0; 
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.wrap
+{
+	width: 1180px;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+	
+#section1,
+#section2, 
+#section3
+{
+	background-size: cover;
+}
+
+#section1
+{
+	background-image: url(asset-url("cooking.jpg"));
+//	background-image: asset-data-url("cooking.jpg");
+}
+
+#section2
+{
+	
+}
+
+#section3
+{
+	
+}
