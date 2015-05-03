@@ -30,11 +30,11 @@
 					<% else %>
 						<!--Get the nearest whole number, while rounding down -->
 						<% (@user.rating.to_i/1).times do |i|  %>
-							<%= image_tag "full_star.jpg" %>
+							<%= image_tag "full_star.png" %>
 						<% end %>
 						<!-- If there is a .5, then also add a half star -->
 						<% if @user.rating > @user.rating.to_i/1 %>
-							<%= image_tag "half_star.jpg" %>
+							<%= image_tag "half_star.png" %>
 						<% end %>
 					<% end %>
 				</li>
@@ -110,7 +110,7 @@
 											<td><%= review.skill.name %></td>
 											<td>
 												<% review.stars.times do |i| %>
-													<%= image_tag "full_star.jpg" %>
+													<%= image_tag "full_star.png" %>
 												<% end %>
 											</td>
 											<td><%= review.body %></td>
