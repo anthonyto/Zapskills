@@ -17,10 +17,19 @@
 						<% skills = user.skills.map{|s| s.name}.join(", ") %>
 						<%= skills %>
 					</td>
-					<% if user.rating == 0.0 %>
-		        <td>No ratings yet.</td>
+					<% if user.rating == 0 %>
+						<td>No rating yet</td>
 					<% else %>
-		        <td><%= user.rating %> </td>
+					<td>
+						<!--Get the nearest whole number, while rounding down -->
+						<% (user.rating.to_i/1).times do |i|  %>
+							<%= image_tag "full_star.jpg" %>
+						<% end %>
+						<!-- If there is a .5, then also add a half star -->
+						<% if user.rating > user.rating.to_i/1 %>
+							<%= image_tag "half_star.jpg" %>
+						<% end %>
+					</td>
 					<% end %>
 	      </tr>
 			<% end %>
