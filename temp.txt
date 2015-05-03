@@ -1,1 +1,5 @@
   www.freeepy.com
+  
+  User.includes(:experiences).where("experiences.user_id is NULL")
+  
+  User.includes(:experiences).where( experiences: { id: nil } )

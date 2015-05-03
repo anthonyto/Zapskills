@@ -16,7 +16,11 @@
 						<% skills = user.skills.map{|s| s.name}.join(", ") %>
 						<%= skills %>
 					</td>
-	        <td><%= user.rating %> </td>
+					<% if user.rating == 0.0 %>
+		        <td>No ratings yet.</td>
+					<% else %>
+		        <td><%= user.rating %> </td>
+					<% end %>
 	      </tr>
 			<% end %>
     </tbody>
