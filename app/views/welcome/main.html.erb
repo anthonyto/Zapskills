@@ -1,74 +1,19 @@
-<% @title="Home" %>
-
-<div class="jumbotron" style="background-color: #2ecc71">
-	<div class="container">
-		<div class="col-md-7">
-				<%= image_tag "zapskills_welcome.png", class: "img-responsive" %>
-			</div>
-		<div class="col-md-5">
-		<h2>Welcome to ZapSkills</h2>
-		<p>A community where you are the student and the tutor. No that doesn’t mean you are teaching yourself! Many people like yourself want to learn the skills you have and they have the skills you want. From Mathematics, Musical instruments or advance thumb wrestling, your skills are the key to others knowledge. </p>
+<div id="fullpage">
+    <div class="section" id="section1" >
+			<%= image_tag "cooking.jpg", class: "img-responsive full-image" %>
 		</div>
-  	<div class="clearfix"></div><br \>
-		<% unless current_user %>
-			<div class="text-center">
-				<%= link_to 'Get Started Today!', new_user_registration_path, class: 'btn btn-default btn-lg' %>
-			</div>
-		<% end %>
-	</div>
-</div>
-
-<!-- <div class="jumbotron" style="background-color: #FFABC1">
-	<div class="container">
-
-	</div>
-</div> -->
-
-<div class="jumbotron" style="background-color: #f1c40f">
-	<div class="container">
-		<div class="col-md-6 col-md-offset-1">
-			<br></br>
-			<h2>What is ZapSkills?</h2>
-			<p>
-				No matter who you are learning a new skill is hard, but having a tutor can make it easier.
-				That brings you <b>ZapSkills</b>, a place where you can use the knowledge you have, to trade with
-				someone for the knowledge you want, without the need for currency. Search our database of tutors 
-				and become a tutor yourself! 
-			 </p>
-		</div>
-		<div class="col-md-4">
-			<%= image_tag "Zapskills_tesla_stick.png", class: "img-responsive" %>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div>
-
-<div class="jumbotron" style="background-color: #3498db">
-	<div class="container marketing">
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-					<%= image_tag "zapskills_circle_logo_yellow.png", class: "img-circle img-responsive" %>
-          <h2>Create an Account</h2>
-          <p>Creating an account is easy, click “Get Started Today!” and fill out our short form. ZapSkills is completely free and easy to use. Sign up today!</p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-			<%= image_tag "zapskills_book.png", class: "img-circle img-responsive" %>
-          <h2>List Skills</h2>
-          <p>ZapSkills is a site where you use the skills you know for the skills you want to learn. List the skills you know along with your experience level. Your skills are the limit, If you know it then you should list it. All skills are valuable and can be traded.</p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-					<%= image_tag "zapskills_trade.png", class: "img-circle img-responsive" %>
-          <h2>Trade</h2>
-          <p>Browse the site and search for members near you with the skills you want to learn. Contact the member you want to trade with and work out a time to meet. There is no limit on how many skills you can trade so get trading today. </p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
- 	</div>		
+		
+    <div class="section" id="section2" >
+			<%= image_tag "camera.jpeg", class: "img-responsive full-image" %>
+    </div>
+		
+    <div class="section" id="section3" >
+			<%= image_tag "scuba.jpeg", class: "img-responsive full-image" %>
+    </div>
 </div>
 
 <script>
-	// console.log($( window ).height());
-	// $(document).ready(function(){
-	// 	$(".jumbotron").css("height", $( window ).height());
-	// })
+	$(document).ready(function() {
+	    $('#fullpage').fullpage();
+	});
 </script>
