@@ -1,0 +1,28 @@
+<div class="containter-fluid form-margins">
+	<div class="col-md-3"></div>
+
+	<div class="col-md-6">
+	
+	<br \>
+	<br \>
+	<br \>
+	<br \>
+	<br \>
+	
+		<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+		  <%= devise_error_messages! %>
+
+		  <div class="form-group">
+		    <%= f.label :email %><br />
+		    <%= f.email_field :email,  placeholder: "foo@bar.com", autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control" %> 
+		  </div>
+
+		  <div class="actions">
+		    <%= f.submit "Resend Confirmation Instructions", class: "btn btn-primary" %>
+		  </div>
+		<% end %>
+
+	</div>
+
+	<div class="col-md-3"></div>
+</div>
