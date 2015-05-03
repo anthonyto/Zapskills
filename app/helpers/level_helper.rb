@@ -1,11 +1,11 @@
 module LevelHelper
   def levels
     [
-      ['Beginner', 0],
-      ['Intermediate', 1],
-      ['Advanced', 2],
-      ['Expert', 3],
-      ['Guru', 4],
+      ['Beginner', 'Beginner'],
+      ['Intermediate', 'Intermediate'],
+      ['Advanced', 'Advanced'],
+      ['Expert', 'Expert'],
+      ['Guru', 'Guru'],
     ]
   end
 end
