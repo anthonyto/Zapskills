@@ -12,8 +12,8 @@ RSpec.describe "Signup process: ", :type => :feature do
     fill_in "Password", :with => "password"
     fill_in "Password confirmation", :with => "password"
     click_button "Sign up"
-    expect(page).to have_content "Welcome! You have signed up successfully"
-  end
+    expect(page).to have_content "Please complete your profile before proceeding" 
+ end
 
   scenario "sign up from homepage" do
     visit ''
