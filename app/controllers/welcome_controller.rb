@@ -50,6 +50,7 @@ class WelcomeController < ApplicationController
   end
   
   def main
+    render layout: false
   end
   
   

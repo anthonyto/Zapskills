@@ -29,16 +29,16 @@
 
 #section1
 {
-	background-image: url(asset-url("cooking.jpg"));
-//	background-image: asset-data-url("cooking.jpg");
+//	background-image: url(asset-url("cookingOpaqueBlur.png"));
+	background-image: asset-data-url("cookingOpaqueBlur.png");
 }
 
 #section2
 {
-	
+	background-image: asset-data-url("cameraOpaqueBlur.png");
 }
 
 #section3
 {
-	
+	background-image: asset-data-url("scubaOpaqueBlur.png");
 }
