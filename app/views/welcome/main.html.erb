@@ -68,12 +68,49 @@
 	
 	<div id="fullpage">
 	    <div class="section" id="section1" >
+				<div class="col-md-5">
+					<h1 class="white">Welcome to <div class="red">ZapSkills</div></h1>
+					<br \>
+					<p class="white">A community where you are the student, and also the tutor. No, that doesn’t mean you are teaching yourself! Many people in cities all around the nation want to learn the skills you have and they have the skills that you want. From Mathematics,to musical instruments or advance thumb wrestling, your skills are the key to others knowledge. </p>
+			 		<% unless current_user %>
+						<br \>
+		 				<%= link_to 'Get Started Today!', new_user_registration_path, class: 'btn btn-default btn-md' %>
+			 		<% end %>
+				</div>
 			</div>
 		
 	    <div class="section" id="section2" >
+				<div class="col-md-5 col-md-offset-6 text-right">
+				
+					<h1 class="white">To Teach, you Must <div class="red">Learn</div></h1>
+					<br \>
+					<p class="white">
+						Learning a new skill is hard, but having a tutor can make it easier.
+						Welcome <b>ZapSkills</b>, a place where you can use the knowledge you have, to trade with
+						someone for the knowledge you want, without the need for currency. Search our database of tutors 
+						and become a tutor yourself! 
+					 </p>
+				 </div>
 	    </div>
 		
 	    <div class="section" id="section3" >
+				<div class="row margin-sides">
+	        <div class="col-lg-4">
+	          <h2 class="white">Begin</h2>
+						<br \>
+	          <p class="white">Creating an account is easy, click “Get Started Today!” and fill out our short form. ZapSkills is completely free and easy to use. Sign up today!</p>
+	        </div><!-- /.col-lg-4 -->
+	        <div class="col-lg-4">
+	          <h2 class="white">Show Off</h2>
+						<br \>
+	          <p class="white">List the skills you know along with your experience level. Your imagination and expertise are the only limits, if you know it then list it! </p>
+	        </div><!-- /.col-lg-4 -->
+	        <div class="col-lg-4">
+	          <h2 class="white">Trade</h2>
+						<br \>
+	          <p class="white">Browse the site and search for members near you with the skills you want to learn. Contact the member you want to trade with and work out a time to meet. There is no limit on how many skills you can trade so get trading today. </p>
+	        </div><!-- /.col-lg-4 -->
+				</div>
 	    </div>
 	</div>
 
