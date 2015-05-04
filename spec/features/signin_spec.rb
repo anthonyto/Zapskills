@@ -33,10 +33,9 @@ RSpec.feature "Signin process: ", :type => :feature do
 
   scenario "confirmation instruction" do
     click_link 'Didn\'t receive confirmation instructions?'
-    expect(page).to have_selector(:link_or_button, 'Resend confirmation instructions')
-    expect(page).to have_content 'Resend confirmation instructions'
+    expect(page).to have_selector(:link_or_button, 'Resend Confirmation Instructions')
     fill_in "Email", :with => "shachiagarwalla@gmail.com"
-    click_button "Resend confirmation instructions"
+    click_button "Resend Confirmation Instructions"
     expect(page).to have_content "You will receive an email with instructions for how to confirm your email address in a few minutes"
     ActionMailer::Base.deliveries.last.body.match("Welcome shachiagarwalla@gmail.com!")
     ActionMailer::Base.deliveries.last.body.match("You can confirm your account email through the link below:")
