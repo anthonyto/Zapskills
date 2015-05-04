@@ -20,7 +20,7 @@
 					<strong class="pull-left">Location</strong><%= @user.city %>
 				</li>
 				<li class="list-group-item text-right">
-					<strong class="pull-left">Email </strong><%= @user.email %>
+					<strong class="pull-left">Email </strong><%= mail_to(@user.email) %>
 				</li>
 				<li class="list-group-item text-right">
 					<strong class="pull-left">Rating </strong>
