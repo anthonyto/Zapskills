@@ -16,37 +16,27 @@
 	<br \>
   <div class="form-group">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+    <%= f.text_field :first_name, autofocus: true, class: "form-control", required: true %>
   </div>
 			
   <div class="form-group">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    <%= f.text_field :last_name, autofocus: true, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
     <%= f.label :city %><br />
-    <%= f.text_field :city, autofocus: true, class: "form-control" %>
+    <%= f.text_field :city, autofocus: true, class: "form-control", required: true %>
   </div>
 
 	<div class="form-group">
     <%= f.label :state %><br>
-		<%= f.select :state, options_for_select(us_states, "WI") %>
+		<%= f.select :state, options_for_select(us_states, @user.state), required: true %>
 	</div>
 
   <div class="form-group">
     <%= f.label :zip_code %><br />
-    <%= f.text_field :zip_code, autofocus: true, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :date_of_birth %><br />
-    <%= f.date_field :date_of_birth, autofocus: true, class: "form-control" %>
+    <%= f.text_field :zip_code, autofocus: true, class: "form-control", required: true %>
   </div>
 	
   <div class="form-group">

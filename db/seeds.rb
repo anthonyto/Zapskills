@@ -6,7 +6,16 @@ skills = [
   "Painting", 
   "Sculpting", 
   "Fishing", 
-  "Camping"
+  "Camping", 
+  "Singing", 
+  "Sleeping", 
+  "Running", 
+  "Juggling", 
+  "Quiddich", 
+  "Hockey", 
+  "Cheerleading", 
+  "Football", 
+  "Freestyle Rap"
 ]
 
 skills.each do |name|
@@ -42,9 +51,9 @@ users.each do |first_name, last_name, city, state, zip_code, date_of_birth, pass
                 zip_code: zip_code, 
                 date_of_birth: date_of_birth, 
                 password: password)
-  # user.experiences.create(description: "I stink at this", level: 1, skill_id: 1, start_date: '11-11-0001')
-  # user.experiences.create(description: "I'm pretty good at this", level: 1, skill_id: rand(1..8), start_date: '11-11-0001')
-  # user.experiences.create(description: "somethingsomething blah blah", level: 1, skill_id: rand(1..8), start_date: '11-11-0001')
+  # user.experiences.create(description: "I stink at this", level: 1, skill_id: 1)
+  # user.experiences.create(description: "I'm pretty good at this", level: 1, skill_id: rand(1..8))
+  # user.experiences.create(description: "somethingsomething blah blah", level: 1, skill_id: rand(1..8))
   email_num += 1
 end
 

@@ -10,10 +10,7 @@
       </ul>
     </div>
   <% end %>
-			
-	<h1>New Skill</h1>
-	<br \>
-	
+				
 	<% unless @experience.description %>
 	  <div class="form-group">
 			<%= f.label :skill %>*<br />
@@ -29,11 +26,6 @@
   <div class="form-group">
     <%= f.label :description %> <i>(Tell us about your experience)</i>*<br />
     <%= f.text_area :description, rows: 10, required: true, autofocus: true, class: "form-control" %>
-  </div>
-	
-  <div class="form-group">
-    <%= f.label :start_date %>*<br />
-    <%= f.date_field :start_date, required: true, autofocus: true, class: "form-control" %>
   </div>
 	
   <div class="actions">

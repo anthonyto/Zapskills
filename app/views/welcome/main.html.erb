@@ -1,74 +1,88 @@
-<% @title="Home" %>
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+	
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= @title %></title>
+	
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 
-<div class="jumbotron" style="background-color: #2ecc71">
-	<div class="container">
-		<div class="col-md-7">
-				<%= image_tag "zapskills_welcome.png", class: "img-responsive" %>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+	
+	<%= favicon_link_tag 'ZapSkills_favicon.png' %>
+
+</head>
+<body>
+	
+	<nav class="navbar navbar-default navbar-fixed-top" id="front-nav">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+
+	 			<%= link_to image_tag("zapskills_header_thumbnail.png", style: "  height: 40px; width: auto;"), root_url, class: "navbar-brand"%>
+	       <ul class="nav navbar-nav">
+	        <li><h3><%= link_to 'ZapSkills', root_url, class: "white-link" %></h3></li>
+		      </ul>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right">
+						<li><%= link_to 'Search', search_path, class: "white-link" %></li>
+						<% if user_signed_in? %>
+							<li><%= link_to 'Profile', user_path(current_user), class: "white-link" %></li>
+							<li><%= link_to 'Account', edit_user_registration_path(current_user), class: "white-link" %></li>
+							<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, class: "white-link" %></li>
+						<% else %>
+							<li><%= link_to 'Login', new_user_session_path, class: "white-link" %></li>
+						<% end %>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle white-link" data-toggle="dropdown" role="button" aria-expanded="false" >More <span class="caret" ></span></a>
+	          <ul class="dropdown-menu" role="menu">
+							<li><%= link_to 'Contact', contact_path %></li>
+							<li><%= link_to 'How To', howto_path %></li>
+							<li><%= link_to 'Terms and Conditions', termsandconditions_path %></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	
+	<div id="fullpage">
+	    <div class="section" id="section1" >
 			</div>
-		<div class="col-md-5">
-		<h2>Welcome to ZapSkills</h2>
-		<p>A community where you are the student and the tutor. No that doesn’t mean you are teaching yourself! Many people like yourself want to learn the skills you have and they have the skills you want. From Mathematics, Musical instruments or advance thumb wrestling, your skills are the key to others knowledge. </p>
-		</div>
-  	<div class="clearfix"></div><br \>
-		<% unless current_user %>
-			<div class="text-center">
-				<%= link_to 'Get Started Today!', new_user_registration_path, class: 'btn btn-default btn-lg' %>
-			</div>
-		<% end %>
+		
+	    <div class="section" id="section2" >
+	    </div>
+		
+	    <div class="section" id="section3" >
+	    </div>
 	</div>
-</div>
 
-<!-- <div class="jumbotron" style="background-color: #FFABC1">
-	<div class="container">
+	<script>
+		$(document).ready(function() {
+		    $('#fullpage').fullpage();
+		});
+	</script>
 
-	</div>
-</div> -->
 
-<div class="jumbotron" style="background-color: #f1c40f">
-	<div class="container">
-		<div class="col-md-6 col-md-offset-1">
-			<br></br>
-			<h2>What is ZapSkills?</h2>
-			<p>
-				No matter who you are learning a new skill is hard, but having a tutor can make it easier.
-				That brings you <b>ZapSkills</b>, a place where you can use the knowledge you have, to trade with
-				someone for the knowledge you want, without the need for currency. Search our database of tutors 
-				and become a tutor yourself! 
-			 </p>
-		</div>
-		<div class="col-md-4">
-			<%= image_tag "Zapskills_tesla_stick.png", class: "img-responsive" %>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div>
-
-<div class="jumbotron" style="background-color: #3498db">
-	<div class="container marketing">
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-					<%= image_tag "zapskills_circle_logo_yellow.png", class: "img-circle img-responsive" %>
-          <h2>Create an Account</h2>
-          <p>Creating an account is easy, click “Sign up” and fill out our short form. ZapSkills is completely free and easy to use. Sign up today!</p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-			<%= image_tag "zapskills_book.png", class: "img-circle img-responsive" %>
-          <h2>List Skills</h2>
-          <p>ZapSkills is a site where you use the skills you know for the skills you want to learn. List the skills you know along with your experience level. Your skills are the limit, If you know it then you should list it. All skills are valuable and can be traded.</p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-					<%= image_tag "zapskills_trade.png", class: "img-circle img-responsive" %>
-          <h2>Trade</h2>
-          <p>Browse the site and search for members near you with the skills you want to learn. Contact the member you want to trade with and work out a time to meet. There is no limit on how many skills you can trade so get trading today. </p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
- 	</div>		
-</div>
-
-<script>
-	// console.log($( window ).height());
-	// $(document).ready(function(){
-	// 	$(".jumbotron").css("height", $( window ).height());
-	// })
-</script>
+</body>
+</html>

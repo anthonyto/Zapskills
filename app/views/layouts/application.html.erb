@@ -8,12 +8,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="images/ZapSkills_favicon.png">
   <title><%= @title %></title>
 	
   <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
   <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-  <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+  <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -21,11 +20,14 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 	
+	<%= favicon_link_tag 'ZapSkills_favicon.png' %>
+
 </head>
 <body>
 	
 
 	<%= render 'layouts/header' %>
+	<%= render 'layouts/spacebar' %>
 		
 	<% if notice %>
 		<p id="notice"><%= notice %></p>
@@ -35,6 +37,7 @@
 	<% end %>
 
 	<%= yield %>
+	
 
 </body>
 </html>

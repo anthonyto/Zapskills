@@ -11,3 +11,15 @@
     display: inline;
     margin: 2em;
 }
+
+#front-nav
+{
+	border-color: transparent;
+/*	opacity: 0.0;*/
+	background-color: transparent;
+}
+
+.white-link
+{
+	color: #FFFFFF !important;
+}

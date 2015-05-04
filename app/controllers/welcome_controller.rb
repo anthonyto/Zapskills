@@ -18,8 +18,10 @@ class WelcomeController < ApplicationController
     # otherwise, look for all skills of skill_id around the location 
     begin
       if search_params[:skill_id] == ""
-        @users = User.includes(:experiences).near(location, search_params[:radius]).where.not(id: current_user.id)
+        # Find all users that have experiences, around the location of a given radius, that is not the user themselves
+        @users = User.includes(:experiences).where.not( experiences: { id: nil } ).near(location, search_params[:radius]).where.not(id: current_user.id)
       else
+        # Find all experiences of a given skill, then the users that own those experiences, around the location of a given radius, that is not the users themselves
         @users = Experience.find_by(skill: search_params[:skill_id]).skill.users.near(location, search_params[:radius]).where.not(id: current_user.id) 
       end
     rescue NoMethodError
@@ -48,6 +50,7 @@ class WelcomeController < ApplicationController
   end
   
   def main
+    render layout: false
   end
   
   

@@ -1,0 +1,44 @@
+.full-image
+{
+/*	background-size: 100% auto;*/
+	
+/*	position: fixed;*/
+  top: 0; 
+  left: 0; 
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.wrap
+{
+	width: 1180px;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+	
+#section1,
+#section2, 
+#section3
+{
+	background-size: cover;
+}
+
+#section1
+{
+//	background-image: url(asset-url("cookingOpaqueBlur.png"));
+	background-image: asset-data-url("cookingOpaqueBlur.png");
+}
+
+#section2
+{
+	background-image: asset-data-url("cameraOpaqueBlur.png");
+}
+
+#section3
+{
+	background-image: asset-data-url("scubaOpaqueBlur.png");
+}

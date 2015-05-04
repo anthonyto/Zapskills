@@ -11,12 +11,26 @@
     <tbody>
 			<% @users.each do |user| %>
 	      <tr>
-	        <td><%= link_to user.first_name, user_path(user) %></td>
+	        <td>	<%= image_tag user.avatar.url, class: "thumb" %>
+								<%= link_to user.first_name, user_path(user) %></td>
 	        <td>
 						<% skills = user.skills.map{|s| s.name}.join(", ") %>
 						<%= skills %>
 					</td>
-	        <td><%= user.rating %> </td>
+					<% if user.rating == 0 %>
+						<td>No rating yet</td>
+					<% else %>
+					<td>
+						<!--Get the nearest whole number, while rounding down -->
+						<% (user.rating.to_i/1).times do |i|  %>
+							<%= image_tag "full_star.png" %>
+						<% end %>
+						<!-- If there is a .5, then also add a half star -->
+						<% if user.rating > user.rating.to_i/1 %>
+							<%= image_tag "half_star.png" %>
+						<% end %>
+					</td>
+					<% end %>
 	      </tr>
 			<% end %>
     </tbody>

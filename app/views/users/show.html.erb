@@ -30,11 +30,11 @@
 					<% else %>
 						<!--Get the nearest whole number, while rounding down -->
 						<% (@user.rating.to_i/1).times do |i|  %>
-							<%= image_tag "full_star.jpg" %>
+							<%= image_tag "full_star.png" %>
 						<% end %>
 						<!-- If there is a .5, then also add a half star -->
 						<% if @user.rating > @user.rating.to_i/1 %>
-							<%= image_tag "half_star.jpg" %>
+							<%= image_tag "half_star.png" %>
 						<% end %>
 					<% end %>
 				</li>
@@ -51,7 +51,7 @@
 				<div class="panel-body"> 
 					<div class="table-fixed">
 						<% if @user.skills.empty? %>
-							This user doesn't have any skills yet. What a loser. <br \>
+							This user doesn't have any skills yet.<br \>
 						<% else %>
 							<table class="table table-striped table-hover">
 								<thead>
@@ -108,7 +108,11 @@
 									<% @user.reviews.each do |review| %>
 										<tr>
 											<td><%= review.skill.name %></td>
-											<td><%= review.stars %></td>
+											<td>
+												<% review.stars.times do |i| %>
+													<%= image_tag "full_star.png" %>
+												<% end %>
+											</td>
 											<td><%= review.body %></td>
 											<% if review.reviewer_id == current_user.id %>
 												<td><%= link_to "Edit Review", edit_user_review_path(@user, review.id) %></td>
