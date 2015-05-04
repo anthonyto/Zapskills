@@ -63,7 +63,7 @@ RSpec.describe UsersController, :type => :controller do
       delete :destroy, id:@user.id
       flash[:notice].should_not be_nil
       flash[:notice].should eq("User was successfully destroyed.")
-      response.should redirect_to(users_url)
+      response.should redirect_to(user_path(assigns(:user)))
     end
     it "responds unsuccessfully" do
       sign_in nil
@@ -86,65 +86,6 @@ RSpec.describe UsersController, :type => :controller do
       sign_in nil
       @user = FactoryGirl.create :user
       get :show, id:@user.id
-      response.should_not be_success
-    end
-  end
-
-  describe "GET index" do
-    it "responds successfully with an HTTP 200 status code" do
-      sign_in
-      get :index
-      flash[:notice].should be_nil
-      response.should be_success
-      response.should have_http_status(200)
-      response.should render_template("index")
-    end
-    it "responds successfully with and user created" do
-      sign_in
-      @user = FactoryGirl.attributes_for :user
-      post :create, user:@user
-      get :index
-      assigns(:users).should_not be_empty
-      response.should be_success
-      response.should render_template("index")
-    end
-    it "responds unsuccessfully" do
-      sign_in nil
-      get :index
-      response.should_not be_success
-    end
-  end
-
-  describe "GET new" do
-    it "responds successfully" do
-      sign_in
-      get :new
-      flash[:notice].should be_nil
-      response.should be_success
-      response.should have_http_status(200)
-      response.should render_template("new")
-    end
-    it "responds unsuccessfully" do
-      sign_in nil
-      get :new
-      response.should_not be_success
-    end
-  end
-
-  describe "POST create" do
-    it "responds successfully and does not render new" do
-      sign_in
-      @user = FactoryGirl.attributes_for :user
-      post :create, user:@user
-      flash[:notice].should_not be_nil
-      flash[:notice].should eq("User was successfully created.")
-      response.should redirect_to(user_path(assigns(:user)))
-      response.should_not render_template("new")
-    end
-    it "responds unsuccessfully because not signed-in" do
-      sign_in nil
-      @user = FactoryGirl.attributes_for :user
-      post :create, user:@user
       response.should_not be_success
     end
   end
