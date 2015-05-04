@@ -56,23 +56,6 @@ RSpec.describe UsersController, :type => :controller do
     end
   end
   
-  describe "DELETE destroy" do
-    it "redirects to users_url" do
-      @user = FactoryGirl.create :user
-      sign_in
-      delete :destroy, id:@user.id
-      flash[:notice].should_not be_nil
-      flash[:notice].should eq("User was successfully destroyed.")
-      response.should redirect_to(user_path(assigns(:user)))
-    end
-    it "responds unsuccessfully" do
-      sign_in nil
-      @user = FactoryGirl.create :user
-      delete :destroy, id:@user.id
-      response.should_not be_success
-    end
-  end
-
   describe "GET show" do
     it "responds successfully with an HTTP 200 status code" do
       @user = FactoryGirl.create :user
