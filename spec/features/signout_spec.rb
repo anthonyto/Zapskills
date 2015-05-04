@@ -30,6 +30,7 @@ RSpec.feature "Signout process: ", :type => :feature do
     end
     click_button "Log in"
     click_link("Profile")
+    expect(page).to have_content "You need to sign in or sign up before continuing"
     click_link("Sign Out")
     expect(page).to have_content "Signed out successfully"
   end
@@ -47,7 +48,6 @@ RSpec.feature "Signout process: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Edit")
     expect(page).to have_content "Update Profile"
@@ -68,7 +68,6 @@ RSpec.feature "Signout process: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     expect(page).to have_content "New Skill"
@@ -89,7 +88,6 @@ RSpec.feature "Signout process: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Search")
     expect(page).to have_content "Around me"
@@ -112,7 +110,6 @@ RSpec.feature "Signout process: ", :type => :feature do
     select "Wisconsin", :from => "user_state"
     fill_in "City", :with => "Madison"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
@@ -132,7 +129,6 @@ RSpec.feature "Signout process: ", :type => :feature do
     fill_in "First name", :with => "user_second"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
@@ -152,14 +148,13 @@ RSpec.feature "Signout process: ", :type => :feature do
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
-    click_link("Search")
+    #click_link("Search")
     click_link("Profile")
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
     fill_in "City", :with => "Madison"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
@@ -175,11 +170,10 @@ RSpec.feature "Signout process: ", :type => :feature do
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
-    click_link("Profile")
+    #click_link("Profile")
     fill_in "First name", :with => "user_second"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
