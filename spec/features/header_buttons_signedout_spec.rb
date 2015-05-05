@@ -1,13 +1,12 @@
 require "rails_helper"
 
-RSpec.feature "check header buttons after signing in: ", :type => :feature do
+RSpec.feature "check header buttons when signed out ", :type => :feature do
   before :each do
     User.create(:email => "shachiagarwalla@gmail.com", :password => "password")
     sleep(1)
   end
   after :each do
     expect(page).to have_selector(:link_or_button, 'Login')
-    expect(page).to have_selector(:link_or_button, 'Search')
     expect(page).to_not have_selector(:link_or_button, 'Sign Out')
     expect(page).to_not have_selector(:link_or_button, 'Profile')
     expect(page).to have_selector(:link_or_button, 'Contact')
@@ -20,26 +19,22 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
     click_link 'Forgot your password?'
     fill_in "Email", :with =>"shachiagarwalla@gmail.com"
     click_button "Send me reset password instructions"
-    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "Confirmation instructions page" do
     visit "users/sign_in"
     click_link 'Didn\'t receive confirmation instructions?'
-    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "homepage" do
     visit ""
     click_link 'ZapSkills'
     expect(page).to have_content 'Welcome to ZapSkills'
-    expect(page).to have_content 'What is ZapSkills'
     expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "Signin Page" do
     visit "/users/sign_in"
-    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "Sign out Page" do
