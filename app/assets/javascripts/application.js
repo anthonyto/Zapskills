@@ -16,3 +16,6 @@
 //= require turbolinks
 //= require jquery.fullPage.js
 //= require_tree .
+//= stub jquery.fullPage.js
+//= stub jquery.slimscroll.min.js
+	
