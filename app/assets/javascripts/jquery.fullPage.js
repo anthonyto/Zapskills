@@ -166,7 +166,7 @@
 
             if(options.autoScrolling && !options.scrollBar){
                 $htmlBody.css({
-                    'overflow' : 'hidden',
+                    'overflow' : 'scroll',
                     'height' : '100%'
                 });
 
