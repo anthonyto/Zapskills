@@ -53,7 +53,6 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
   end
 
@@ -70,7 +69,6 @@ RSpec.feature "check header buttons after signing in: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link 'Add Skill'
   end
