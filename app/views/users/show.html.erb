@@ -58,6 +58,7 @@
 									<tr>
 										<th>Subject</th>
 										<th>Level</th>
+										<th>Descriptions</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -65,11 +66,10 @@
 										<tr>
 											<td><%= experience.skill.name %></td>
 											<td><%= experience.level %></td>
+											<td><%= experience.description %></td>
 											<% if @user == current_user %>
 												<td><%= link_to "Edit Skill", edit_user_experience_path(current_user, experience.id) %></td>
 												<td><%= link_to "Delete", user_experience_path(current_user, experience.id), method: "delete" %></td>
-											<% else %>
-												<td><%= experience.description %></td>
 											<% end %>
 										</tr>
 									<% end %>
