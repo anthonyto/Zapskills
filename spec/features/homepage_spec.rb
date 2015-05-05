@@ -9,7 +9,6 @@ RSpec.feature "Visit homepage: ", :type => :feature do
 
   after :each do
     expect(page).to have_content 'Welcome to ZapSkills'
-    expect(page).to have_content 'What is ZapSkills'
   end
 
   scenario "do nothing" do
@@ -51,13 +50,6 @@ RSpec.feature "Visit homepage: ", :type => :feature do
     click_link 'ZapSkills'
   end
 
-  scenario "Search page without logging in" do
-    click_link 'Search'
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
-    expect(page).to have_content 'Welcome Back!'
-    click_link 'ZapSkills'
-  end
-
   scenario "After logging in" do
     visit "/users/sign_in"
     within("#new_user") do
@@ -93,7 +85,6 @@ RSpec.feature "Visit homepage: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link 'ZapSkills'
   end
@@ -123,7 +114,6 @@ RSpec.feature "Visit homepage: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     click_link 'ZapSkills'
