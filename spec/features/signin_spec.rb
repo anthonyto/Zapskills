@@ -51,7 +51,11 @@ RSpec.feature "Signin process: ", :type => :feature do
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
-    expect(page).to have_content "Signed in successfully"
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
   end
 
   given(:other_user) { User.create(:email => 'other@example.com', :password => 'rous') }
@@ -75,7 +79,11 @@ RSpec.feature "Signin process: ", :type => :feature do
       fill_in "Password", :with => "password"
     end
     click_button "Log in"
-    expect(page).to have_content "Signed in successfully"
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
   end
   
   scenario "double sign in" do
@@ -85,7 +93,11 @@ RSpec.feature "Signin process: ", :type => :feature do
     end
     click_button "Log in"
     visit "/users/sign_in"
-    expect(page).to have_content "You are already signed in"
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
   end
   
   scenario "remember me not checked" do
@@ -108,7 +120,11 @@ RSpec.feature "Signin process: ", :type => :feature do
     click_button "Log in"
     expire_cookies
     visit "/users/sign_in"
-    expect(page).to have_content 'You are already signed in'
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
   end
 
   scenario "signup after signin in (Not allowed)" do
@@ -118,7 +134,11 @@ RSpec.feature "Signin process: ", :type => :feature do
     end
     click_button "Log in"
     visit '/users/sign_up'
-    expect(page).to_not have_content 'SIGN UP Email Password (8 characters minimum) Password confirmation'
-    expect(page).to have_content "You are already signed in"
+    expect(page).to_not have_content 'Sign Up'
+    expect(page).to_not have_selector(:link_or_button, 'Login')
+    expect(page).to_not have_selector(:link_or_button, 'Sign Up')
+    expect(page).to have_selector(:link_or_button, 'Sign Out')
+    expect(page).to have_selector(:link_or_button, 'Search')
+    expect(page).to have_selector(:link_or_button, 'Profile')
   end
 end
