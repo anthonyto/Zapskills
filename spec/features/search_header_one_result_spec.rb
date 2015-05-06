@@ -15,14 +15,12 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Profile")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link("Sign Out")
     User.create(:email => "user_new@example.com", :password => "password", :city => "Madison", :zip_code => "53701", :state => "WI")
@@ -36,13 +34,11 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "dummy_new"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link("Search")
     select "Camping", :from => "skill_id"
@@ -55,7 +51,7 @@ RSpec.feature "Search: ", :type => :feature do
    scenario "Signed out successfully" do
     expect(page).to have_selector(:link_or_button, 'Sign Out')
     click_link "Sign Out"
-    expect(page).to have_content "Signed out successfully"
+    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "Go to search" do
@@ -77,7 +73,6 @@ RSpec.feature "Search: ", :type => :feature do
   scenario "go to homepage" do
     click_link 'ZapSkills'
     expect(page).to have_content 'Welcome to ZapSkills'
-    expect(page).to have_content 'What is ZapSkills'
   end
 
   scenario "go to about page" do

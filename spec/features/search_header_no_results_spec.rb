@@ -15,7 +15,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Search")
     fill_in "Radius", :with => "10"
@@ -28,7 +27,7 @@ RSpec.feature "Search: ", :type => :feature do
    scenario "Signed out successfully" do
     expect(page).to have_selector(:link_or_button, 'Sign Out')
     click_link "Sign Out"
-    expect(page).to have_content "Signed out successfully"
+    expect(page).to have_selector(:link_or_button, 'Get Started Today!')
   end
 
   scenario "Go to search" do
@@ -50,7 +49,6 @@ RSpec.feature "Search: ", :type => :feature do
   scenario "go to homepage" do
     click_link 'ZapSkills'
     expect(page).to have_content 'Welcome to ZapSkills'
-    expect(page).to have_content 'What is ZapSkills'
   end
 
   scenario "go to about page" do
