@@ -15,14 +15,12 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
 #User 1
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link("Sign Out")
 #User 2
@@ -37,7 +35,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_second"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
   end
 
@@ -47,7 +44,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -62,7 +58,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -82,7 +77,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -97,7 +91,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -117,7 +110,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -132,7 +124,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -153,7 +144,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -168,7 +158,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -188,7 +177,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -203,7 +191,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -223,7 +210,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -238,7 +224,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -259,7 +244,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -274,7 +258,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -294,7 +277,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -309,7 +291,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -329,7 +310,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -344,7 +324,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -365,7 +344,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -380,7 +358,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -400,7 +377,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -415,7 +391,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -435,7 +410,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -450,7 +424,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -471,7 +444,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -486,7 +458,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -506,7 +477,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -521,7 +491,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
@@ -541,7 +510,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
 #User 3- Searcher
     click_link("Sign Out")
@@ -556,7 +524,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "New York", :from => "user_state"
-    fill_in "Date of birth", :with => "1999-11-23"
     click_button("Update")
     click_link("Search")
     uncheck("Around me")
