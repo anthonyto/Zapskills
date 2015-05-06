@@ -4,7 +4,7 @@ RSpec.feature "Search: ", :type => :feature do
   before :each do
     load Rails.root + "db/skill_seeds.rb"
     sleep(2)
-    User.create(:email => "user@example.com", :password => "password", :city => "Madison", :zip_code => "53726", :state => "WI")
+    User.create(:email => "user@example.com", :password => "password", :city => "Madison", :zip_code => "53701", :state => "WI")
     visit "/users/sign_in"
     within("#new_user") do
       fill_in "Email", :with => "user@example.com"
