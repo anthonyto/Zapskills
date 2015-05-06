@@ -25,12 +25,6 @@ RSpec.feature "Signin process: ", :type => :feature do
     expect(page).to have_content "Invalid email or password"
   end
 
-  scenario "clicking on search does nothing" do
-    click_link 'Search'
-    expect(page).to have_selector(:link_or_button, 'Log in')
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
-  end
-
   scenario "confirmation instruction" do
     click_link 'Didn\'t receive confirmation instructions?'
     expect(page).to have_selector(:link_or_button, 'Resend Confirmation Instructions')
@@ -45,10 +39,9 @@ RSpec.feature "Signin process: ", :type => :feature do
 
   scenario "confirmation instruction: invalid email" do
     click_link 'Didn\'t receive confirmation instructions?'
-    expect(page).to have_selector(:link_or_button, 'Resend confirmation instructions')
-    expect(page).to have_content 'Resend confirmation instructions'
+    expect(page).to have_selector(:link_or_button, 'Resend Confirmation Instructions')
     fill_in "Email", :with => "sagarwalla@gmail.com"
-    click_button "Resend confirmation instructions"
+    click_button "Resend Confirmation Instructions"
     expect(page).to have_content "Email not found"
   end
 

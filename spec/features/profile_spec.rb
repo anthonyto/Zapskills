@@ -23,30 +23,17 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     expect(page).to have_content "User was successfully updated"
     expect(page).to have_content "Madison"
   end
 
-  scenario "update profile with invalid date" do
-    fill_in "First name", :with => "dummy"
-    fill_in "Last name", :with => "example"
-    fill_in "City", :with => "Madison"
-    select "Wisconsin", :from => "user_state"
-    fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989"
-    click_button("Update")
-    expect(page).to have_content "Please complete your profile before proceeding. Update Profile"
-  end
-  
   scenario "go to add skills page from Profile" do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     expect(page).to have_content "New Skill"
@@ -59,39 +46,14 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     expect(page).to have_content "Cooking"
     expect(page).to have_content "Edit Skill Delete" 
-  end
-
-  scenario "skill adding before birth" do
-    load Rails.root + "db/skill_seeds.rb"
-    fill_in "First name", :with => "dummy"
-    fill_in "Last name", :with => "example"
-    fill_in "City", :with => "Madison"
-    select "Wisconsin", :from => "user_state"
-    fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
-    click_button("Update")
-    click_link("Add Skill")
-    fill_in "Description", :with => "Learned it"
-    select "Expert", :from =>  "Level"
-    select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1979-11-23"
-    click_button "Submit"
-    expect(page).to have_content "No way you've been doing that since before you were born"
-    click_link("Profile")
-    page.should have_selector('table tr', :count => 0)
-    expect(page).to_not have_content "Cooking"
-    expect(page).to_not have_selector(:link_or_button, 'Edit Skill')
-    expect(page).to_not have_selector(:link_or_button, 'Delete Review')
   end
 
   scenario "delete skills" do
@@ -101,13 +63,11 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     expect(page).to have_content "Cooking"
     expect(page).to have_content "Edit Skill Delete"
@@ -122,20 +82,17 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link("Delete")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Intermediate", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     expect(page).to have_content "Cooking"
     expect(page).to have_content "Edit Skill Delete"
@@ -148,13 +105,11 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link("Edit Skill")
     select "Intermediate", :from =>  "Level"
@@ -170,19 +125,16 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link 'Add Skill'
     fill_in "Description", :with => "Learned it twice"
     select "Guru", :from =>  "Level"
     select "Piano", :from => "experience_skill_id"
-    fill_in "Start date", :with => "2009-11-23"
     click_button "Submit"
     expect(page).to have_content "Cooking"
     expect(page).to have_content "Skills Subject Level"
@@ -197,13 +149,11 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     expect(page).to have_content "Cooking"
     expect(page).to have_content "Edit Skill Delete"
@@ -211,7 +161,6 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "Description", :with => "Learned it twice"
     select "Guru", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "2009-11-23"
     click_button "Submit"
     expect(page).to have_content "you already have that skill"
   end
@@ -223,25 +172,21 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link 'Add Skill'
     fill_in "Description", :with => "Learned it twice"
     select "Guru", :from =>  "Level"
     select "Piano", :from => "experience_skill_id"
-    fill_in "Start date", :with => "2009-11-23"
     click_button "Submit"
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Cooking", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     expect(page).to have_content "you already have that skill"
     click_link("Profile")
@@ -249,7 +194,6 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Piano", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     expect(page).to have_content "you already have that skill"
   end
@@ -260,7 +204,6 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link "Edit"
     fill_in "City", :with => "Madison"
@@ -278,7 +221,6 @@ RSpec.feature "User Profile: ", :type => :feature do
     fill_in "City", :with => "Madison"
     select "Wisconsin", :from => "user_state"
     fill_in "Zip code", :with => "53726"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link "Edit"
     fill_in "City", :with => "Madison"
