@@ -16,13 +16,11 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "dummy"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Expert", :from =>  "Level"
     select "Camping", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link("Sign Out")
     User.create(:email => "user_second@example.com", :password => "password", :city => "Madison", :zip_code => "53701", :state => "WI")
@@ -36,13 +34,11 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_second"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1989-11-23"
     click_button("Update")
     click_link("Add Skill")
     fill_in "Description", :with => "Learned it"
     select "Guru", :from =>  "Level"
     select "Piano", :from => "experience_skill_id"
-    fill_in "Start date", :with => "1999-11-23"
     click_button "Submit"
     click_link("Search")
     select "Camping", :from => "skill_id"
@@ -107,7 +103,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1991-11-23"
     click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
@@ -173,7 +168,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1991-11-23"
     click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
@@ -297,7 +291,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1991-11-23"
     click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
@@ -334,7 +327,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1991-11-23"
     click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
@@ -419,7 +411,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1991-11-23"
     click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
@@ -459,7 +450,6 @@ RSpec.feature "Search: ", :type => :feature do
     fill_in "First name", :with => "user_third"
     fill_in "Last name", :with => "example"
     select "Wisconsin", :from => "user_state"
-    fill_in "Date of birth", :with => "1991-11-23"
     click_button("Update")
     click_link("Search")
     select "Camping", :from => "skill_id"
