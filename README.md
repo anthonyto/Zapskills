@@ -4,11 +4,11 @@
 
 ### RVM
 
-Clone repository onto a desired location on your machine
+Clone repository onto a desired location on your machine.
 
-The application uses Ruby on Rails. We use RVM to manage our Rubies and gemsets. Go ahead and install rvm at rvm.io.
+The application uses Ruby on Rails. We use RVM to manage our Rubies and gemsets. Go ahead and install rvm at [rvm.io](https://rvm.io).
 
-Once you've installed RVM, then run 
+Once you've installed RVM, run 
 
 `$ rvm install 2.2.0` 
 
