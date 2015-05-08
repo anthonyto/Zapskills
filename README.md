@@ -14,7 +14,7 @@ Once you've installed RVM, run
 
 to install ruby 2.2.0, Then run 
 
-'$ rvm gemset create zapskills`  
+`$ rvm gemset create zapskills`  
 
 to create a gemset named zapskills. You'll see in the root of the app directory the two files names .ruby-gemset and .ruby-version expect these configurations. 
 
