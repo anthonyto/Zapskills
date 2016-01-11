@@ -1,6 +1,7 @@
 # Zapskills
-Skills Trading platform that connects users for a trade of knowledge
 zapskills.herokuapp.com
+
+Skills Trading platform that connects users for a trade of knowledge
 
 User manual located at https://drive.google.com/file/d/0B0cYwXySqKkbQUUyaUxfN3Q5d28/view?usp=sharing
 
